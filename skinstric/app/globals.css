@@ -1,9 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+.heading{
+  font-size: 72px;
+  font-weight: 400;
+  font-family: 'Roboto', sans-serif;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
 }
-
-
 
 :root {
   --background: #ffffff;
@@ -44,12 +50,22 @@ body {
   border: 1px solid black;
 }
 
-.heading{
-  font-size: 64px;
-}
-
 button{
   background-color: transparent;
   border: none;
   font-size: 16px;
+}
+
+.fadeAway{
+  animation: fadeOut 2s linear;
+}
+
+@keyframes fadeOut {
+  0%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+  
 }
