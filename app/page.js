@@ -1,4 +1,4 @@
-
+import './globals.css';
 import { GoTriangleRight } from "react-icons/go";
 import { GoTriangleLeft } from "react-icons/go";
 
@@ -11,8 +11,8 @@ export default function Home() {
       <div style={{margin:"15px"}}>SKINSTRC <span style={{color:"grey"}} >[ INTRO ]</span></div>
       <div><button style={{backgroundColor:"black",color:'white',padding:"10px",marginTop:"15px",fontSize:"12px"}} >Enter Code</button></div>
     </div>
-      <div className="center heading" style={{justifyContent:"space-between",height:"75vh"}}>
-        <button className="center" >
+      <div className="center" style={{justifyContent:"space-between",height:"75vh"}}>
+        <button className="center" style={{display:""}} >
           <div className="center" 
           style={{transform:"rotate(45deg)",border:"1px dashed grey",
                   width:"300px",height:"300px",position:"relative",right:"175px"}}>
@@ -26,7 +26,7 @@ export default function Home() {
           </div>
           <span style={{position:"relative",right:"230px"}} >Discover A.I.</span>
         </button>
-        <div className="center column">
+        <div className="center column heading " style={{margin:"0",scale:"1.4"}}>
           <div>Sophisticated</div>
           <div>Skincare</div>
         </div>
