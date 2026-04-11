@@ -13,7 +13,11 @@ export default function Home() {
     </div>
       <div className="center heading" style={{justifyContent:"space-between",height:"75vh"}}>
         <button>
-          <span className="center" style={{rotate:"90",scale:"2",border:"1px solid black"}}><GoTriangleLeft></GoTriangleLeft></span>
+          <div style={{transform:"rotate(90deg)",border:"1px solid black",display:"inline-block"}} >
+            <div className="" style={{transform:"rotate(90deg)",border:"1px solid black"}}>
+              <GoTriangleRight></GoTriangleRight>
+            </div>
+          </div>
           Discover A.I.
         </button>
         <div>
