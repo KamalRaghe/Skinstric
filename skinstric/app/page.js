@@ -20,7 +20,7 @@ const [hide, setHide] = useState(null);
           <div className= 'center' 
           style={{transform:"rotate(45deg)",border:"1px dashed grey", opacity: hovered === "left" ? 0 : 1,
                   pointerEvents: hovered === "left" ? "none" : "auto",transition: "opacity 1s ease",
-                  display: hide === "left" ? "none" : "flex",width:"300px",height:"300px",position:"relative",right:"175px"}}>
+                  display: hide === "right" ? "none" : "flex",width:"300px",height:"300px",position:"relative",right:"175px"}}>
             <div style={{display:"inline-block",border:"1px solid black",
                         margin:"15px", position:"relative",left:"40px",bottom:"40px"}} >
               <div className="center" 
@@ -43,7 +43,7 @@ const [hide, setHide] = useState(null);
           style={{transform:"rotate(45deg)",border:"1px dashed grey", opacity: hovered === "right" ? 0 : 1,
                   pointerEvents: hovered === "left" ? "none" : "auto", transition: "opacity 1s ease",
                   width:"300px",height:"300px",position:"relative",left:"180px"}}>
-            <div style={{display:"inline-block",border:"1px solid black",
+            <div style={{display:"inline-block",border:"1px solid black",display: hide === "left" ? "none" : "flex",
                         margin:"15px", position:"relative", right:"50px",top:"50px"}} >
               <div className="center" 
               style={{scale:"2",transform:"rotate(-45deg)",width:"44px",height:"45px",position:"relative",left:"2px"}}>
