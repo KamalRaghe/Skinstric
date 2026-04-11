@@ -9,19 +9,11 @@ import { GoTriangleLeft } from "react-icons/go";
 export default function Home() {
   const [rightNone, setRightNone] = useState('')
   const [leftNone, setLeftNone] = useState('')
-  const [moveCenter, setMoveCenter] = useState('center column heading ')
+  const [moveCenter, setMoveCenter] = useState('')
   const [rightCss, setRightCss] = useState('center')
   const [leftCss, setLeftCss] = useState('center')
 
-  function LeftHover(on){
-    if(on){
-      setRightCss('center fadeAway')
-      setMoveCenter('heading')
-      setTimeout(() => {
-        setRightNone('none')
-    }, 2100);
-    }
-  }
+
 
   return (
     <div style={{height:"100vh",padding:"0",margin:"0px"}} >
@@ -31,8 +23,8 @@ export default function Home() {
     </div>
       <div className="center" style={{justifyContent:"space-between",height:"75vh"}}>
         <button className="center" >
-          <div className= {rightCss} 
-          style={{transform:"rotate(45deg)",border:"1px dashed grey", display:rightNone,
+          <div className= 'center' 
+          style={{transform:"rotate(45deg)",border:"1px dashed grey", 
                   width:"300px",height:"300px",position:"relative",right:"175px"}}>
             <div style={{display:"inline-block",border:"1px solid black",
                         margin:"15px", position:"relative",left:"40px",bottom:"40px"}} >
@@ -44,16 +36,14 @@ export default function Home() {
           </div>
           <span style={{position:"relative",right:"230px"}} >Discover A.I.</span>
         </button>
-        <div className={moveCenter} style={{margin:"0",scale:"1.4"}}>
+        <div className= 'center column heading ' style={{margin:"0",scale:"1.4"}}>
           <div>Sophisticated</div>
           <div>Skincare</div>
         </div>
         <button className="center" > 
           <span style={{position:"relative",left:"215px"}} >Take test</span>
-           <div className= {leftCss} 
-            onMouseEnter={() => {LeftHover(true)}}
-            onMouseLeave={() => setRightNone('')}
-          style={{transform:"rotate(45deg)",border:"1px dashed grey", display:leftNone,
+           <div className='center'
+          style={{transform:"rotate(45deg)",border:"1px dashed grey", 
                   width:"300px",height:"300px",position:"relative",left:"180px"}}>
             <div style={{display:"inline-block",border:"1px solid black",
                         margin:"15px", position:"relative", right:"50px",top:"50px"}} >
