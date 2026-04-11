@@ -2,10 +2,18 @@
 import './globals.css';
 import { GoTriangleRight } from "react-icons/go";
 import { GoTriangleLeft } from "react-icons/go";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 export default function Home() {
-const [hovered, setHovered] = useState(null);
-const [hide, setHide] = useState(null);
+const [hideLeft, setHideLeft] = useState(null);
+const [hideRight, setHideRight] = useState(null);
+const [loaded, setLoaded] = useState(false)
+
+useEffect(()=>{
+ if(!loaded){
+  setHideRight(false)
+  setHideLeft(false)
+ } 
+})
 
   return (
     <div style={{height:"100vh",padding:"0",margin:"0px"}} >
@@ -14,13 +22,20 @@ const [hide, setHide] = useState(null);
       <div><button style={{backgroundColor:"black",color:'white',padding:"10px",marginTop:"15px",fontSize:"12px"}} >Enter Code</button></div>
     </div>
       <div className="center" style={{justifyContent:"space-between",height:"75vh"}}>
-        <button className="center" 
-          onMouseEnter={() => {setHovered("left");setTimeout(() => setHide("right"), 1000);}}
-          onMouseLeave={() => {setHovered(null);setHide(null)}}>
+        <button className="center">
           <div className= 'center' 
-          style={{transform:"rotate(45deg)",border:"1px dashed grey", opacity: hovered === "left" ? 0 : 1,
-                  pointerEvents: hovered === "left" ? "none" : "auto",transition: "opacity 1s ease",
-                  display: hide === "right" ? "none" : "flex",width:"300px",height:"300px",position:"relative",right:"175px"}}>
+            onMouseEnter={() => {
+              setLoaded(true)
+              setTimeout(() => {
+                setHideRight(true);
+              }, 1000);
+            }} onMouseLeave={() => {
+                setHideRight(false);
+                setLoaded(false)
+              }}
+          style={{transform:"rotate(45deg)",border:"1px dashed grey",opacity: hideLeft ? 0 : 1,
+                transition: "opacity 1s ease",display: hideLeft ? "none" : "flex",
+                 width:"300px",height:"300px",position:"relative",right:"175px"}}>
             <div style={{display:"inline-block",border:"1px solid black",
                         margin:"15px", position:"relative",left:"40px",bottom:"40px"}} >
               <div className="center" 
@@ -35,15 +50,22 @@ const [hide, setHide] = useState(null);
           <div>Sophisticated</div>
           <div>Skincare</div>
         </div>
-        <button className="center"
-          onMouseEnter={() => {setHovered("right"); setTimeout(() => setHide("left"), 1000);}}
-          onMouseLeave={() => {setHovered(null);setHide(null)}} > 
+        <button className="center"> 
           <span style={{position:"relative",left:"215px"}} >Take test</span>
            <div className='center'
-          style={{transform:"rotate(45deg)",border:"1px dashed grey", opacity: hovered === "right" ? 0 : 1,
-                  pointerEvents: hovered === "left" ? "none" : "auto", transition: "opacity 1s ease",
-                  width:"300px",height:"300px",position:"relative",left:"180px"}}>
-            <div style={{display:"inline-block",border:"1px solid black",display: hide === "left" ? "none" : "flex",
+            onMouseEnter={() => {
+              setLoaded(true)
+              setTimeout(() => {
+                setHideLeft(true);
+              }, 1000);
+            }} onMouseLeave={() => {
+                setHideLeft(false)
+                setLoaded(false);
+              }}
+          style={{transform:"rotate(45deg)",border:"1px dashed grey",opacity: hideRight ? 0 : 1,
+                transition: "opacity 1s ease",display: hideRight ? "none" : "flex",
+                 width:"300px",height:"300px",position:"relative",left:"180px"}}>
+            <div style={{display:"inline-block",border:"1px solid black",
                         margin:"15px", position:"relative", right:"50px",top:"50px"}} >
               <div className="center" 
               style={{scale:"2",transform:"rotate(-45deg)",width:"44px",height:"45px",position:"relative",left:"2px"}}>
