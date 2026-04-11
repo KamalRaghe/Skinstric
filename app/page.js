@@ -13,7 +13,8 @@ export default function Home() {
     </div>
       <div className="center heading" style={{justifyContent:"space-between",height:"75vh"}}>
         <button className="center" >
-          <div className="center" style={{transform:"rotate(45deg)",border:"1px solid black",width:"300x",height:"300px"}}>
+          <div className="center" 
+          style={{transform:"rotate(45deg)",border:"1px solid black",width:"250px",height:"250px"}}>
             <div style={{display:"inline-block",border:"1px solid black",margin:"15px"}} >
               <div className="center" 
               style={{scale:"2",transform:"rotate(-45deg)",width:"44px",height:"45px",position:"relative",right:"2px"}}>
