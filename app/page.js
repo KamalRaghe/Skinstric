@@ -13,10 +13,12 @@ export default function Home() {
     </div>
       <div className="center heading" style={{justifyContent:"space-between",height:"75vh"}}>
         <button className="center" >
-          <div style={{transform:"rotate(45deg)",display:"inline-block",border:"1px solid black",margin:"15px"}} >
-            <div className="center" 
-            style={{scale:"2",transform:"rotate(-45deg)",width:"44px",height:"45px",position:"relative",right:"2px"}}>
-              <GoTriangleLeft></GoTriangleLeft>
+          <div style={{transform:"rotate(45deg)",border:"1px solid black"}}>
+            <div style={{display:"inline-block",border:"1px solid black",margin:"15px"}} >
+              <div className="center" 
+              style={{scale:"2",transform:"rotate(-45deg)",width:"44px",height:"45px",position:"relative",right:"2px"}}>
+                <GoTriangleLeft></GoTriangleLeft>
+              </div>
             </div>
           </div>
           Discover A.I.
