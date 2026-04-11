@@ -38,9 +38,11 @@ export default function Home() {
         <button className="center buttonLeft" > 
           <span style={{position:"relative",left:"215px"}} >Take test</span>
            <div className="center" 
+            onMouseEnter={() => setRightNone('none')}
+            onMouseLeave={() => setRightNone('')}
           style={{transform:"rotate(45deg)",border:"1px dashed grey", display:leftNone,
                   width:"300px",height:"300px",position:"relative",left:"180px"}}>
-            <div style={{display:"inline-block",border:"1px solid black",
+            <div style={{display:"inline-block",border:"1px solid black",transition: "0.3s",
                         margin:"15px", position:"relative", right:"50px",top:"50px"}} >
               <div className="center" 
               style={{scale:"2",transform:"rotate(-45deg)",width:"44px",height:"45px",position:"relative",left:"2px"}}>
