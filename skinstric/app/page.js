@@ -10,8 +10,10 @@ const [loaded, setLoaded] = useState(false)
 
 useEffect(()=>{
  if(!loaded){
-  setHideRight(false)
-  setHideLeft(false)
+  setTimeout(() => {
+    setHideRight(false)
+    setHideLeft(false);
+  }, 1000);
  } 
 })
 
@@ -30,7 +32,9 @@ useEffect(()=>{
                 setHideRight(true);
               }, 1000);
             }} onMouseLeave={() => {
+                setTimeout(() => {
                 setHideRight(false);
+              }, 1000);
                 setLoaded(false)
               }}
           style={{transform:"rotate(45deg)",border:"1px dashed grey",opacity: hideLeft ? 0 : 1,
@@ -59,8 +63,10 @@ useEffect(()=>{
                 setHideLeft(true);
               }, 1000);
             }} onMouseLeave={() => {
-                setHideLeft(false)
-                setLoaded(false);
+              setLoaded(false);
+              setTimeout(() => {
+                setHideLeft(false);
+              }, 1000)
               }}
           style={{transform:"rotate(45deg)",border:"1px dashed grey",opacity: hideRight ? 0 : 1,
                 transition: "opacity 1s ease",display: hideRight ? "none" : "flex",
