@@ -13,6 +13,7 @@ export default function Home() {
   const [leftCss, setLeftCss] = useState('center')
 
   function LeftHover(){
+    setRightCss('center')
     setTimeout(() => {
        setRightNone('none')
     }, 2000);
@@ -46,7 +47,7 @@ export default function Home() {
         <button className="center buttonLeft" > 
           <span style={{position:"relative",left:"215px"}} >Take test</span>
            <div className= {leftCss} 
-            onMouseEnter={() => {}}
+            onMouseEnter={() => {LeftHover()}}
             onMouseLeave={() => setRightNone('')}
           style={{transform:"rotate(45deg)",border:"1px dashed grey", display:leftNone,
                   width:"300px",height:"300px",position:"relative",left:"180px"}}>
