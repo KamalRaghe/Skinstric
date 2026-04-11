@@ -1,4 +1,8 @@
-import Image from "next/image";
+
+import { GoTriangleRight } from "react-icons/go";
+import { GoTriangleLeft } from "react-icons/go";
+
+
 
 export default function Home() {
   return (
@@ -10,6 +14,7 @@ export default function Home() {
       <div className="center heading" style={{justifyContent:"space-between",height:"75vh"}}>
         <button>
           Discover A.I.
+          <GoTriangleLeft></GoTriangleLeft>
         </button>
         <div>
           <div>Sophisticated</div>
