@@ -1,19 +1,10 @@
 "use client" 
-import { useState } from 'react';
 import './globals.css';
 import { GoTriangleRight } from "react-icons/go";
 import { GoTriangleLeft } from "react-icons/go";
-
-
-
+import { useState } from "react";
 export default function Home() {
-  const [rightNone, setRightNone] = useState('')
-  const [leftNone, setLeftNone] = useState('')
-  const [moveCenter, setMoveCenter] = useState('')
-  const [rightCss, setRightCss] = useState('center')
-  const [leftCss, setLeftCss] = useState('center')
-
-
+const [hovered, setHovered] = useState(null);
 
   return (
     <div style={{height:"100vh",padding:"0",margin:"0px"}} >
@@ -22,7 +13,9 @@ export default function Home() {
       <div><button style={{backgroundColor:"black",color:'white',padding:"10px",marginTop:"15px",fontSize:"12px"}} >Enter Code</button></div>
     </div>
       <div className="center" style={{justifyContent:"space-between",height:"75vh"}}>
-        <button className="center" >
+        <button className="center" 
+          onMouseEnter={() => setHovered("right")}
+          onMouseLeave={() => setHovered(null)}>
           <div className= 'center' 
           style={{transform:"rotate(45deg)",border:"1px dashed grey", 
                   width:"300px",height:"300px",position:"relative",right:"175px"}}>
@@ -40,7 +33,9 @@ export default function Home() {
           <div>Sophisticated</div>
           <div>Skincare</div>
         </div>
-        <button className="center" > 
+        <button className="center"
+          onMouseEnter={() => setHovered("left")}
+          onMouseLeave={() => setHovered(null)} > 
           <span style={{position:"relative",left:"215px"}} >Take test</span>
            <div className='center'
           style={{transform:"rotate(45deg)",border:"1px dashed grey", 

@@ -56,3 +56,16 @@ button{
   font-size: 16px;
 }
 
+.fadeAway{
+  animation: fadeOut 2s linear;
+}
+
+@keyframes fadeOut {
+  0%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+  
+}
