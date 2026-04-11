@@ -12,8 +12,8 @@ export default function Home() {
       <div><button style={{backgroundColor:"black",color:'white',padding:"10px",marginTop:"15px",fontSize:"12px"}} >Enter Code</button></div>
     </div>
       <div className="center" style={{justifyContent:"space-between",height:"75vh"}}>
-        <button className="center" style={{display:""}} >
-          <div className="center" 
+        <button className="center buttonRight" >
+          <div className="center buttonRightHover " 
           style={{transform:"rotate(45deg)",border:"1px dashed grey",
                   width:"300px",height:"300px",position:"relative",right:"175px"}}>
             <div style={{display:"inline-block",border:"1px solid black",
@@ -30,7 +30,7 @@ export default function Home() {
           <div>Sophisticated</div>
           <div>Skincare</div>
         </div>
-        <button className="center" > 
+        <button className="center buttonLeft" > 
           <span style={{position:"relative",left:"215px"}} >Take test</span>
            <div className="center" 
           style={{transform:"rotate(45deg)",border:"1px dashed grey",
