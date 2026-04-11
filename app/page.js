@@ -5,6 +5,7 @@ import { GoTriangleLeft } from "react-icons/go";
 import { useState } from "react";
 export default function Home() {
 const [hovered, setHovered] = useState(null);
+const [hide, setHide] = useState(null);
 
   return (
     <div style={{height:"100vh",padding:"0",margin:"0px"}} >
@@ -14,11 +15,12 @@ const [hovered, setHovered] = useState(null);
     </div>
       <div className="center" style={{justifyContent:"space-between",height:"75vh"}}>
         <button className="center" 
-          onMouseEnter={() => setHovered("right")}
+          onMouseEnter={() => {setHovered("right");setTimeout(() => setHide("right"), 1000);}}
           onMouseLeave={() => setHovered(null)}>
           <div className= 'center' 
-          style={{transform:"rotate(45deg)",border:"1px dashed grey", 
-                  width:"300px",height:"300px",position:"relative",right:"175px"}}>
+          style={{transform:"rotate(45deg)",border:"1px dashed grey", opacity: hovered === "left" ? 0 : 1,
+                  pointerEvents: hovered === "left" ? "none" : "auto",transition: "opacity 1s ease",
+                  display: hide === "right" ? "none" : "flex",width:"300px",height:"300px",position:"relative",right:"175px"}}>
             <div style={{display:"inline-block",border:"1px solid black",
                         margin:"15px", position:"relative",left:"40px",bottom:"40px"}} >
               <div className="center" 
@@ -34,11 +36,12 @@ const [hovered, setHovered] = useState(null);
           <div>Skincare</div>
         </div>
         <button className="center"
-          onMouseEnter={() => setHovered("left")}
+          onMouseEnter={() => {setHovered("left"); setTimeout(() => setHide("left"), 1000);}}
           onMouseLeave={() => setHovered(null)} > 
           <span style={{position:"relative",left:"215px"}} >Take test</span>
            <div className='center'
-          style={{transform:"rotate(45deg)",border:"1px dashed grey", 
+          style={{transform:"rotate(45deg)",border:"1px dashed grey", opacity: hovered === "right" ? 0 : 1,
+                  pointerEvents: hovered === "right" ? "none" : "auto", transition: "opacity 1s ease",
                   width:"300px",height:"300px",position:"relative",left:"180px"}}>
             <div style={{display:"inline-block",border:"1px solid black",
                         margin:"15px", position:"relative", right:"50px",top:"50px"}} >
