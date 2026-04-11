@@ -9,6 +9,14 @@ import { GoTriangleLeft } from "react-icons/go";
 export default function Home() {
   const [rightNone, setRightNone] = useState('')
   const [leftNone, setLeftNone] = useState('')
+  const [rightCss, setRightCss] = useState('center')
+  const [leftCss, setLeftCss] = useState('center')
+
+  function LeftHover(){
+    setTimeout(() => {
+       setRightNone('none')
+    }, 2000);
+  }
 
   return (
     <div style={{height:"100vh",padding:"0",margin:"0px"}} >
@@ -18,7 +26,7 @@ export default function Home() {
     </div>
       <div className="center" style={{justifyContent:"space-between",height:"75vh"}}>
         <button className="center" >
-          <div className="center buttonRightHover " 
+          <div className= {rightCss} 
           style={{transform:"rotate(45deg)",border:"1px dashed grey", display:rightNone,
                   width:"300px",height:"300px",position:"relative",right:"175px"}}>
             <div style={{display:"inline-block",border:"1px solid black",
@@ -37,12 +45,12 @@ export default function Home() {
         </div>
         <button className="center buttonLeft" > 
           <span style={{position:"relative",left:"215px"}} >Take test</span>
-           <div className="center" 
-            onMouseEnter={() => setRightNone('none')}
+           <div className= {leftCss} 
+            onMouseEnter={() => {}}
             onMouseLeave={() => setRightNone('')}
           style={{transform:"rotate(45deg)",border:"1px dashed grey", display:leftNone,
                   width:"300px",height:"300px",position:"relative",left:"180px"}}>
-            <div style={{display:"inline-block",border:"1px solid black",transition: "0.3s",
+            <div style={{display:"inline-block",border:"1px solid black",
                         margin:"15px", position:"relative", right:"50px",top:"50px"}} >
               <div className="center" 
               style={{scale:"2",transform:"rotate(-45deg)",width:"44px",height:"45px",position:"relative",left:"2px"}}>
