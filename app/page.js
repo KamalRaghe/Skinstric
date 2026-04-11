@@ -24,22 +24,22 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <span style={{position:"relative",right:"225px"}} >Discover A.I.</span>
+          <span style={{position:"relative",right:"230px"}} >Discover A.I.</span>
         </button>
         <div className="center column">
           <div>Sophisticated</div>
           <div>Skincare</div>
         </div>
         <button className="center" > 
-          Take test
+          <span style={{position:"relative",left:"215px"}} >Take test</span>
            <div className="center" 
           style={{transform:"rotate(45deg)",border:"1px dashed grey",
-                  width:"300px",height:"300px",position:"relative",right:"175px"}}>
+                  width:"300px",height:"300px",position:"relative",left:"180px"}}>
             <div style={{display:"inline-block",border:"1px solid black",
-                        margin:"15px", position:"relative",left:"40px",bottom:"40px"}} >
+                        margin:"15px", position:"relative", right:"50px",top:"50px"}} >
               <div className="center" 
-              style={{scale:"2",transform:"rotate(-45deg)",width:"44px",height:"45px",position:"relative",right:"2px"}}>
-                <GoTriangleLeft></GoTriangleLeft>
+              style={{scale:"2",transform:"rotate(-45deg)",width:"44px",height:"45px",position:"relative",left:"2px"}}>
+                <GoTriangleRight></GoTriangleRight>
               </div>
             </div>
           </div>
