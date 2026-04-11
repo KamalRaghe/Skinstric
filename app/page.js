@@ -13,8 +13,8 @@ export default function Home() {
     </div>
       <div className="center heading" style={{justifyContent:"space-between",height:"75vh"}}>
         <button>
+          <span className="center" style={{rotate:"90",scale:"2",border:"1px solid black"}}><GoTriangleLeft></GoTriangleLeft></span>
           Discover A.I.
-          <GoTriangleLeft></GoTriangleLeft>
         </button>
         <div>
           <div>Sophisticated</div>
