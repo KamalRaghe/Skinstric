@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -46,6 +48,8 @@ body {
 
 .heading{
   font-size: 64px;
+  font-weight: 300;
+  font: 'Roboto'; 
 }
 
 button{
