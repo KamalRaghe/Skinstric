@@ -9,15 +9,17 @@ import { GoTriangleLeft } from "react-icons/go";
 export default function Home() {
   const [rightNone, setRightNone] = useState('')
   const [leftNone, setLeftNone] = useState('')
+  const [moveCenter, setMoveCenter] = useState('center column heading ')
   const [rightCss, setRightCss] = useState('center')
   const [leftCss, setLeftCss] = useState('center')
 
   function LeftHover(on){
     if(on){
       setRightCss('center fadeAway')
+      setMoveCenter('heading')
       setTimeout(() => {
         setRightNone('none')
-    }, 2000);
+    }, 2100);
     }
   }
 
@@ -42,13 +44,13 @@ export default function Home() {
           </div>
           <span style={{position:"relative",right:"230px"}} >Discover A.I.</span>
         </button>
-        <div className="center column heading " style={{margin:"0",scale:"1.4"}}>
+        <div className={moveCenter} style={{margin:"0",scale:"1.4"}}>
           <div>Sophisticated</div>
           <div>Skincare</div>
         </div>
-        <button className=  {leftCss} > 
+        <button className="center" > 
           <span style={{position:"relative",left:"215px"}} >Take test</span>
-           <div className= 'center'
+           <div className= {leftCss} 
             onMouseEnter={() => {LeftHover(true)}}
             onMouseLeave={() => setRightNone('')}
           style={{transform:"rotate(45deg)",border:"1px dashed grey", display:leftNone,
