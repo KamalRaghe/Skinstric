@@ -8,7 +8,9 @@ export default function Home() {
       <div><button style={{backgroundColor:"black",color:'white',padding:"10px",marginTop:"15px",fontSize:"12px"}} >Enter Code</button></div>
     </div>
       <div className="center heading" style={{justifyContent:"space-between",height:"75vh"}}>
-        <button>Discover A.I.</button>
+        <button>
+          Discover A.I.
+        </button>
         <div>
           <div>Sophisticated</div>
           <div>Skincare</div>
