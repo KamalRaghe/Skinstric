@@ -12,11 +12,13 @@ export default function Home() {
   const [rightCss, setRightCss] = useState('center')
   const [leftCss, setLeftCss] = useState('center')
 
-  function LeftHover(){
-    setRightCss('center')
-    setTimeout(() => {
-       setRightNone('none')
+  function LeftHover(on){
+    if(on){
+      setRightCss('center fadeAway')
+      setTimeout(() => {
+        setRightNone('none')
     }, 2000);
+    }
   }
 
   return (
@@ -44,10 +46,10 @@ export default function Home() {
           <div>Sophisticated</div>
           <div>Skincare</div>
         </div>
-        <button className="center buttonLeft" > 
+        <button className=  {leftCss} > 
           <span style={{position:"relative",left:"215px"}} >Take test</span>
-           <div className= {leftCss} 
-            onMouseEnter={() => {LeftHover()}}
+           <div className= 'center'
+            onMouseEnter={() => {LeftHover(true)}}
             onMouseLeave={() => setRightNone('')}
           style={{transform:"rotate(45deg)",border:"1px dashed grey", display:leftNone,
                   width:"300px",height:"300px",position:"relative",left:"180px"}}>
