@@ -1,3 +1,5 @@
+"use client" 
+import { useState } from 'react';
 import './globals.css';
 import { GoTriangleRight } from "react-icons/go";
 import { GoTriangleLeft } from "react-icons/go";
@@ -5,6 +7,9 @@ import { GoTriangleLeft } from "react-icons/go";
 
 
 export default function Home() {
+  const [rightNone, setRightNone] = useState('')
+  const [leftNone, setLeftNone] = useState('')
+
   return (
     <div style={{height:"100vh",padding:"0",margin:"0px"}} >
     <div className="center" style={{justifyContent:"space-between"}} >
@@ -12,9 +17,9 @@ export default function Home() {
       <div><button style={{backgroundColor:"black",color:'white',padding:"10px",marginTop:"15px",fontSize:"12px"}} >Enter Code</button></div>
     </div>
       <div className="center" style={{justifyContent:"space-between",height:"75vh"}}>
-        <button className="center buttonRight" >
+        <button className="center" >
           <div className="center buttonRightHover " 
-          style={{transform:"rotate(45deg)",border:"1px dashed grey",
+          style={{transform:"rotate(45deg)",border:"1px dashed grey", display:rightNone,
                   width:"300px",height:"300px",position:"relative",right:"175px"}}>
             <div style={{display:"inline-block",border:"1px solid black",
                         margin:"15px", position:"relative",left:"40px",bottom:"40px"}} >
@@ -33,7 +38,7 @@ export default function Home() {
         <button className="center buttonLeft" > 
           <span style={{position:"relative",left:"215px"}} >Take test</span>
            <div className="center" 
-          style={{transform:"rotate(45deg)",border:"1px dashed grey",
+          style={{transform:"rotate(45deg)",border:"1px dashed grey", display:leftNone,
                   width:"300px",height:"300px",position:"relative",left:"180px"}}>
             <div style={{display:"inline-block",border:"1px solid black",
                         margin:"15px", position:"relative", right:"50px",top:"50px"}} >
