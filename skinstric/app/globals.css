@@ -55,15 +55,15 @@ body {
 }
 
 .centerText {
-  transition: transform 0.6s ease;
+  transition: transform 2s ease;
 }
 
 .moveLeft {
-  transform: translateX(-120px);
+  transform: translateX(-230px);
 }
 
 .moveRight {
-  transform: translateX(120px);
+  transform: translateX(220px);
 }
 
 button{
