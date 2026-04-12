@@ -70,7 +70,7 @@ useEffect(()=>{
            <div className= {mainRight}
             onMouseEnter={() => {
               setLoaded(true)
-              // setMoveCenter('90px')
+              setMoveCenter('moveLeft');
                setMoveCenter('start center column heading')
               setTimeout(() => {
                 setHideLeft(true);
