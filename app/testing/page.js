@@ -21,12 +21,14 @@ export default function Home() {
                     placeholder="Introduce Yourself"
                     style={{
                     textAlign: "center",
-                    bottom:"300px",
                     border: "none",
                     borderBottom: "2px solid grey",
                     fontSize: "40px",
                     width: "350px",
-                    position:"fixed"
+                    position:"fixed",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
                 }}
                 />
         </div>
