@@ -59,12 +59,15 @@ body {
 }
 
 .moveLeft {
-  align-items: flex-start;
+  transform: translateX(-230px);
+  align-items: start;
   transition: all 0.5s ease;
 }
 
 .moveRight {
   transform: translateX(220px);
+  align-items: end;
+  transition: all 0.5s ease;
 }
 
 button{
