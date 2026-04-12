@@ -20,7 +20,6 @@ useEffect(()=>{
   setTimeout(() => {
     setMainLeft('center')
     setMainRight('center')
-    setMoveCenter('center column heading')
   })
    return () => clearTimeout(timer);
  } 
