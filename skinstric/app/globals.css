@@ -60,14 +60,12 @@ body {
 
 .moveLeft {
   transform: translateX(-230px);
-  align-items: start;
-  transition: all 0.5s ease;
+  text-align: left;
 }
 
 .moveRight {
   transform: translateX(220px);
-  align-items: end;
-  transition: all 0.5s ease;
+  text-align: right;
 }
 
 button{
