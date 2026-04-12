@@ -16,6 +16,10 @@ useEffect(()=>{
     setHideRight(false);
     setHideLeft(false);
   }, 1000);
+  setTimeout(() => {
+    setMainLeft('center')
+    setMainRight('center')
+  })
    return () => clearTimeout(timer);
  } 
 })
@@ -27,13 +31,17 @@ useEffect(()=>{
       <div><button style={{backgroundColor:"black",color:'white',padding:"10px",marginTop:"15px",fontSize:"12px"}} >Enter Code</button></div>
     </div>
       <div className="center" style={{justifyContent:"space-between",height:"75vh"}}>
-        <button className= {mainLeft}>
+        <button className= {mainLeft} style={{opacity: hideLeft ? 0 : 1,
+                transition: "opacity 1s ease",}}>
           <div className="center"
             onMouseEnter={() => {
               setLoaded(true)
               setTimeout(() => {
                 setHideRight(true);
               }, 1000);
+              setTimeout(() => {
+                setMainRight('center none')
+              }, 2000);
             }} onMouseLeave={() => {
                 setLoaded(false)
               }}
@@ -62,6 +70,9 @@ useEffect(()=>{
               setTimeout(() => {
                 setHideLeft(true);
               }, 1000);
+               setTimeout(() => {
+                setMainLeft('center none')
+              }, 2000);
             }} onMouseLeave={() => {
               setLoaded(false);
               }}

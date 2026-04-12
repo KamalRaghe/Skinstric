@@ -42,6 +42,10 @@ body {
   align-items: center;
 }
 
+.none{
+  display: none;
+}
+
 .column{
   flex-direction: column;
 }
