@@ -37,8 +37,7 @@ useEffect(()=>{
             }} onMouseLeave={() => {
                 setLoaded(false)
               }}
-          style={{transform:"rotate(45deg)",border:"1px dashed grey",opacity: hideLeft ? 0 : 1,
-                transition: "opacity 1s ease",display: hideLeft ? "none" : "flex",
+          style={{transform:"rotate(45deg)",border:"1px dashed grey",
                  width:"300px",height:"300px",position:"relative",right:"175px"}}>
             <div style={{display:"inline-block",border:"1px solid black",
                         margin:"15px", position:"relative",left:"40px",bottom:"40px"}} >
@@ -54,7 +53,8 @@ useEffect(()=>{
           <div>Sophisticated</div>
           <div>Skincare</div>
         </div>
-        <button className="center FadeAway"> 
+        <button className="center FadeAway" style={{opacity: hideRight ? 0 : 1,
+                transition: "opacity 1s ease",}}> 
           <span style={{position:"relative",left:"215px"}} >Take test</span>
            <div className= {mainRight}
             onMouseEnter={() => {
@@ -65,8 +65,7 @@ useEffect(()=>{
             }} onMouseLeave={() => {
               setLoaded(false);
               }}
-          style={{transform:"rotate(45deg)",border:"1px dashed grey",opacity: hideRight ? 0 : 1,
-                transition: "opacity 1s ease",display: hideRight ? "none" : "flex",
+          style={{transform:"rotate(45deg)",border:"1px dashed grey",
                  width:"300px",height:"300px",position:"relative",left:"180px"}}>
             <div style={{display:"inline-block",border:"1px solid black",
                         margin:"15px", position:"relative", right:"50px",top:"50px"}} >
