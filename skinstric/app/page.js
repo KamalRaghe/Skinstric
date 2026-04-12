@@ -9,7 +9,7 @@ const [hideRight, setHideRight] = useState(null);
 const [mainLeft, setMainLeft] = useState('center');
 const [mainRight, setMainRight] = useState('center')
 const [loaded, setLoaded] = useState(false)
-const [moveCenter, setMoveCenter] = useState('center column heading')
+const [moveCenter, setMoveCenter] = useState('');
 
 useEffect(()=>{
  if(!loaded){
