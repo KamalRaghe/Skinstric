@@ -94,9 +94,9 @@ useEffect(()=>{
               transition: "all 1.8s ease",
               transform:
                 moveCenter === "moveLeft"
-                  ? "translateX(-23vw)"   
+                  ? "translateX(-24.5vw)"   
                   : moveCenter === "moveRight"
-                  ? "translateX(23vw)" 
+                  ? "translateX(23.5vw)" 
                   : "translateX(0)",
               textAlign:
                 moveCenter === "moveLeft"
