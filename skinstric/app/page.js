@@ -20,7 +20,8 @@ useEffect(()=>{
   setTimeout(() => {
     setMainLeft('center')
     setMainRight('center')
-  })
+    setMoveCenter('')
+  },2000)
    return () => clearTimeout(timer);
  } 
 })
@@ -40,14 +41,8 @@ useEffect(()=>{
               setMoveCenter('moveRight');
               setTimeout(() => {
                 setHideRight(true);
-                setMoveCenter('end center column heading')
               }, 1000);
-              setTimeout(() => {
-                setMainRight('center none')
-              }, 2000);
-            }} onMouseLeave={() => {
-                setLoaded(false)
-              }}
+            }} 
           style={{transform:"rotate(45deg)",border:"1px dashed grey",
                  width:"300px",height:"300px",position:"relative",right:"175px"}}>
             <div style={{display:"inline-block",border:"1px solid black",
@@ -72,13 +67,9 @@ useEffect(()=>{
             onMouseEnter={() => {
               setLoaded(true)
               setMoveCenter('moveLeft');
-               setMoveCenter('start center column heading')
               setTimeout(() => {
                 setHideLeft(true);
               }, 1000);
-               setTimeout(() => {
-                setMainLeft('center none')
-              }, 2000);
             }} onMouseLeave={() => {
               setLoaded(false);
               }}
