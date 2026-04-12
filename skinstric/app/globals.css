@@ -68,6 +68,29 @@ body {
   text-align: right;
 }
 
+.topText,
+.bottomText {
+  transition: transform 0.6s ease;
+}
+
+/* LEFT movement */
+.moveLeft.topText {
+  transform: translateX(-180px);
+}
+
+.moveLeft.bottomText {
+  transform: translateX(-230px); /* moves MORE */
+}
+
+/* RIGHT movement */
+.moveRight.topText {
+  transform: translateX(180px);
+}
+
+.moveRight.bottomText {
+  transform: translateX(230px); /* moves MORE */
+}
+
 button{
   background-color: transparent;
   border: none;

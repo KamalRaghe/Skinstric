@@ -58,10 +58,9 @@ useEffect(()=>{
           </div>
           <span style={{position:"relative",right:"230px"}} >Discover A.I.</span>
         </button>
-        <div className={`center column heading centerText ${moveCenter}`}
-         style={{margin:"0",scale:"1.4",position:"relative"}}>
-          <div>Sophisticated</div>
-          <div>Skincare</div>
+        <div className="center column heading">
+          <div className={`topText ${moveCenter}`}>Sophisticated</div>
+          <div className={`bottomText ${moveCenter}`}>Skincare</div>
         </div>
         <button className="center FadeAway" style={{opacity: hideRight ? 0 : 1,
                 transition: "opacity 1s ease",}}> 
