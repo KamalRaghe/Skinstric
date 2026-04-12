@@ -37,6 +37,7 @@ useEffect(()=>{
           <div className="center"
             onMouseEnter={() => {
               setLoaded(true)
+              setMoveCenter('moveRight');
               setTimeout(() => {
                 setHideRight(true);
                 setMoveCenter('end center column heading')
