@@ -43,15 +43,13 @@ body {
 }
 
 .start{
-  display: flex;
-  justify-content: center;
-  align-items: start;
+  position: relative;
+  left: 90px;
 }
 
 .end{
-  display: flex;
-  justify-content: center;
-  align-items: end;
+  position: relative;
+  left: 150px;
 }
 
 .none{

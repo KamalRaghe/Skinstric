@@ -20,7 +20,7 @@ useEffect(()=>{
   setTimeout(() => {
     setMainLeft('center')
     setMainRight('center')
-    setMoveCenter('0')
+    setMoveCenter('center column heading')
   })
    return () => clearTimeout(timer);
  } 
@@ -38,12 +38,12 @@ useEffect(()=>{
           <div className="center"
             onMouseEnter={() => {
               setLoaded(true)
+              setMoveCenter('end center column heading')
               setTimeout(() => {
                 setHideRight(true);
               }, 1000);
               setTimeout(() => {
                 setMainRight('center none')
-                // setMoveCenter('150px')
               }, 2000);
             }} onMouseLeave={() => {
                 setLoaded(false)
@@ -71,6 +71,7 @@ useEffect(()=>{
             onMouseEnter={() => {
               setLoaded(true)
               // setMoveCenter('90px')
+               setMoveCenter('start center column heading')
               setTimeout(() => {
                 setHideLeft(true);
               }, 1000);
