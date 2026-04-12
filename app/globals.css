@@ -73,3 +73,44 @@ button{
   }
   
 }
+
+.box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* OUTER - slow */
+.outer {
+  width: 500px;
+  height: 500px;
+  border: 2px dashed rgba(160, 164, 171, 0.3);
+  animation: rotate 150s linear infinite;
+}
+
+/* MIDDLE - slower */
+.middle {
+  width: 400px;
+  height: 400px;
+  border: 2px dashed rgba(160, 164, 171, 0.6);
+  animation: rotate 200s linear infinite;
+}
+
+/* INNER - slowest */
+.inner {
+  width: 350px;
+  height: 350px;
+  border: 2px dashed rgba(160, 164, 171, 1);
+  animation: rotate 300s linear infinite;
+}
+
+/* animation */
+@keyframes rotate {
+  from {
+    transform: rotate(45deg);
+  }
+  to {
+    transform: rotate(405deg); /* 45 + 360 */
+  }
+}
+
