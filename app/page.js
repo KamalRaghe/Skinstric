@@ -58,31 +58,58 @@ useEffect(()=>{
           </div>
           <span style={{position:"relative",right:"230px"}} >Discover A.I.</span>
         </button>
-        <div
-        className="heading center column"
+       <div
+          className="heading center column"
           style={{
-            scale:'1.4',
+            scale: '1.4',
             position: "relative",
             width: "300px",
-            transition: "all 0.8s ease",
-            transform:
-              moveCenter === "moveLeft"
-                ? "translateX(-18vw)"
-                : moveCenter === "moveRight"
-                ? "translateX(17vw)"
-                : "translateX(0)",
-            textAlign:
-              moveCenter === "moveLeft"
-                ? "left"
-                : moveCenter === "moveRight"
-                ? "right"
-                : "center"
+            transition: "all 1.8s ease",
           }}
->
-          <div className={`topText ${moveCenter}`}>Sophisticated</div>
-          <div className={`bottomText ${moveCenter}`}>Skincare</div>
+        >
+          <div
+            className="topText"
+            style={{
+              transition: "all 1.8s ease",
+              transform:
+                moveCenter === "moveLeft"
+                  ? "translateX(-18vw)"
+                  : moveCenter === "moveRight"
+                  ? "translateX(17vw)"
+                  : "translateX(0)",
+              textAlign:
+                moveCenter === "moveLeft"
+                  ? "left"
+                  : moveCenter === "moveRight"
+                  ? "right"
+                  : "center"
+            }}
+          >
+            Sophisticated
+          </div>
+
+          <div
+            className="bottomText"
+            style={{
+              transition: "all 1.8s ease",
+              transform:
+                moveCenter === "moveLeft"
+                  ? "translateX(-23vw)"   
+                  : moveCenter === "moveRight"
+                  ? "translateX(23vw)" 
+                  : "translateX(0)",
+              textAlign:
+                moveCenter === "moveLeft"
+                  ? "left"
+                  : moveCenter === "moveRight"
+                  ? "right"
+                  : "center"
+            }}
+          >
+            Skincare
+          </div>
         </div>
-        <button className="center FadeAway" style={{opacity: hideRight ? 0 : 1,
+                <button className="center FadeAway" style={{opacity: hideRight ? 0 : 1,
                 transition: "opacity 1s ease",}}> 
           <span style={{position:"relative",left:"215px"}} >Take test</span>
            <div className= {mainRight}
