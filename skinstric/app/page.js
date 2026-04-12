@@ -60,7 +60,8 @@ useEffect(()=>{
           </div>
           <span style={{position:"relative",right:"230px"}} >Discover A.I.</span>
         </button>
-        <div className= {moveCenter} style={{margin:"0",scale:"1.4",position:"relative"}}>
+        <div className={`center column heading centerText ${moveCenter}`}
+         style={{margin:"0",scale:"1.4",position:"relative"}}>
           <div>Sophisticated</div>
           <div>Skincare</div>
         </div>
