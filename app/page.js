@@ -48,7 +48,7 @@ useEffect(()=>{
               }}
           style={{transform:"rotate(45deg)",border:"1px dashed grey",
                  width:"300px",height:"300px",position:"relative",right:"175px"}}>
-            <div style={{display:"inline-block",border:"1px solid black",
+            <div className='border' style={{display:"inline-block",border:"1px solid black",
                         margin:"15px", position:"relative",left:"40px",bottom:"40px"}} >
               <div className="center" 
               style={{scale:"2",transform:"rotate(-45deg)",width:"44px",height:"45px",position:"relative",right:"2px"}}>
@@ -65,6 +65,7 @@ useEffect(()=>{
             position: "relative",
             width: "300px",
             transition: "all 1.8s ease",
+            zIndex:"30"
           }}
         >
           <div
@@ -125,10 +126,10 @@ useEffect(()=>{
               }}
           style={{transform:"rotate(45deg)",border:"1px dashed grey",
                  width:"300px",height:"300px",position:"relative",left:"180px"}}>
-            <div style={{display:"inline-block",border:"1px solid black",scale:"2",zIndex:"20",
+            <div style={{display:"inline-block",scale:"2",
                         padding:"1px", position:"relative", right:"50px",top:"50px"}} >
               <div className="center" 
-              style={{transform:"rotate(-45deg)",scale:"0.8"}}>
+              style={{transform:"rotate(-45deg)",scale:"0.79"}}>
                 <GoTriangleRight></GoTriangleRight>
               </div>
             </div>
