@@ -16,11 +16,10 @@ useEffect(()=>{
   const timer = setTimeout(() => {
     setHideRight(false);
     setHideLeft(false);
-  }, 1000);
+  }, 600);
   setTimeout(() => {
     setMainLeft('center')
     setMainRight('center')
-    setMoveCenter('')
   },2000)
    return () => clearTimeout(timer);
  } 
@@ -41,8 +40,12 @@ useEffect(()=>{
               setMoveCenter('moveRight');
               setTimeout(() => {
                 setHideRight(true);
-              }, 1000);
-            }} 
+              }, 600);
+            }}  
+            onMouseLeave={() => {
+              setLoaded(false);
+              setMoveCenter('')
+              }}
           style={{transform:"rotate(45deg)",border:"1px dashed grey",
                  width:"300px",height:"300px",position:"relative",right:"175px"}}>
             <div style={{display:"inline-block",border:"1px solid black",
@@ -69,9 +72,10 @@ useEffect(()=>{
               setMoveCenter('moveLeft');
               setTimeout(() => {
                 setHideLeft(true);
-              }, 1000);
+              }, 600);
             }} onMouseLeave={() => {
               setLoaded(false);
+              setMoveCenter('')
               }}
           style={{transform:"rotate(45deg)",border:"1px dashed grey",
                  width:"300px",height:"300px",position:"relative",left:"180px"}}>
