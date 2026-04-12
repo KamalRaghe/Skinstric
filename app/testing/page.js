@@ -12,7 +12,7 @@ export default function Home() {
       <div className="center" style={{width:"100%",height:"70vh",transform:"rotate(45deg)"}} >
         <div className="center" style={{width:"370px",height:"370px", border:"2px dashed rgba(128,128,128,0.3)"}} >
             <div className="center" style={{width:"340px",height:"340px",border:"2px dashed rgba(128,128,128,0.6)"}} >
-                <div className="center" style={{width:"300px",height:"300px"}}>
+                <div className="center" style={{width:"300px",height:"300px",border:"2px dashed rgba(128,128,128)"}}>
                     <input placeholder="Introduce Yourself" 
                     className="center"
                     style={{
