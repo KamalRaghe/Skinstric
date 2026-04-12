@@ -9,6 +9,7 @@ const [hideRight, setHideRight] = useState(null);
 const [mainLeft, setMainLeft] = useState('center');
 const [mainRight, setMainRight] = useState('center')
 const [loaded, setLoaded] = useState(false)
+const [moveCenter, setMoveCenter] = useState('center column heading')
 
 useEffect(()=>{
  if(!loaded){
@@ -19,6 +20,7 @@ useEffect(()=>{
   setTimeout(() => {
     setMainLeft('center')
     setMainRight('center')
+    setMoveCenter('0')
   })
    return () => clearTimeout(timer);
  } 
@@ -41,6 +43,7 @@ useEffect(()=>{
               }, 1000);
               setTimeout(() => {
                 setMainRight('center none')
+                // setMoveCenter('150px')
               }, 2000);
             }} onMouseLeave={() => {
                 setLoaded(false)
@@ -57,7 +60,7 @@ useEffect(()=>{
           </div>
           <span style={{position:"relative",right:"230px"}} >Discover A.I.</span>
         </button>
-        <div className= 'center column heading ' style={{margin:"0",scale:"1.4"}}>
+        <div className= {moveCenter} style={{margin:"0",scale:"1.4",position:"relative"}}>
           <div>Sophisticated</div>
           <div>Skincare</div>
         </div>
@@ -67,6 +70,7 @@ useEffect(()=>{
            <div className= {mainRight}
             onMouseEnter={() => {
               setLoaded(true)
+              // setMoveCenter('90px')
               setTimeout(() => {
                 setHideLeft(true);
               }, 1000);

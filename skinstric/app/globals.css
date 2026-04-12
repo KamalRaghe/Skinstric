@@ -42,6 +42,18 @@ body {
   align-items: center;
 }
 
+.start{
+  display: flex;
+  justify-content: center;
+  align-items: start;
+}
+
+.end{
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
+
 .none{
   display: none;
 }
