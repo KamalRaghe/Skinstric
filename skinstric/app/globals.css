@@ -42,36 +42,6 @@ body {
   align-items: center;
 }
 
-.start{
-  position: relative;
-  left: 90px;
-   animation: moveLeft 1s linear;
-}
-
-.end{
-  position: relative;
-  left: 150px;
-  animation: moveRight 2s linear;
-}
-
-@keyframes moveRight {
-  0% {
-    transform: translateX(-150px);
-  }
-  100% {
-    transform: translateX(30px);
-  }
-}
-
-@keyframes moveLeft {
-  0% {
-    transform: translateX(0px);
-  }
-  100% {
-    transform: translateX(-90px);
-  }
-}
-
 .none{
   display: none;
 }
