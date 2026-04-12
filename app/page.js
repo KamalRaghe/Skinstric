@@ -61,14 +61,15 @@ useEffect(()=>{
         <div
         className="heading center column"
           style={{
+            scale:'1.4',
             position: "relative",
             width: "300px",
             transition: "all 0.8s ease",
             transform:
               moveCenter === "moveLeft"
-                ? "translateX(-40vw)"
+                ? "translateX(-18vw)"
                 : moveCenter === "moveRight"
-                ? "translateX(40vw)"
+                ? "translateX(17vw)"
                 : "translateX(0)",
             textAlign:
               moveCenter === "moveLeft"
