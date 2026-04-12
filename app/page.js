@@ -109,9 +109,9 @@ useEffect(()=>{
             Skincare
           </div>
         </div>
-                <button className="center FadeAway" style={{opacity: hideRight ? 0 : 1,
+          <button className="center FadeAway" style={{opacity: hideRight ? 0 : 1,
                 transition: "opacity 1s ease",}}> 
-          <span style={{position:"relative",left:"215px"}} >Take test</span>
+          <span style={{position:"relative",left:"215px",zIndex:"20"}} >Take test</span>
            <div className= {mainRight}
             onMouseEnter={() => {
               setLoaded(true)
@@ -125,10 +125,10 @@ useEffect(()=>{
               }}
           style={{transform:"rotate(45deg)",border:"1px dashed grey",
                  width:"300px",height:"300px",position:"relative",left:"180px"}}>
-            <div style={{display:"inline-block",border:"1px solid black",
-                        margin:"15px", position:"relative", right:"50px",top:"50px"}} >
+            <div style={{display:"inline-block",border:"1px solid black",scale:"2",zIndex:"20",
+                        padding:"1px", position:"relative", right:"50px",top:"50px"}} >
               <div className="center" 
-              style={{scale:"2",transform:"rotate(-45deg)",width:"44px",height:"45px",position:"relative",left:"2px"}}>
+              style={{transform:"rotate(-45deg)",scale:"0.8"}}>
                 <GoTriangleRight></GoTriangleRight>
               </div>
             </div>
