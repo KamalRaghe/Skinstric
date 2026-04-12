@@ -6,14 +6,17 @@ import { useEffect, useState } from "react";
 export default function Home() {
 const [hideLeft, setHideLeft] = useState(null);
 const [hideRight, setHideRight] = useState(null);
+const [mainLeft, setMainLeft] = useState('center');
+const [mainRight, setMainRight] = useState('center')
 const [loaded, setLoaded] = useState(false)
 
 useEffect(()=>{
  if(!loaded){
-  setTimeout(() => {
-    setHideRight(false)
+  const timer = setTimeout(() => {
+    setHideRight(false);
     setHideLeft(false);
   }, 1000);
+   return () => clearTimeout(timer);
  } 
 })
 
@@ -24,8 +27,8 @@ useEffect(()=>{
       <div><button style={{backgroundColor:"black",color:'white',padding:"10px",marginTop:"15px",fontSize:"12px"}} >Enter Code</button></div>
     </div>
       <div className="center" style={{justifyContent:"space-between",height:"75vh"}}>
-        <button className="center">
-          <div className= 'center' 
+        <button className= {mainLeft}>
+          <div className="center"
             onMouseEnter={() => {
               setLoaded(true)
               setTimeout(() => {
@@ -51,9 +54,9 @@ useEffect(()=>{
           <div>Sophisticated</div>
           <div>Skincare</div>
         </div>
-        <button className="center"> 
+        <button className="center FadeAway"> 
           <span style={{position:"relative",left:"215px"}} >Take test</span>
-           <div className='center'
+           <div className= {mainRight}
             onMouseEnter={() => {
               setLoaded(true)
               setTimeout(() => {

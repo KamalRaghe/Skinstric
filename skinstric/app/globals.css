@@ -56,8 +56,9 @@ button{
   font-size: 16px;
 }
 
-.fadeAway{
-  animation: fadeOut 2s linear;
+.FadeAway{
+  animation: fadeOut 1s linear;
+  color:"red"
 }
 
 @keyframes fadeOut {
