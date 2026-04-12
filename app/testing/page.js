@@ -10,9 +10,9 @@ export default function Home() {
     </div>
     <div style={{fontWeight:"bold",position:"relative",left:"20px"}} >To START ANALYSIS</div>
       <div className="center" style={{width:"100%",height:"70vh",transform:"rotate(45deg)"}} >
-        <div className="border center" style={{width:"350px",height:"350px",}} >
-            <div className="border center" style={{width:"300px",height:"300px",}} >
-                <div className="border center" style={{width:"250px",height:"250px",}}></div>
+        <div className="border center" style={{width:"350px",height:"350px"}} >
+            <div className="border center" style={{width:"300px",height:"300px"}} >
+                <div className="border center" style={{width:"250px",height:"250px"}}></div>
             </div>
         </div>
       </div>
