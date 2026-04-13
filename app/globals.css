@@ -109,7 +109,7 @@ button{
 }
 
 .fadeIN{
-  animation: fadeIn 1s linear;
+  animation: fadeIn 2s linear;
 }
 
 @keyframes fadeIn {
