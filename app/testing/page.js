@@ -2,7 +2,8 @@
 import { useEffect, useState } from "react";
 export default function Home() {
 const [title,setTitle] = useState("Introduce Yourself")
-const [value,setValue] = useState()
+const [value,setValue] = useState('')
+const [name,setName] = useState()
   return (
     <div style={{height:"100vh",padding:"0",margin:"0px",overflow:"hidden"}} >
     <div className="center" style={{justifyContent:"space-between"}} >
@@ -25,11 +26,12 @@ const [value,setValue] = useState()
                 fontSize:"20px"
                 }} > click to type</div>
                     <input
+                    value={value}
                     onChange={(e) => setValue(e.target.value)}
                     onKeyDown={(e) => {
-                    if (e.key === "Enter" && value) {
+                    if (e.key === "Enter" && value && name){
+                    setName(value)    
                     setValue('')
-                    console.lo(value)
                     setTitle('your city name');
                     }
                 }}
