@@ -4,6 +4,7 @@ export default function Home() {
 const [title,setTitle] = useState("Introduce Yourself")
 const [value,setValue] = useState('')
 const [name,setName] = useState()
+const [location, setLocation] = useState("");
 const [none, setNone] = useState()
   return (
     <div style={{height:"100vh",padding:"0",margin:"0px",overflow:"hidden"}} >
