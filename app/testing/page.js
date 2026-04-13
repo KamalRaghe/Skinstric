@@ -161,7 +161,7 @@ const [loaded,setLoaded] = useState()
                         <GoTriangleLeft />
                     </div>
                     </div>
-                    <span>BACK</span>
+                    <span style={{marginLeft:"12px" }} >BACK</span>
                 </div>
 
                 {/* PROCEED */}
