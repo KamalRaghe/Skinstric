@@ -76,8 +76,8 @@ const [loaded,setLoaded] = useState()
                             console.log(data)
                             setTimeout(() => {
                             setLoaded(true)
-                            setLoaded(false)
-                        }, 1500)
+                            setLoading(false)
+                        }, 1000)
                         })
                         .catch(err => console.log(err));
 
@@ -99,7 +99,7 @@ const [loaded,setLoaded] = useState()
                     outline:"none"
                 }}
                 />
-            {location && !loaded && 
+            {loading && 
             <div className="center column" 
             style={{
                 position:"fixed",
@@ -120,24 +120,14 @@ const [loaded,setLoaded] = useState()
                 </div>
             </div>}
              {loaded && 
-            <div className="center column" 
+            <div className="center column"
             style={{
                 position:"fixed",
                 top: "50%",
                 left: "50%",
-                transform: "translate(-50%, -50%)",
-                color:"grey",
-                width:"360px",
-                height:"100px",
-            }}>
-                <div style={{fontSize:'20px'}} >
-                    Processing Submission
-                </div>
-                <div className="dots center">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
+                transform: "translate(-50%, -50%)"
+            }}> 
+                hek
             </div>}
         </div>
     </div>
