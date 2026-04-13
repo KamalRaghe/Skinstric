@@ -1,7 +1,7 @@
 "use client" 
 import { useEffect, useState } from "react";
 export default function Home() {
-
+const [title,setTitle] = useState("Introduce Yourself")
   return (
     <div style={{height:"100vh",padding:"0",margin:"0px",overflow:"hidden"}} >
     <div className="center" style={{justifyContent:"space-between"}} >
@@ -24,7 +24,12 @@ export default function Home() {
                 fontSize:"20px"
                 }} > click to type</div>
                     <input
-                    placeholder="Introduce Yourself"
+                    onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                    setTitle('your city name');
+                    }
+                }}
+                    placeholder= {title}
                     style={{
                     textAlign: "center",
                     border: "none",
