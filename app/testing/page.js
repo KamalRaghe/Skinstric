@@ -31,18 +31,47 @@ const [none, setNone] = useState()
                     <input
                     value={value}
                     onChange={(e) => setValue(e.target.value)}
-                    onKeyDown={(e) => {
-                    if (e.key === "Enter" && value && !name){
-                    setName(value)    
-                    setValue('')
-                    setTitle('your city name');
-                    }else{
-                        if(e.key === 'Enter' && value){
-                            setTitle('')
-                            setNone('none')
-                        }
+                 onKeyDown={(e) => {
+                    if (e.key !== "Enter" || !value.trim()) return;
+
+                    const regex = /^[A-Za-z\s]+$/;
+
+                    if (!regex.test(value)) {
+                        alert("Only letters allowed");
+                        return;
                     }
-                }}
+
+                    if (!name) {
+                        setName(value);
+                        setValue("");
+                        setTitle("your city name");
+                    } 
+                 
+                    else {
+                        setLocation(value);
+
+                        localStorage.setItem(
+                        "user",
+                        JSON.stringify({ name, location: value })
+                        );
+
+                        fetch("https://us-central1-frontend-simplified.cloudfunctions.net/skinstricPhaseOne", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            name,
+                            location: value,
+                        }),
+                        })
+                        .then(res => res.json())
+                        .then(data => console.log(data))
+                        .catch(err => console.log(err));
+
+                        setNone("none");
+                    }
+                    }}
                     placeholder= {title}
                     style={{
                      display: none,
