@@ -61,7 +61,7 @@ useEffect(()=>{
           <span style={{position:"relative",right:"230px"}} >Discover A.I.</span>
         </button>
        <div
-          className="heading center column"
+          className="heading center column fadeIN"
           style={{
             scale: '1.4',
             position: "relative",
