@@ -29,7 +29,9 @@ const [loaded,setLoaded] = useState()
                 color:"grey",
                 fontSize:"20px",
                  display: none,
-                }} > click to type</div>
+                }} > click to type
+                <div></div>
+                </div>
                     <input
                     value={value}
                     onChange={(e) => setValue(e.target.value)}
@@ -39,7 +41,7 @@ const [loaded,setLoaded] = useState()
                     const regex = /^[A-Za-z\s]+$/;
 
                     if (!regex.test(value)) {
-                        alert("Only letters allowed");
+                        setError('Please enter a valid name without numbers or special characters')
                         return;
                     }
 
