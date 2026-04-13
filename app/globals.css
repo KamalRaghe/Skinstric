@@ -109,7 +109,8 @@ button{
 }
 
 .dots {
-  margin-top: 8px;
+  margin-top: 28px;
+  scale: 1.8;
 }
 
 .dots span {

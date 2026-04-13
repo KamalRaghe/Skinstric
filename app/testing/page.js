@@ -53,7 +53,7 @@ const [loaded,setLoaded] = useState()
                  
                     else {
                         setLocation(value);
-
+                        setLoaded(true)
                         localStorage.setItem(
                         "user",
                         JSON.stringify({ name, location: value })
@@ -71,6 +71,9 @@ const [loaded,setLoaded] = useState()
                         })
                         .then(res => res.json())
                         .then(data => console.log(data))
+                        .then(()=>setTimeout(() => {
+                            setLoaded(true)
+                        }, 1500))
                         .catch(err => console.log(err));
 
                         setNone("none");
@@ -101,6 +104,11 @@ const [loaded,setLoaded] = useState()
                 font:'16px'
             }}>
                 Processing Submission
+                <div className="dots center">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>}
         </div>
     </div>
