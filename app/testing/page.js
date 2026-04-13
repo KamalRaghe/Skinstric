@@ -72,7 +72,7 @@ const [error,setError] = useState()
                         .then(res => res.json())
                         .then(data => console.log(data))
                         .then(()=>setTimeout(() => {
-                            // setLoaded(true)
+                            setLocation(false)
                         }, 1500))
                         .catch(err => console.log(err));
 
@@ -95,13 +95,16 @@ const [error,setError] = useState()
                 }}
                 />
             {location && 
-            <div style={{
+            <div className="center column" 
+            style={{
                 position:"fixed",
                 top: "50%",
                 left: "50%",
                 transform: "translate(-50%, -50%)",
                 color:"grey",
-                font:'16px'
+                font:'16px',
+                width:"360px",
+                height:"100px",
             }}>
                 Processing Submission
                 <div className="dots center">
