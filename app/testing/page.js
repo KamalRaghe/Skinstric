@@ -29,7 +29,7 @@ const [name,setName] = useState()
                     value={value}
                     onChange={(e) => setValue(e.target.value)}
                     onKeyDown={(e) => {
-                    if (e.key === "Enter" && value && name){
+                    if (e.key === "Enter" && value && !name){
                     setName(value)    
                     setValue('')
                     setTitle('your city name');
