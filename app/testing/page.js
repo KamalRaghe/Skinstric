@@ -77,7 +77,7 @@ const [loaded,setLoaded] = useState()
                             setTimeout(() => {
                             setLoaded(true)
                             setLoading(false)
-                        }, 1000)
+                        }, 1500)
                         })
                         .catch(err => console.log(err));
 
@@ -103,7 +103,7 @@ const [loaded,setLoaded] = useState()
             <div className="center column" 
             style={{
                 position:"fixed",
-                top: "50%",
+                top: "45%",
                 left: "50%",
                 transform: "translate(-50%, -50%)",
                 color:"grey",
@@ -123,11 +123,13 @@ const [loaded,setLoaded] = useState()
             <div className="center column"
             style={{
                 position:"fixed",
-                top: "50%",
+                top: "48%",
                 left: "50%",
                 transform: "translate(-50%, -50%)"
             }}> 
-                hek
+            <div style={{fontSize:"24px"}} >Thank you!</div>
+            <br></br>
+            <div style={{color:"gray"}}>Proceed for the next step</div>
             </div>}
         </div>
     </div>
