@@ -17,6 +17,12 @@ export default function Home() {
             </div>
         </div>
         <div className="center" >
+            <div className="center" style={{
+                position:"fixed",
+                bottom:"55%",
+                color:"grey",
+                fontSize:"20px"
+                }} > click to type</div>
                     <input
                     placeholder="Introduce Yourself"
                     style={{
@@ -29,6 +35,7 @@ export default function Home() {
                     top: "50%",
                     left: "50%",
                     transform: "translate(-50%, -50%)",
+                    outline:"none"
                 }}
                 />
         </div>
