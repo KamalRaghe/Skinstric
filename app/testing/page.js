@@ -73,6 +73,7 @@ const [error,setError] = useState()
                         .then(data => console.log(data))
                         .then(()=>setTimeout(() => {
                             setLocation(false)
+                            console.log('done')
                         }, 1500))
                         .catch(err => console.log(err));
 
@@ -102,11 +103,12 @@ const [error,setError] = useState()
                 left: "50%",
                 transform: "translate(-50%, -50%)",
                 color:"grey",
-                font:'16px',
                 width:"360px",
                 height:"100px",
             }}>
-                Processing Submission
+                <div style={{fontSize:'20px'}} >
+                    Processing Submission
+                </div>
                 <div className="dots center">
                     <span></span>
                     <span></span>
