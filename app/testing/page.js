@@ -24,8 +24,10 @@ const [title,setTitle] = useState("Introduce Yourself")
                 fontSize:"20px"
                 }} > click to type</div>
                     <input
+                    onChange={(e) => setValue(e.target.value)}
                     onKeyDown={(e) => {
-                    if (e.key === "Enter") {
+                    if (e.key === "Enter" && value) {
+                    setValue('')
                     setTitle('your city name');
                     }
                 }}
