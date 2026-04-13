@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { GoTriangleRight } from "react-icons/go";
 import { GoTriangleLeft } from "react-icons/go";
+import { useRouter } from "next/navigation";
 export default function Home() {
 const [title,setTitle] = useState("Introduce Yourself")
 const [value,setValue] = useState('')
@@ -11,6 +12,7 @@ const [none, setNone] = useState()
 const [error,setError] = useState()
 const [loading, setLoading] = useState(false);
 const [loaded,setLoaded] = useState()
+const router = useRouter()
 
   return (
     <div style={{height:"100vh",padding:"0",margin:"0px",overflow:"hidden"}} >
@@ -146,7 +148,7 @@ const [loaded,setLoaded] = useState()
             
                 <div
                     className="center"
-                    onClick={() => router.back()}
+                    onClick={() => router.push('/')}
                     style={{ cursor: "pointer" }}
                 >
                     <div className="center" 
