@@ -23,14 +23,14 @@ const [loaded,setLoaded] = useState()
             </div>
         </div>
         <div className="center" >
-            <div className="center" style={{
+            <div className="center column" style={{
                 position:"fixed",
                 bottom:"55%",
                 color:"grey",
                 fontSize:"20px",
                  display: none,
                 }} > click to type
-                <div></div>
+                <div style={{color:"red",fontSize:"14px"}} >{error}</div>
                 </div>
                     <input
                     value={value}
@@ -78,7 +78,7 @@ const [loaded,setLoaded] = useState()
                     }}
                     placeholder= {title}
                     style={{
-                     display: none,
+                    display: none,
                     textAlign: "center",
                     border: "none",
                     borderBottom: "2px solid grey",
@@ -91,6 +91,15 @@ const [loaded,setLoaded] = useState()
                     outline:"none"
                 }}
                 />
+            {location && !loaded && 
+            <div style={{
+                position:"fixed",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+            }}>
+                Processing Submission
+            </div>}
         </div>
     </div>
   );
