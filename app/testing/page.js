@@ -97,6 +97,8 @@ const [loaded,setLoaded] = useState()
                 top: "50%",
                 left: "50%",
                 transform: "translate(-50%, -50%)",
+                color:"grey",
+                font:'16px'
             }}>
                 Processing Submission
             </div>}
