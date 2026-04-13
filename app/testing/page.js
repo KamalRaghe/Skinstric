@@ -4,6 +4,7 @@ export default function Home() {
 const [title,setTitle] = useState("Introduce Yourself")
 const [value,setValue] = useState('')
 const [name,setName] = useState()
+const [none, setNone] = useState()
   return (
     <div style={{height:"100vh",padding:"0",margin:"0px",overflow:"hidden"}} >
     <div className="center" style={{justifyContent:"space-between"}} >
@@ -31,8 +32,13 @@ const [name,setName] = useState()
                     onKeyDown={(e) => {
                     if (e.key === "Enter" && value && !name){
                     setName(value)    
-                    setValue('')
+                    setValue()
                     setTitle('your city name');
+                    }else{
+                        if(e.key === 'Enter' && value){
+                            setTitle('')
+                            setNone('none')
+                        }
                     }
                 }}
                     placeholder= {title}
