@@ -7,6 +7,8 @@ const [name,setName] = useState()
 const [location, setLocation] = useState("");
 const [none, setNone] = useState()
 const [error,setError] = useState()
+const [loading, setLoading] = useState(false);
+const [loaded,setLoaded] = useState()
 
   return (
     <div style={{height:"100vh",padding:"0",margin:"0px",overflow:"hidden"}} >
@@ -53,7 +55,7 @@ const [error,setError] = useState()
                  
                     else {
                         setLocation(value);
-                        setLoaded(true)
+                        setLoading(true)
                         localStorage.setItem(
                         "user",
                         JSON.stringify({ name, location: value })
@@ -70,11 +72,13 @@ const [error,setError] = useState()
                         }),
                         })
                         .then(res => res.json())
-                        .then(data => console.log(data))
-                        .then(()=>setTimeout(() => {
-                            setLocation(false)
-                            console.log('done')
-                        }, 1500))
+                        .then(data => {
+                            console.log(data)
+                            setTimeout(() => {
+                            setLoaded(true)
+                            setLoaded(false)
+                        }, 1500)
+                        })
                         .catch(err => console.log(err));
 
                         setNone("none");
@@ -95,7 +99,27 @@ const [error,setError] = useState()
                     outline:"none"
                 }}
                 />
-            {location && 
+            {location && !loaded && 
+            <div className="center column" 
+            style={{
+                position:"fixed",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                color:"grey",
+                width:"360px",
+                height:"100px",
+            }}>
+                <div style={{fontSize:'20px'}} >
+                    Processing Submission
+                </div>
+                <div className="dots center">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>}
+             {loaded && 
             <div className="center column" 
             style={{
                 position:"fixed",
