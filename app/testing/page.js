@@ -24,7 +24,8 @@ const [none, setNone] = useState()
                 position:"fixed",
                 bottom:"55%",
                 color:"grey",
-                fontSize:"20px"
+                fontSize:"20px",
+                 display: none,
                 }} > click to type</div>
                     <input
                     value={value}
@@ -32,7 +33,7 @@ const [none, setNone] = useState()
                     onKeyDown={(e) => {
                     if (e.key === "Enter" && value && !name){
                     setName(value)    
-                    setValue()
+                    setValue('')
                     setTitle('your city name');
                     }else{
                         if(e.key === 'Enter' && value){
@@ -43,6 +44,7 @@ const [none, setNone] = useState()
                 }}
                     placeholder= {title}
                     style={{
+                     display: none,
                     textAlign: "center",
                     border: "none",
                     borderBottom: "2px solid grey",
