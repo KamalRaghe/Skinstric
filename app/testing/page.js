@@ -7,7 +7,7 @@ const [name,setName] = useState()
 const [location, setLocation] = useState("");
 const [none, setNone] = useState()
 const [error,setError] = useState()
-const [loaded,setLoaded] = useState()
+
   return (
     <div style={{height:"100vh",padding:"0",margin:"0px",overflow:"hidden"}} >
     <div className="center" style={{justifyContent:"space-between"}} >
@@ -72,7 +72,7 @@ const [loaded,setLoaded] = useState()
                         .then(res => res.json())
                         .then(data => console.log(data))
                         .then(()=>setTimeout(() => {
-                            setLoaded(true)
+                            // setLoaded(true)
                         }, 1500))
                         .catch(err => console.log(err));
 
@@ -94,7 +94,7 @@ const [loaded,setLoaded] = useState()
                     outline:"none"
                 }}
                 />
-            {location && !loaded && 
+            {location && 
             <div style={{
                 position:"fixed",
                 top: "50%",
