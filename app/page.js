@@ -3,6 +3,7 @@ import './globals.css';
 import { GoTriangleRight } from "react-icons/go";
 import { GoTriangleLeft } from "react-icons/go";
 import { useEffect, useState } from "react";
+import { useRouter } from 'next/navigation';
 export default function Home() {
 const [hideLeft, setHideLeft] = useState(null);
 const [hideRight, setHideRight] = useState(null);
@@ -10,6 +11,7 @@ const [mainLeft, setMainLeft] = useState('center');
 const [mainRight, setMainRight] = useState('center')
 const [loaded, setLoaded] = useState(false)
 const [moveCenter, setMoveCenter] = useState('');
+const router = useRouter()
 
 useEffect(()=>{
  if(!loaded){
@@ -26,7 +28,7 @@ useEffect(()=>{
 })
 
   return (
-    <div style={{height:"100vh",padding:"0",margin:"0px",overflow:"hidden"}} >
+    <div style={{height:"100vh",padding:"0",margin:"0px",overflow:"hidden",overflowY:"hidden"}} >
     <div className="center" style={{justifyContent:"space-between"}} >
       <div style={{margin:"15px"}}>SKINSTRC <span style={{color:"grey"}} >[ INTRO ]</span></div>
       <div><button style={{backgroundColor:"black",color:'white',padding:"10px",marginTop:"15px",fontSize:"12px"}} >Enter Code</button></div>
@@ -114,7 +116,8 @@ useEffect(()=>{
                 transition: "opacity 1s ease",}}> 
           <span style={{position:"relative",left:"215px",zIndex:"20"}} >Take test</span>
            <div className= {mainRight}
-            onMouseEnter={() => {
+           onClick={()=>{router.push('/testing')}}
+           onMouseEnter={() => {
               setLoaded(true)
               setMoveCenter('moveLeft');
               setTimeout(() => {

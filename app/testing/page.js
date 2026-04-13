@@ -1,5 +1,7 @@
 "use client" 
 import { useEffect, useState } from "react";
+import { GoTriangleRight } from "react-icons/go";
+import { GoTriangleLeft } from "react-icons/go";
 export default function Home() {
 const [title,setTitle] = useState("Introduce Yourself")
 const [value,setValue] = useState('')
@@ -131,6 +133,61 @@ const [loaded,setLoaded] = useState()
             <br></br>
             <div style={{color:"gray"}}>Proceed for the next step</div>
             </div>}
+            <div style={{
+                position: "fixed",
+                bottom: "30px",
+                left: "0",
+                width: "95%",
+                backgroundColor:"transparent",
+                display: "flex",
+                justifyContent: "space-between",
+                padding: "0 40px"
+                }}>
+            
+                <div
+                    className="center"
+                    onClick={() => router.back()}
+                    style={{ cursor: "pointer" }}
+                >
+                    <div className="center" 
+                    style={{
+                    transform: "rotate(45deg)",
+                    border: "1px solid grey",
+                    width: "50px",
+                    height: "50px",
+                    marginRight: "10px"
+                    }}>
+                    <div className="center" style={{ transform: "rotate(-45deg)", scale:"2"}}>
+                        <GoTriangleLeft />
+                    </div>
+                    </div>
+                    <span>BACK</span>
+                </div>
+
+                {/* PROCEED */}
+                <div
+                    className="center"
+                    onClick={() => router.push('/next-page')}
+                    style={{ cursor: "pointer" }}
+                >
+                    <span style={{ marginRight: "15px" }}>PROCEED</span>
+                    <div className="center"
+                    style={{
+                    transform: "rotate(45deg)",
+                    border: "1px solid grey",
+                    width: "50px",
+                    height: "50px",
+                    }}>
+                    <div className="center" 
+                    style={{ 
+                        transform: "rotate(-45deg)",
+                         scale:"2" }}>
+                        <GoTriangleRight />
+                    </div>
+                    </div>
+                </div>
+
+                </div>
         </div>
     </div>
   );
