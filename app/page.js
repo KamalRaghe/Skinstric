@@ -31,7 +31,13 @@ useEffect(()=>{
     <div style={{height:"100vh",padding:"0",margin:"0px",overflow:"hidden",overflowY:"hidden"}} >
     <div className="center" style={{justifyContent:"space-between"}} >
       <div style={{margin:"15px"}}>SKINSTRC <span style={{color:"grey"}} >[ INTRO ]</span></div>
-      <div><button style={{backgroundColor:"black",color:'white',padding:"10px",marginTop:"15px",fontSize:"12px"}} >Enter Code</button></div>
+      <div>
+        <button style={{
+          backgroundColor:"black",
+          color:'white',
+          padding:"10px",
+          marginTop:"15px",
+          fontSize:"12px"}} >Enter Code</button></div>
     </div>
       <div className="center" style={{justifyContent:"space-between",height:"75vh"}}>
         <button className= {mainLeft} style={{opacity: hideLeft ? 0 : 1,
@@ -53,7 +59,12 @@ useEffect(()=>{
             <div className='border' style={{display:"inline-block",border:"1px solid black",
                         margin:"15px", position:"relative",left:"40px",bottom:"40px"}} >
               <div className="center" 
-              style={{scale:"2",transform:"rotate(-45deg)",width:"44px",height:"45px",position:"relative",right:"2px"}}>
+              style={{scale:"2",
+              transform:"rotate(-45deg)",
+              width:"44px",
+              height:"45px",
+              position:"relative",
+              right:"2px"}}>
                 <GoTriangleLeft></GoTriangleLeft>
               </div>
             </div>
