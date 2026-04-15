@@ -23,10 +23,28 @@ export default function ScanPage() {
   }
 
   return (
-    <div className="container">
-      <h3 className="title">TO START ANALYSIS</h3>
-
-      <div className="main">
+    <div>
+       <div className="center" style={{justifyContent:"space-between",margin:"8px 0px"}} >
+          <div style={{margin:"15px", fontSize:'12px'}}>
+            <span style={{fontWeight:"bold",fontSize:"10px",margin:"4px"}} >SKINSTRC</span> 
+            <span style={{color:"grey"}} >[ INTRO ]</span></div>
+          <div>
+        <button 
+        style={{
+            backgroundColor:"black",
+            color:'white',
+            padding:"10px",
+            marginTop:"15px",
+            fontSize:"12px"}} >Enter Code</button></div>
+    </div>
+       <div style={{
+        fontWeight:"bold",
+        position:"relative",
+        left:"22px",
+        fontSize:"12px"}} >
+            To START ANALYSIS
+        </div>
+      <div className="border">
         <div className="option" onClick={handleCamera}>
           <div className="circle">📷</div>
           <p>ALLOW A.I.<br />TO SCAN YOUR FACE</p>
