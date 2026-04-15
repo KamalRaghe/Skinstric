@@ -1,7 +1,7 @@
 "use client";
 import { useRef, useState } from "react";
 import { MdOutlineCamera } from "react-icons/md";
-import { FaMountainSun } from "react-icons/fa6";
+import { GrGallery } from "react-icons/gr";
 
 export default function ScanPage() {
   const videoRef = useRef(null);
@@ -47,7 +47,7 @@ export default function ScanPage() {
             To START ANALYSIS
         </div>
       <div className="center" >
-        <div style={{height:"78vh",width:"80%",display:"flex"}}>
+        <div className="border center" style={{height:"78vh",width:"90%",display:"flex"}}>
         <div className="center"  style={{width:"50%",height:"100%"}}>
             <div className="center" style={{ 
             }}><MdOutlineCamera className="border" 
@@ -60,7 +60,16 @@ export default function ScanPage() {
             }} /></div>
         </div>
         <div className="center"  style={{width:"50%",height:"100%"}}>
-            <div style={{}}><FaMountainSun/> </div>
+            <div style={{}}>
+              <GrGallery
+              style={{
+              scale:"3",
+              borderRadius:"50%",
+              border:"1px solid black",
+              width:"50px",
+              height:"50px",
+            }} /> 
+            </div>
         </div>
       </div>
       </div>
