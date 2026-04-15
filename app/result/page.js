@@ -1,6 +1,7 @@
 "use client";
 import { useRef, useState } from "react";
 import { MdOutlineCamera } from "react-icons/md";
+import { FaMountainSun } from "react-icons/fa6";
 
 export default function ScanPage() {
   const videoRef = useRef(null);
@@ -37,7 +38,7 @@ export default function ScanPage() {
             padding:"10px",
             marginTop:"15px",
             fontSize:"12px"}} >Enter Code</button></div>
-    </div>
+     </div>
        <div style={{
         fontWeight:"bold",
         position:"relative",
@@ -45,33 +46,9 @@ export default function ScanPage() {
         fontSize:"12px"}} >
             To START ANALYSIS
         </div>
-      <div className="border center" style={{height:"90vh"}}>
-        <div onClick={handleCamera}>
-          <div className="circle center"><MdOutlineCamera /></div>
-          <p>ALLOW A.I.<br />TO SCAN YOUR FACE</p>
-          <video ref={videoRef} autoPlay className="video" />
-        </div>
-
-        <div onClick={() => fileInputRef.current.click()}>
-          <div className="circle center">🖼️</div>
-          <p>ALLOW A.I.<br />ACCESS GALLERY</p>
-          <input
-            type="file"
-            accept="image/*"
-            ref={fileInputRef}
-            onChange={handleGallery}
-            hidden
-          />
-        </div>
-
-        {/* PREVIEW */}
-        <div className="preview">
-          <p>Preview</p>
-          {preview && <img src={preview} />}
-        </div>
+      <div className="border center" style={{height:"75vh"}}>
+        <div style={{}}><MdOutlineCamera /></div>
       </div>
-
-      <button className="back">◀ BACK</button>
       
     </div>
   );
