@@ -44,15 +44,15 @@ export default function ScanPage() {
         fontSize:"12px"}} >
             To START ANALYSIS
         </div>
-      <div className="border">
+      <div className="border center">
         <div className="option" onClick={handleCamera}>
-          <div className="circle">📷</div>
+          <div className="circle center"><MdOutlineCamera /></div>
           <p>ALLOW A.I.<br />TO SCAN YOUR FACE</p>
           <video ref={videoRef} autoPlay className="video" />
         </div>
 
         <div className="option" onClick={() => fileInputRef.current.click()}>
-          <div className="circle">🖼️</div>
+          <div className="circle center">🖼️</div>
           <p>ALLOW A.I.<br />ACCESS GALLERY</p>
           <input
             type="file"
