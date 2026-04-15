@@ -60,31 +60,46 @@ export default function ScanPage() {
               height:"50px",
             }} /></div>
         </div>
-        <div className="center middle"  style={{width:"50%",height:"100%"}}>
-            <div className="center inner" style={{
+        <div className="center"  style={{width:"50%",height:"100%"}}>
+            <div className="center" style={{
               width:"300px", 
               height:"300px",
               border:"1px dashed grey"
               }}  >
-              <div className="center" style={{
-                width:"290px", 
-                height:"290px",
-                border:"1px dashed grey",
-                
-                }} > 
-                
-                <div> 
-                  <FaMountainSun
+             <div
+                className="center"
+                style={{
+                  width: "290px",
+                  height: "290px",
+                  position: "relative",
+                }}
+              >
+                {/* ROTATING BORDER */}
+                <div
                   style={{
-                  scale:"3",
-                  borderRadius:"50%",
-                  border:"1px solid black",
-                  width:"45px",
-                  height:"45px",
-                  padding:"3px",
-                  position:"fixed"
-                }} /> 
-               </div>
+                    width: "100%",
+                    height: "100%",
+                    border: "2px dashed grey",
+                    position: "absolute",
+                    animation: "spin 20s linear infinite",
+                  }}
+                />
+
+                {/* ICON (does NOT rotate) */}
+                <FaMountainSun
+                  style={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    width: "45px",
+                    height: "45px",
+                    borderRadius: "50%",
+                    border: "1px solid black",
+                    padding: "6px",
+                    background: "white",
+                  }}
+                />
               </div>
             </div>
         </div>
