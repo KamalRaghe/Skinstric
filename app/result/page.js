@@ -26,7 +26,7 @@ export default function ScanPage() {
   }
 
   return (
-    <div>
+    <div style={{overflow:"hidden"}} >
        <div className="center" style={{justifyContent:"space-between",margin:"8px 0px"}} >
           <div style={{margin:"15px", fontSize:'12px'}}>
             <span style={{fontWeight:"bold",fontSize:"10px",margin:"4px"}} >SKINSTRC</span> 
