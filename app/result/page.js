@@ -75,24 +75,23 @@ export default function ScanPage() {
         </div>
       </div>
        <div
-                            className="center"
-                            onClick={() => router.push('/')}
-                            style={{ cursor: "pointer" }}
-                        >
-                            <div className="center" 
-                            style={{
-                            transform: "rotate(45deg)",
-                            border: "1px solid grey",
-                            width: "50px",
-                            height: "50px",
-                            marginRight: "10px"
-                            }}>
-                            <div className="center" style={{ transform: "rotate(-45deg)", scale:"2"}}>
-                                <GoTriangleLeft />
-                            </div>
-                            </div>
-                            <span style={{marginLeft:"12px" }} >BACK</span>
-                        </div>
+          className="center"
+          onClick={() => router.push('/')}
+          style={{ cursor: "pointer" }}>
+           <div className="center" 
+            style={{
+              transform: "rotate(45deg)",
+              border: "1px solid grey",
+              width: "50px",
+              height: "50px",
+              marginRight: "10px"
+             }}>
+              <div className="center" style={{ transform: "rotate(-45deg)", scale:"2"}}>
+              <GoTriangleLeft />
+              </div>
+            </div>
+            <span style={{marginLeft:"12px" }} >BACK</span>
+         </div>
       </div>
       
     </div>
