@@ -1,5 +1,6 @@
 "use client";
 import { useRef, useState } from "react";
+import { MdOutlineCamera } from "react-icons/md";
 
 export default function ScanPage() {
   const videoRef = useRef(null);
@@ -44,14 +45,14 @@ export default function ScanPage() {
         fontSize:"12px"}} >
             To START ANALYSIS
         </div>
-      <div className="border center">
-        <div className="option" onClick={handleCamera}>
+      <div className="border center" style={{height:"90vh"}}>
+        <div onClick={handleCamera}>
           <div className="circle center"><MdOutlineCamera /></div>
           <p>ALLOW A.I.<br />TO SCAN YOUR FACE</p>
           <video ref={videoRef} autoPlay className="video" />
         </div>
 
-        <div className="option" onClick={() => fileInputRef.current.click()}>
+        <div onClick={() => fileInputRef.current.click()}>
           <div className="circle center">🖼️</div>
           <p>ALLOW A.I.<br />ACCESS GALLERY</p>
           <input
