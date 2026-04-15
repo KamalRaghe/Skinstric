@@ -180,8 +180,6 @@ const router = useRouter()
                     </div>
                     <span style={{marginLeft:"12px" }} >BACK</span>
                 </div>
-
-                {/* PROCEED */}
                 <div
                     className="center"
                     onClick={() => router.push('/next-page')}
