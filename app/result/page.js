@@ -46,20 +46,23 @@ export default function ScanPage() {
         fontSize:"12px"}} >
             To START ANALYSIS
         </div>
-      <div className="border" style={{height:"78vh",display:"flex"}}>
+      <div className="center" >
+        <div style={{height:"78vh",width:"80%",display:"flex"}}>
         <div className="center"  style={{width:"50%",height:"100%"}}>
-          <MdOutlineCamera className="border" 
+            <div className="center" style={{ 
+            }}><MdOutlineCamera className="border" 
             style={{
               scale:"3",
               borderRadius:"50%",
               border:"1px solid black",
               width:"50px",
               height:"50px",
-            }} />
+            }} /></div>
         </div>
         <div className="center"  style={{width:"50%",height:"100%"}}>
             <div style={{}}><FaMountainSun/> </div>
         </div>
+      </div>
       </div>
       
     </div>
