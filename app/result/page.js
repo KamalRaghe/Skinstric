@@ -6,7 +6,6 @@ export default function ScanPage() {
   const fileInputRef = useRef(null);
   const [preview, setPreview] = useState(null);
 
-  // 📸 Camera
   async function handleCamera() {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
@@ -16,7 +15,6 @@ export default function ScanPage() {
     }
   }
 
-  // 🖼️ Gallery
   function handleGallery(e) {
     const file = e.target.files[0];
     if (file) {
@@ -29,14 +27,12 @@ export default function ScanPage() {
       <h3 className="title">TO START ANALYSIS</h3>
 
       <div className="main">
-        {/* LEFT - CAMERA */}
         <div className="option" onClick={handleCamera}>
           <div className="circle">📷</div>
           <p>ALLOW A.I.<br />TO SCAN YOUR FACE</p>
           <video ref={videoRef} autoPlay className="video" />
         </div>
 
-        {/* RIGHT - GALLERY */}
         <div className="option" onClick={() => fileInputRef.current.click()}>
           <div className="circle">🖼️</div>
           <p>ALLOW A.I.<br />ACCESS GALLERY</p>
