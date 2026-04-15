@@ -50,15 +50,45 @@ export default function ScanPage() {
       <div className="center column" >
         <div className="center" style={{height:"78vh",width:"90%",display:"flex"}}>
         <div className="center"  style={{width:"50%",height:"100%"}}>
-            <div className="center" style={{ 
-            }}><MdOutlineCamera className="border" 
-            style={{
-              scale:"3",
-              borderRadius:"50%",
-              border:"1px solid black",
-              width:"50px",
-              height:"50px",
-            }} /></div>
+          <div className="center" style={{
+              width:"300px", 
+              height:"300px",
+              border:"1px dashed grey"
+              }}  >
+             <div
+                className="center"
+                style={{
+                  width: "290px",
+                  height: "290px",
+                  position: "relative",
+                }}
+              >
+                <div
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    border: "2px dashed grey",
+                    position: "absolute",
+                    animation: "rotate 50s linear infinite",
+                    opacity:"0.6"
+                  }}
+                />
+                <MdOutlineCamera
+                  style={{
+                    position: "absolute",
+                    top: "65%",
+                    left: "65%",
+                    transform: "translate(-50%, -50%)",
+                    width: "45px",
+                    height: "45px",
+                    borderRadius: "50%",
+                    border: "1px solid black",
+                    background: "white",
+                    scale:"2.8"
+                  }}
+                />
+              </div>
+            </div>
         </div>
         <div className="center"  style={{width:"50%",height:"100%"}}>
             <div className="center" style={{
@@ -74,23 +104,21 @@ export default function ScanPage() {
                   position: "relative",
                 }}
               >
-                {/* ROTATING BORDER */}
                 <div
                   style={{
                     width: "100%",
                     height: "100%",
                     border: "2px dashed grey",
                     position: "absolute",
-                    animation: "spin 20s linear infinite",
+                    animation: "rotate 50s linear infinite",
+                    opacity:"0.6"
                   }}
                 />
-
-                {/* ICON (does NOT rotate) */}
                 <FaMountainSun
                   style={{
                     position: "absolute",
-                    top: "50%",
-                    left: "50%",
+                    top: "65%",
+                    left: "65%",
                     transform: "translate(-50%, -50%)",
                     width: "45px",
                     height: "45px",
@@ -98,6 +126,7 @@ export default function ScanPage() {
                     border: "1px solid black",
                     padding: "6px",
                     background: "white",
+                    scale:"2.5"
                   }}
                 />
               </div>
