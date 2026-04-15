@@ -61,30 +61,43 @@ export default function ScanPage() {
             }} /></div>
         </div>
         <div className="center"  style={{width:"50%",height:"100%"}}>
-            <div style={{}}>
-              <FaMountainSun
-              style={{
-              scale:"3",
-              borderRadius:"50%",
-              border:"1px solid black",
-              width:"45px",
-              height:"45px",
-              padding:"3px"
-            }} /> 
+            <div className="center" style={{
+              width:"300px", 
+              height:"300px",
+              border:"1px dashed grey"
+              }}  >
+              <div className="center" style={{
+                width:"290px", 
+                height:"290px",
+                border:"1px dashed grey"
+                }} > 
+                
+                <div> 
+                  <FaMountainSun
+                  style={{
+                  scale:"3",
+                  borderRadius:"50%",
+                  border:"1px solid black",
+                  width:"45px",
+                  height:"45px",
+                  padding:"3px"
+                }} /> 
+               </div>
+              </div>
             </div>
         </div>
       </div>
        <div
           className="center"
           onClick={() => router.push('/')}
-          style={{ cursor: "pointer" }}>
+          style={{ cursor: "pointer", position:"fixed", left:"2%", top:"88%" }}>
            <div className="center" 
             style={{
               transform: "rotate(45deg)",
               border: "1px solid grey",
               width: "50px",
               height: "50px",
-              marginRight: "10px"
+              marginRight: "10px",
              }}>
               <div className="center" style={{ transform: "rotate(-45deg)", scale:"2"}}>
               <GoTriangleLeft />
