@@ -60,8 +60,8 @@ export default function ScanPage() {
               height:"50px",
             }} /></div>
         </div>
-        <div className="center"  style={{width:"50%",height:"100%"}}>
-            <div className="center" style={{
+        <div className="center middle"  style={{width:"50%",height:"100%"}}>
+            <div className="center inner" style={{
               width:"300px", 
               height:"300px",
               border:"1px dashed grey"
@@ -69,7 +69,8 @@ export default function ScanPage() {
               <div className="center" style={{
                 width:"290px", 
                 height:"290px",
-                border:"1px dashed grey"
+                border:"1px dashed grey",
+                
                 }} > 
                 
                 <div> 
@@ -80,7 +81,8 @@ export default function ScanPage() {
                   border:"1px solid black",
                   width:"45px",
                   height:"45px",
-                  padding:"3px"
+                  padding:"3px",
+                  position:"fixed"
                 }} /> 
                </div>
               </div>
