@@ -48,7 +48,14 @@ export default function ScanPage() {
         </div>
       <div className="border" style={{height:"78vh",display:"flex"}}>
         <div className="center"  style={{width:"50%",height:"100%"}}>
-            <div style={{}}><MdOutlineCamera /></div>
+          <MdOutlineCamera className="border" 
+            style={{
+              scale:"3",
+              borderRadius:"50%",
+              border:"1px solid black",
+              width:"50px",
+              height:"50px",
+            }} />
         </div>
         <div className="center"  style={{width:"50%",height:"100%"}}>
             <div style={{}}><FaMountainSun/> </div>
