@@ -4,7 +4,7 @@ export default function Cam(){
         <div>
             <div className="center" style={{height:"95vh"}} >
                 <div style={{ width: "450px", height: "450px", border: "1px dashed grey",position: "relative" }}>
-                    <div className="center"  style={{ width: "100%", height: "100%",overflow:"scroll" }}>
+                    <div className="center"  style={{ width: "110%", height: "110%",overflow:"scroll" }}>
                     
                         <div className="loadingBox center" style={{width:"350px",height:"350px"}} >
                         <div className="loadingBox center" style={{width:"300px",height:"300px"}}></div>
