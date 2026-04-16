@@ -90,7 +90,7 @@ export default function ScanPage() {
                   <div style={{
                     position: "absolute",
                     width:"150px",
-                    left: "82px",
+                    left: "85px",
                     top: "-162px",
                     fontSize: "13px",
                     color: "#444",
@@ -120,7 +120,10 @@ export default function ScanPage() {
                   opacity: "0.6"
                 }}/>
 
-                <FaMountainSun style={{
+                <FaMountainSun
+                 onClick={() => fileInputRef.current.click()}
+                 style={{
+                  cursor: "pointer" ,
                   position: "absolute",
                   top: "65%",
                   left: "65%",
