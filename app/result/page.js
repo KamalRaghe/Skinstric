@@ -119,7 +119,17 @@ export default function ScanPage() {
                   animation: "rotate 50s linear infinite",
                   opacity: "0.6"
                 }}/>
-
+                <input
+                  type="file"
+                  accept="image/*"
+                  ref={fileInputRef}
+                  style={{ display: "none" }}
+                  onChange={(e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                      setPreview(URL.createObjectURL(file));
+                    }
+                  }}/>
                 <FaMountainSun
                  onClick={() => fileInputRef.current.click()}
                  style={{
@@ -136,7 +146,6 @@ export default function ScanPage() {
                   background: "white",
                   scale: "2.5"
                 }}/>
-
                 {/* ✅ BOTTOM LEFT CONNECTOR */}
                 <div style={{
                   position: "absolute",
