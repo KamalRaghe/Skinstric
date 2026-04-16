@@ -81,10 +81,10 @@ export default function ScanPage() {
       </div>
 
       <div className="center column">
-        <div className="center" style={{ height: "78vh", width: "90%", display: "flex" }}>
+        <div className="center smallScreen" style={{ height: "78vh", width: "90%", display: "flex" }}>
 
           {/* LEFT */}
-          <div className="center" style={{ width: "50%" }}>
+          <div className="center" style={{ width: "50%", marginBottom:'100px' }}>
             <div style={{ width: "300px", height: "300px", border: "1px dashed grey", position: "relative" }}>
               <div style={{ width: "100%", height: "100%", position: "relative" }}>
 
@@ -158,7 +158,6 @@ export default function ScanPage() {
               </div>
             </div>
           </div>
-
           {/* RIGHT */}
           <div className="center" style={{ width: "50%" }}>
             <div style={{ width: "300px", height: "300px", border: "1px dashed grey", position: "relative" }}>

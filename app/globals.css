@@ -172,3 +172,14 @@ button{
     opacity: 1;
   }
 }
+
+.smallScreen{
+  flex-direction: row;
+}
+
+@media(max-width:500px){
+  .smallScreen{
+    flex-direction: column;
+    scale: 0.7;
+  }
+}
