@@ -9,22 +9,24 @@ export default function ScanPage() {
   const videoRef = useRef(null);
   const fileInputRef = useRef(null);
   const [preview, setPreview] = useState(null);
+  const [click, setClick] = useState()
   const router = useRouter();
 
   return (
     <div style={{ overflow: "hidden" }}>
-      <div style={{
+      {click && <div style={{
         position:"fixed",
         border:"1px solid black",
         top: "50%",
         left: "50%",
-        transform: "translate(-65%, 0%)",
+        transform: "translate(-55%, -20%)",
         zIndex:"10",
         backgroundColor:"black",
       }} >
         <div style={{
-          padding:"10px",
+          padding:"20px",
           paddingBottom:"50px",
+          fontWeight:"bold",
           backgroundColor:"black",
           color:"white",
           borderBottom:"1px solid white",
@@ -39,17 +41,28 @@ export default function ScanPage() {
           color:"white",
         }} 
          >
-          Deny
+          <div
+          style={{
+            backgroundColor:"black",
+            color:"white",
+            opacity:"0.6",
+            cursor:"pointer"
+          }}
+          onClick={()=>setClick()}
+          >
+            Deny
+          </div>
           <div 
           style={{
-          marginLeft:"20px",  
+          marginLeft:"50px",  
           backgroundColor:"black",
           color:"white",
+          cursor:"pointer"
         }} >
             Allow
           </div>
         </div>
-      </div>
+      </div>}
       <div className="center" style={{ justifyContent: "space-between", margin: "8px 0px" }}>
         <div style={{ margin: "15px", fontSize: "12px" }}>
           <span style={{ fontWeight: "bold", fontSize: "10px", margin: "4px" }}>
@@ -80,7 +93,7 @@ export default function ScanPage() {
                   border: "2px dashed grey",
                   position: "absolute",
                   animation: "rotate 50s linear infinite",
-                  opacity: "0.6"
+                  opacity: "0.3"
                 }}/>
 
                 <MdOutlineCamera style={{
@@ -94,7 +107,9 @@ export default function ScanPage() {
                   border: "1px solid black",
                   background: "white",
                   scale: "2.8"
-                }}/>
+                }}
+                onClick={()=>{setClick(true)}}
+                />
 
                 {/* ✅ TOP RIGHT CONNECTOR */}
                 <div style={{
@@ -154,7 +169,7 @@ export default function ScanPage() {
                   border: "2px dashed grey",
                   position: "absolute",
                   animation: "rotate 50s linear infinite",
-                  opacity: "0.6"
+                  opacity: "0.3"
                 }}/>
                 <input
                   type="file"
