@@ -13,8 +13,13 @@ export default function ScanPage() {
 
   return (
     <div style={{ overflow: "hidden" }}>
-      <div>
-        ALLOW A.I. TO ACCESS YOUR CAMERA
+      <div style={{
+        backgroundColor:"black",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+      }} >
+        <div>ALLOW A.I. TO ACCESS YOUR CAMERA</div>
       </div>
       <div className="center" style={{ justifyContent: "space-between", margin: "8px 0px" }}>
         <div style={{ margin: "15px", fontSize: "12px" }}>
