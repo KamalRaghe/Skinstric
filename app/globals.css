@@ -102,7 +102,7 @@ button{
   width: 400px;
   height: 400px;
   border: 2px dashed rgba(160, 164, 171, 1);
-  animation: rotate2 100s linear infinite;
+  animation: rotate2 200s linear infinite;
 }
 /* animation */
 @keyframes rotate {
