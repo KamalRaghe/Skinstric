@@ -160,17 +160,19 @@ export default function ScanPage() {
                     height: "4px",
                     border: "1px solid black",
                     borderRadius: "50%",
+                    zIndex:"2",
                   }}/>
                   {/* text */}
                   <div style={{
                     position: "absolute",
                     width:"150px",
-                    left: "82px",
-                    top: "-162px",
+                    left: "-312px",
+                    top: "75px",
                     fontSize: "13px",
                     color: "#444",
                     lineHeight: "1.3",
-                    letterSpacing: "0.3px"
+                    letterSpacing: "0.3px",
+                    textAlign:"end"
                   }}>
                     ALLOW A.I.<br/>
                     TO SCAN YOUR FACE
