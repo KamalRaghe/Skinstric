@@ -30,6 +30,15 @@ export default function ScanPage() {
           borderBottom:"1px solid white",
         }}
         >ALLOW A.I. TO ACCESS YOUR CAMERA</div>
+        <div
+        style={{
+          padding:"10px",
+          display:"flex",
+          justifyContent:"end",
+          backgroundColor:"black",
+          color:"white",
+        }} 
+         >hello</div>
       </div>
       <div className="center" style={{ justifyContent: "space-between", margin: "8px 0px" }}>
         <div style={{ margin: "15px", fontSize: "12px" }}>
