@@ -46,51 +46,56 @@ export default function ScanPage() {
                   opacity: "0.6"
                 }}/>
 
-                {/* ICON */}
+                <MdOutlineCamera style={{
+                  position: "absolute",
+                  top: "65%",
+                  left: "65%",
+                  transform: "translate(-50%, -50%)",
+                  width: "45px",
+                  height: "45px",
+                  borderRadius: "50%",
+                  border: "1px solid black",
+                  background: "white",
+                  scale: "2.8"
+                }}/>
+
+                {/* ✅ TOP RIGHT CONNECTOR */}
                 <div style={{
                   position: "absolute",
                   top: "65%",
                   left: "65%",
                   transform: "translate(-50%, -50%)"
                 }}>
-                  <MdOutlineCamera style={{
-                    width: "45px",
-                    height: "45px",
-                    borderRadius: "50%",
-                    border: "1px solid black",
-                    background: "white",
-                    scale: "2.8"
-                  }}/>
-
-                  {/* CONNECTOR (TOP RIGHT) */}
+                  {/* line */}
                   <div style={{
                     position: "absolute",
-                    width: "90px",
-                    height: "1px",
-                    background: "#777",
-                    transform: "rotate(-30deg)",
+                    width: "95px",
+                    height: "2px",
+                    background: "#6f6f6f",
+                    transform: "rotate(-41deg)",
                     transformOrigin: "0% 50%",
-                    left: "28px",
-                    top: "-12px"
+                    left: "5px",   // starts at circle edge
+                    top: "-85px"
                   }}/>
-
                   <div style={{
-                    position: "absolute",
+                    position: 'relative',
+                    top:"-150px",
+                    left:"75px",
                     width: "4px",
                     height: "4px",
-                    background: "#777",
+                    border: "1px solid black",
                     borderRadius: "50%",
-                    left: "100px",
-                    top: "-35px"
                   }}/>
-
+                  {/* text */}
                   <div style={{
                     position: "absolute",
-                    left: "110px",
-                    top: "-48px",
-                    fontSize: "11px",
+                    width:"150px",
+                    left: "82px",
+                    top: "-162px",
+                    fontSize: "13px",
                     color: "#444",
-                    lineHeight: "1.3"
+                    lineHeight: "1.3",
+                    letterSpacing: "0.3px"
                   }}>
                     ALLOW A.I.<br/>
                     TO SCAN YOUR FACE
@@ -115,59 +120,62 @@ export default function ScanPage() {
                   opacity: "0.6"
                 }}/>
 
-                {/* ICON */}
+                <FaMountainSun style={{
+                  position: "absolute",
+                  top: "65%",
+                  left: "65%",
+                  transform: "translate(-50%, -50%)",
+                  width: "45px",
+                  height: "45px",
+                  borderRadius: "50%",
+                  border: "1px solid black",
+                  padding: "6px",
+                  background: "white",
+                  scale: "2.5"
+                }}/>
+
+                {/* ✅ BOTTOM LEFT CONNECTOR */}
                 <div style={{
                   position: "absolute",
                   top: "65%",
                   left: "65%",
                   transform: "translate(-50%, -50%)"
                 }}>
-                  <FaMountainSun style={{
-                    width: "45px",
-                    height: "45px",
-                    borderRadius: "50%",
-                    border: "1px solid black",
-                    padding: "6px",
-                    background: "white",
-                    scale: "2.5"
-                  }}/>
-
-                  {/* CONNECTOR (BOTTOM LEFT) */}
+                  {/* line */}
                   <div style={{
                     position: "absolute",
-                    width: "90px",
-                    height: "1px",
-                    background: "#777",
-                    transform: "rotate(150deg)",
+                    width: "95px",
+                    height: "2px",
+                    background: "#6f6f6f",
+                    transform: "rotate(141deg)",
                     transformOrigin: "0% 50%",
-                    left: "-28px",
-                    top: "12px"
+                    left: "-85px",   // starts at circle edge
+                    top: "15px"
                   }}/>
-
                   <div style={{
-                    position: "absolute",
+                    position: 'relative',
+                    top:"75px",
+                    left:"-164px",
                     width: "4px",
                     height: "4px",
-                    background: "#777",
+                    border: "1px solid black",
                     borderRadius: "50%",
-                    left: "-100px",
-                    top: "35px"
                   }}/>
-
+                  {/* text */}
                   <div style={{
                     position: "absolute",
-                    left: "-170px",
-                    top: "25px",
-                    fontSize: "11px",
+                    width:"150px",
+                    left: "82px",
+                    top: "-162px",
+                    fontSize: "13px",
                     color: "#444",
                     lineHeight: "1.3",
-                    textAlign: "right"
+                    letterSpacing: "0.3px"
                   }}>
                     ALLOW A.I.<br/>
-                    ACCESS GALLERY
+                    TO SCAN YOUR FACE
                   </div>
                 </div>
-
               </div>
             </div>
           </div>
@@ -175,25 +183,25 @@ export default function ScanPage() {
         </div>
 
         {/* BACK */}
-        <div
-          className="center"
+        <div className="center"
           onClick={() => router.push("/")}
-          style={{ cursor: "pointer", position: "fixed", left: "2%", top: "88%" }}
-        >
-          <div
-            className="center"
-            style={{
-              transform: "rotate(45deg)",
-              border: "1px solid grey",
-              width: "50px",
-              height: "50px",
-              marginRight: "10px",
-            }}
-          >
-            <div className="center" style={{ transform: "rotate(-45deg)", scale: "2" }}>
+          style={{ cursor: "pointer", position: "fixed", left: "2%", top: "88%" }}>
+          
+          <div style={{
+            transform: "rotate(45deg)",
+            border: "1px solid grey",
+            width: "50px",
+            height: "50px",
+            marginRight: "10px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center"
+          }}>
+            <div style={{ transform: "rotate(-45deg)", scale: "2" }}>
               <GoTriangleLeft />
             </div>
           </div>
+
           <span style={{ marginLeft: "12px" }}>BACK</span>
         </div>
       </div>
