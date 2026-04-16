@@ -3,10 +3,10 @@ export default function Cam(){
     return(
         <div>
             <div className="center" style={{height:"95vh"}} >
-                <div style={{ width: "450px", height: "450px", border: "1px dashed grey" }}>
-                    <div className="center"  style={{ width: "100%", height: "100%", position: "relative",overflow:"scroll" }}>
+                <div style={{ width: "450px", height: "450px", border: "1px dashed grey",position: "relative" }}>
+                    <div className="center"  style={{ width: "100%", height: "100%",overflow:"scroll" }}>
                     
-                        <div className="box middle center">
+                        <div className="box middle center" style={{width:"400px",height:"400px"}} >
                         <div className="box inner center" style={{width:"350px",height:"350px"}}></div>
                     </div>
             
@@ -18,8 +18,8 @@ export default function Cam(){
                         background: "white",
                         scale: "2.8",
                         position:"absolute",
-                        top:"50%",
-                        left:"50%",
+                        top:"59%",
+                        left:"59%",
                         transform:"translate(-50%,-50%)"
                     }}
                     />
