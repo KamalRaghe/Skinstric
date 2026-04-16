@@ -182,7 +182,7 @@ const router = useRouter()
                 </div>
                 <div
                     className="center"
-                    onClick={() => router.push('/next-page')}
+                    onClick={() => router.push('/result')}
                     style={{ cursor: "pointer" }}
                 >
                     <span style={{ marginRight: "15px" }}>PROCEED</span>

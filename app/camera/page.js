@@ -6,8 +6,8 @@ export default function Cam(){
                 <div style={{ width: "450px", height: "450px", border: "1px dashed grey",position: "relative" }}>
                     <div className="center"  style={{ width: "100%", height: "100%",overflow:"scroll" }}>
                     
-                        <div className="box middle center" style={{width:"400px",height:"400px"}} >
-                        <div className="box inner center" style={{width:"350px",height:"350px"}}></div>
+                        <div className="loadingBox center" style={{width:"350px",height:"350px"}} >
+                        <div className="loadingBox center" style={{width:"300px",height:"300px"}}></div>
                     </div>
             
                     <MdOutlineCamera style={{

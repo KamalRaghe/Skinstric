@@ -53,6 +53,7 @@ export default function ScanPage() {
             Deny
           </div>
           <div 
+          onClick={()=>{router.push('/camera')}}
           style={{
           marginLeft:"50px",  
           backgroundColor:"black",
