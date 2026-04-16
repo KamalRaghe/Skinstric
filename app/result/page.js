@@ -42,9 +42,7 @@ export default function ScanPage() {
           Deny
           <div 
           style={{
-          padding:"10px",
-          display:"flex",
-          justifyContent:"end",
+          marginLeft:"20px",  
           backgroundColor:"black",
           color:"white",
         }} >
