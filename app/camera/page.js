@@ -2,13 +2,13 @@ import { MdOutlineCamera } from "react-icons/md";
 export default function Cam(){
     return(
         <div>
-            <div className="center border" style={{height:"100vh"}} >
-                <div style={{ width: "300px", height: "300px", border: "1px dashed grey", position: "relative" }}>
-                    <div style={{position: "relative",overflow:"scroll" }}>
+            <div className="center" style={{height:"95vh",overflowY:"hidden"}} >
+                <div style={{ width: "450px", height: "450px", border: "1px dashed grey", position: "relative" }}>
+                    <div className="center"  style={{ width: "100%", height: "100%", position: "relative",overflow:"scroll" }}>
             
                     <div style={{
-                         width: "100%",
-                         height: "100%",
+                         width: "80%",
+                         height: "80%",
                          border: "2px dashed grey",
                          position: "absolute",
                          animation: "rotate 50s linear infinite",
