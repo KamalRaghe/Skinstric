@@ -18,7 +18,7 @@ export default function ScanPage() {
         border:"1px solid black",
         top: "50%",
         left: "50%",
-        transform: "translate(-65%, 50%)",
+        transform: "translate(-65%, 0%)",
         zIndex:"10",
         backgroundColor:"black",
       }} >
@@ -30,7 +30,7 @@ export default function ScanPage() {
           borderBottom:"1px solid white",
         }}
         >ALLOW A.I. TO ACCESS YOUR CAMERA</div>
-        <div
+        <div className=""
         style={{
           padding:"10px",
           display:"flex",
@@ -38,7 +38,19 @@ export default function ScanPage() {
           backgroundColor:"black",
           color:"white",
         }} 
-         >hello</div>
+         >
+          Deny
+          <div 
+          style={{
+          padding:"10px",
+          display:"flex",
+          justifyContent:"end",
+          backgroundColor:"black",
+          color:"white",
+        }} >
+            Allow
+          </div>
+        </div>
       </div>
       <div className="center" style={{ justifyContent: "space-between", margin: "8px 0px" }}>
         <div style={{ margin: "15px", fontSize: "12px" }}>
