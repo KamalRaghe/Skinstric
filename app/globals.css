@@ -177,7 +177,7 @@ button{
   flex-direction: row;
 }
 
-@media(max-width:500px){
+@media(max-width: 850px){
   .smallScreen{
     flex-direction: column;
     scale: 0.7;
