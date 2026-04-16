@@ -21,9 +21,15 @@ export default function ScanPage() {
         transform: "translate(-65%, 50%)",
         zIndex:"10",
         backgroundColor:"black",
-        color:"red",
       }} >
-        <div>ALLOW A.I. TO ACCESS YOUR CAMERA</div>
+        <div style={{
+          padding:"10px",
+          paddingBottom:"50px",
+          backgroundColor:"black",
+          color:"white",
+          borderBottom:"1px solid white",
+        }}
+        >ALLOW A.I. TO ACCESS YOUR CAMERA</div>
       </div>
       <div className="center" style={{ justifyContent: "space-between", margin: "8px 0px" }}>
         <div style={{ margin: "15px", fontSize: "12px" }}>
