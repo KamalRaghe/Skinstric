@@ -14,10 +14,14 @@ export default function ScanPage() {
   return (
     <div style={{ overflow: "hidden" }}>
       <div style={{
-        backgroundColor:"black",
+        position:"fixed",
+        border:"1px solid black",
         top: "50%",
         left: "50%",
-        transform: "translate(-50%, -50%)",
+        transform: "translate(-65%, 50%)",
+        zIndex:"10",
+        backgroundColor:"black",
+        color:"red",
       }} >
         <div>ALLOW A.I. TO ACCESS YOUR CAMERA</div>
       </div>
