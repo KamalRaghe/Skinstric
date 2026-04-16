@@ -65,7 +65,7 @@ export default function ScanPage() {
       <div className="center column">
         <div className="center" style={{ height: "78vh", width: "90%", display: "flex" }}>
 
-          {/* LEFT SIDE */}
+          {/* LEFT */}
           <div className="center" style={{ width: "50%", height: "100%" }}>
             <div
               className="center"
@@ -73,7 +73,7 @@ export default function ScanPage() {
                 width: "300px",
                 height: "300px",
                 border: "1px dashed grey",
-                position: "relative"
+                position: "relative",
               }}
             >
               <div
@@ -95,7 +95,6 @@ export default function ScanPage() {
                   }}
                 />
 
-                {/* CAMERA ICON */}
                 <MdOutlineCamera
                   style={{
                     position: "absolute",
@@ -111,40 +110,49 @@ export default function ScanPage() {
                   }}
                 />
 
-                {/* LINE + DOT + TEXT */}
+                {/* CONNECTOR TOP-LEFT */}
                 <div
                   style={{
                     position: "absolute",
-                    top: "45%",
-                    left: "75%",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "6px",
-                    fontSize: "11px",
+                    top: "65%",
+                    left: "65%",
+                    transform: "translate(-50%, -50%)",
                   }}
                 >
                   <div
                     style={{
-                      width: "40px",
+                      position: "absolute",
+                      width: "95px",
                       height: "1px",
-                      background: "black",
-                      position: "relative",
+                      background: "#6f6f6f",
+                      transform: "rotate(-25deg)",
+                      transformOrigin: "0% 50%",
+                      left: "-12px",
+                      top: "-20px",
+                    }}
+                  />
+                  <div
+                    style={{
+                      position: "absolute",
+                      width: "4px",
+                      height: "4px",
+                      background: "#6f6f6f",
+                      borderRadius: "50%",
+                      left: "80px",
+                      top: "-42px",
+                    }}
+                  />
+                  <div
+                    style={{
+                      position: "absolute",
+                      left: "90px",
+                      top: "-52px",
+                      fontSize: "11px",
+                      color: "#444",
+                      lineHeight: "1.3",
+                      letterSpacing: "0.3px",
                     }}
                   >
-                    <div
-                      style={{
-                        width: "5px",
-                        height: "5px",
-                        background: "black",
-                        borderRadius: "50%",
-                        position: "absolute",
-                        right: "-2px",
-                        top: "-2px",
-                      }}
-                    />
-                  </div>
-
-                  <div style={{ whiteSpace: "nowrap" }}>
                     ALLOW A.I.<br />
                     TO SCAN YOUR FACE
                   </div>
@@ -154,7 +162,7 @@ export default function ScanPage() {
             </div>
           </div>
 
-          {/* RIGHT SIDE */}
+          {/* RIGHT */}
           <div className="center" style={{ width: "50%", height: "100%" }}>
             <div
               className="center"
@@ -162,7 +170,7 @@ export default function ScanPage() {
                 width: "300px",
                 height: "300px",
                 border: "1px dashed grey",
-                position: "relative"
+                position: "relative",
               }}
             >
               <div
@@ -184,7 +192,6 @@ export default function ScanPage() {
                   }}
                 />
 
-                {/* GALLERY ICON */}
                 <FaMountainSun
                   style={{
                     position: "absolute",
@@ -201,41 +208,49 @@ export default function ScanPage() {
                   }}
                 />
 
-                {/* LINE + DOT + TEXT */}
+                {/* CONNECTOR BOTTOM-RIGHT */}
                 <div
                   style={{
                     position: "absolute",
                     top: "65%",
-                    right: "75%",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "6px",
-                    fontSize: "11px",
-                    flexDirection: "row-reverse",
+                    left: "65%",
+                    transform: "translate(-50%, -50%)",
                   }}
                 >
                   <div
                     style={{
-                      width: "40px",
+                      position: "absolute",
+                      width: "95px",
                       height: "1px",
-                      background: "black",
-                      position: "relative",
+                      background: "#6f6f6f",
+                      transform: "rotate(25deg)",
+                      transformOrigin: "0% 50%",
+                      left: "20px",
+                      top: "20px",
+                    }}
+                  />
+                  <div
+                    style={{
+                      position: "absolute",
+                      width: "4px",
+                      height: "4px",
+                      background: "#6f6f6f",
+                      borderRadius: "50%",
+                      left: "110px",
+                      top: "40px",
+                    }}
+                  />
+                  <div
+                    style={{
+                      position: "absolute",
+                      left: "120px",
+                      top: "32px",
+                      fontSize: "11px",
+                      color: "#444",
+                      lineHeight: "1.3",
+                      letterSpacing: "0.3px",
                     }}
                   >
-                    <div
-                      style={{
-                        width: "5px",
-                        height: "5px",
-                        background: "black",
-                        borderRadius: "50%",
-                        position: "absolute",
-                        left: "-2px",
-                        top: "-2px",
-                      }}
-                    />
-                  </div>
-
-                  <div style={{ whiteSpace: "nowrap", textAlign: "right" }}>
                     ALLOW A.I.<br />
                     ACCESS GALLERY
                   </div>
@@ -246,7 +261,7 @@ export default function ScanPage() {
           </div>
         </div>
 
-        {/* BACK BUTTON */}
+        {/* BACK */}
         <div
           className="center"
           onClick={() => router.push("/")}
