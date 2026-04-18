@@ -30,6 +30,7 @@ export default function Page() {
       <div style={{
         display: "flex",
         justifyContent: "space-between",
+        alignItems:"start",
         padding: "20px",
         fontSize: "10px",
         background: "white"
@@ -42,12 +43,14 @@ export default function Page() {
         <button style={{
           background: "black",
           color: "white",
-          padding: "8px 14px",
-          fontSize: "10px",
+          padding: "10px",
+          fontSize: "9px",
+          fontWeight:"bold",
           border: "none"
         }}>
           ENTER CODE
         </button>
+        
       </div>
 
       {/* CAMERA SECTION */}
@@ -92,12 +95,16 @@ export default function Page() {
 
           {/* TEXT */}
           <div style={{
-            fontSize: "11px",
+            fontSize: "14px",
             marginBottom: "12px",
             textAlign: "center"
           }}>
             FOR BEST RESULTS MAKE SURE TO HAVE
-            <div style={{ marginTop: "6px", opacity: 0.9 }}>
+            <div style={{ 
+                marginTop: "6px", 
+                opacity: 0.9,
+                fontSize:"12px" 
+            }}>
               ◇ NEUTRAL EXPRESSION &nbsp;
               ◇ FRONTAL POSE &nbsp;
               ◇ GOOD LIGHTING
@@ -105,12 +112,7 @@ export default function Page() {
           </div>
 
           {/* FACE GUIDE */}
-          <div style={{
-            width: "260px",
-            height: "320px",
-            border: "1px dashed rgba(255,255,255,0.6)",
-            borderRadius: "10px"
-          }} />
+       
         </div>
 
         {/* CAPTURE BUTTON */}
