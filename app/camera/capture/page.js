@@ -1,56 +1,77 @@
 "use client";
+import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { CiCamera } from "react-icons/ci";
+import { GoTriangleLeft } from "react-icons/go";
+
 export default function Page() {
+  const videoRef = useRef(null);
+  const canvasRef = useRef(null);
   const [photo, setPhoto] = useState(null);
-    const canvasRef = useRef(null);
-    const videoRef = useRef(null);
+  const [captured, setCaptured] = useState(false);
+  const router = useRouter()
 
-    const takePicture = () => {
-        const video = videoRef.current;
-        const canvas = canvasRef.current;
+  // 🎥 START CAMERA
+  const startCamera = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+      const video = videoRef.current;
 
-        const width = video.videoWidth;
-        const height = video.videoHeight;
-
-        canvas.width = width;
-        canvas.height = height;
-
-        const ctx = canvas.getContext("2d");
-
-        ctx.drawImage(video, 0, 0, width, height);
-
-        const image = canvas.toDataURL("image/png");
-        setPhoto(image);
-    };
+      video.srcObject = stream;
+      video.onloadedmetadata = () => {
+        video.play();
+      };
+    } catch (err) {
+      console.error("Camera error:", err);
+    }
+  };
 
   useEffect(() => {
-    async function startCamera() {
-      try {
-        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-
-        const video = videoRef.current;
-        video.srcObject = stream;
-
-        video.onloadedmetadata = () => {
-          video.play();
-        };
-      } catch (err) {
-        console.error("Camera error:", err);
-      }
-    }
-
     startCamera();
   }, []);
 
+  // 📸 TAKE PICTURE
+  const takePicture = () => {
+    const video = videoRef.current;
+    const canvas = canvasRef.current;
+
+    const width = video.videoWidth;
+    const height = video.videoHeight;
+
+    canvas.width = width;
+    canvas.height = height;
+
+    const ctx = canvas.getContext("2d");
+    ctx.drawImage(video, 0, 0, width, height);
+
+    const image = canvas.toDataURL("image/png");
+    setPhoto(image);
+    setCaptured(true);
+
+    // 🔌 STOP CAMERA
+    const stream = video.srcObject;
+    stream.getTracks().forEach(track => track.stop());
+
+    // ⚡ FLASH EFFECT
+    document.body.style.background = "white";
+    setTimeout(() => {
+      document.body.style.background = "";
+    }, 100);
+  };
+
+  // 🔁 RETAKE
+  const retake = async () => {
+    setPhoto(null);
+    startCamera();
+  };
+
   return (
-    <div style={{ height: "100vh", display: "flex", flexDirection: "column" }}>
+    <div style={{ height: "97vh", display: "flex", flexDirection: "column" }}>
 
       {/* HEADER */}
       <div style={{
         display: "flex",
         justifyContent: "space-between",
-        alignItems:"start",
         padding: "20px",
         fontSize: "10px",
         background: "white"
@@ -65,35 +86,47 @@ export default function Page() {
           color: "white",
           padding: "10px",
           fontSize: "9px",
-          fontWeight:"bold",
+          fontWeight: "bold",
           border: "none"
         }}>
           ENTER CODE
         </button>
-        
       </div>
 
       {/* CAMERA SECTION */}
-      <div style={{
-        flex: 1,
-        position: "relative",
-        overflow: "hidden"
-      }}>
+      <div style={{ flex: 1, position: "relative", overflow: "hidden" }}>
 
-        {/* VIDEO */}
-        <video
-          ref={videoRef}
-          autoPlay
-          playsInline
-          muted
-          style={{
-            position: "absolute",
-            inset: 0,
-            width: "100%",
-            height: "100%",
-            objectFit: "cover"
-          }}
-        />
+        {/* VIDEO OR PHOTO */}
+        {photo ? (
+          <img
+            src={photo}
+            alt="capture"
+            style={{
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover"
+            }}
+          />
+        ) : (
+          <video
+            ref={videoRef}
+            autoPlay
+            playsInline
+            muted
+            style={{
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover"
+            }}
+          />
+        )}
+
+        {/* HIDDEN CANVAS */}
+        <canvas ref={canvasRef} style={{ display: "none" }} />
 
         {/* OVERLAY */}
         <div style={{
@@ -102,107 +135,95 @@ export default function Page() {
           background: "rgba(0,0,0,0.2)"
         }} />
 
-        {/* CENTER UI */}
-        <div style={{
-          position: "absolute",
-          inset: 0,
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          color: "white"
-        }}>
-
-          {/* TEXT */}
+        {/* TEXT */}
+        {!photo && (
           <div style={{
-            fontSize: "14px",
-            marginBottom: "16px",
+            position: "absolute",
+            top: "20%",
+            width: "100%",
             textAlign: "center",
-            position:"relative",
-            top:"100px",
+            color: "white",
+            fontSize: "14px"
           }}>
             FOR BEST RESULTS MAKE SURE TO HAVE
-            <br></br>
-            <div className="center" style={{ 
-                marginTop: "6px",
-                justifyContent:"space-between",
-                width:"450px", 
-                opacity: 0.9,
-                fontSize:"12px",
-                margin:"20px",
+            <div style={{
+              marginTop: "20px",
+              display: "flex",
+              justifyContent: "center",
+              gap: "40px",
+              fontSize: "12px"
             }}>
-              <div>◇ NEUTRAL EXPRESSION</div> 
-              <div>◇ FRONTAL POSE</div> 
+              <div>◇ NEUTRAL EXPRESSION</div>
+              <div>◇ FRONTAL POSE</div>
               <div>◇ GOOD LIGHTING</div>
             </div>
           </div>
-
-          {/* FACE GUIDE */}
-       
-        </div>
-
-        {/* CAPTURE BUTTON */}
-        <div style={{
-        position: "absolute",
-        right: "30px",
-        top: "50%",
-        transform: "translateY(-50%)",
-        display: "flex",
-        alignItems: "center",
-        gap: "12px",
-        color: "white",
-        fontSize: "12px",
-        letterSpacing: "1px"
-        }}>
-
-        {/* TEXT */}
-        <span style={{ opacity: 0.9 }}>
-            TAKE PICTURE
-        </span>
+        )}
 
         {/* BUTTON */}
-        <div
-            style={{
-            width: "70px",
-            height: "70px",
-            borderRadius: "50%",
-            border: "2px solid rgba(255,255,255,0.8)",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            cursor: "pointer"
-            }}
-        >
-            {/* INNER WHITE */}
-            <div className="center"
-            style={{
-            width: "62px",
-            height: "62px",
-            borderRadius: "50%",
-            background: "white",
-            color:"grey",
-
-            }}>
-                <div style={{
-                    scale:"3",
-                    position:"relative",
-                    top:"5px",
-                    left:"-0,5px"
-                }} ><CiCamera /></div>
-            </div> 
-        </div>
-
-        </div>
-
-        {/* BACK */}
-        <div style={{
+        {photo && <div style={{
           position: "absolute",
-          bottom: "20px",
-          left: "20px",
+          right: "30px",
+          top: "50%",
+          transform: "translateY(-50%)",
+          display: "flex",
+          alignItems: "center",
+          gap: "12px",
           color: "white",
           fontSize: "12px"
         }}>
-          ← BACK
+
+          <span>TAKE PICTURE</span>
+
+          <div
+            onClick={takePicture}
+            style={{
+              width: "70px",
+              height: "70px",
+              borderRadius: "50%",
+              border: "2px solid rgba(255,255,255,0.8)",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              cursor: "pointer"
+            }}
+          >
+            <div style={{
+              width: "62px",
+              height: "62px",
+              borderRadius: "50%",
+              background: photo ? "transparent" : "white",
+              border: photo ? "2px solid white" : "none",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center"
+            }}>
+              <CiCamera size={28} color={photo ? "white" : "black"} />
+            </div>
+          </div>
+        </div>}
+
+        {/* BACK */}
+         <div className="center"
+          onClick={() => router.push("/")}
+          style={{ cursor: "pointer", position: "fixed", left: "2%", top: "88%", color:"white" }}>
+          
+          <div style={{
+            transform: "rotate(45deg)",
+            border: "1px solid grey",
+            width: "50px",
+            height: "50px",
+            marginRight: "10px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center"
+          }}>
+            <div style={{ transform: "rotate(-45deg)", scale: "2" }}>
+              <GoTriangleLeft />
+            </div>
+          </div>
+
+          <span style={{ marginLeft: "12px" }}>BACK</span>
         </div>
 
       </div>
