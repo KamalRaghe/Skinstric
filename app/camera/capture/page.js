@@ -1,99 +1,152 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 
-export default function Home() {
+export default function Page() {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    async function startCamera() {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+
+        const video = videoRef.current;
+        video.srcObject = stream;
+
+        video.onloadedmetadata = () => {
+          video.play();
+        };
+      } catch (err) {
+        console.error("Camera error:", err);
+      }
+    }
+
+    startCamera();
+  }, []);
+
   return (
-    <div style={{
-      height: "100vh",
-      margin: 0,
-      overflow: "hidden",
-      display: "flex",
-      flexDirection: "column",
-      background: "black",
-      color: "white"
-    }}>
+    <div style={{ height: "100vh", display: "flex", flexDirection: "column" }}>
 
       {/* HEADER */}
       <div style={{
         display: "flex",
         justifyContent: "space-between",
-        alignItems: "center",
-        padding: "12px 20px",
-        fontSize: "12px"
+        padding: "20px",
+        fontSize: "10px",
+        background: "white"
       }}>
         <div>
-          <span style={{ fontWeight: "bold", fontSize: "11px" }}>
-            SKINSTRIC
-          </span>
-          <span style={{ color: "grey", marginLeft: "6px" }}>
-            [ INTRO ]
-          </span>
+          <span style={{ fontWeight: "bold" }}>SKINSTRIC</span>
+          <span style={{ color: "grey", marginLeft: "6px" }}>[ INTRO ]</span>
         </div>
 
         <button style={{
-          backgroundColor: "white",
-          color: "black",
+          background: "black",
+          color: "white",
           padding: "8px 14px",
-          fontSize: "11px",
-          border: "none",
-          cursor: "pointer"
+          fontSize: "10px",
+          border: "none"
         }}>
           ENTER CODE
         </button>
       </div>
 
-      {/* CAMERA AREA */}
+      {/* CAMERA SECTION */}
       <div style={{
         flex: 1,
         position: "relative",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center"
+        overflow: "hidden"
       }}>
 
-        {/* FACE GUIDE BOX */}
-        <div style={{
-          width: "260px",
-          height: "320px",
-          border: "1px dashed rgba(255,255,255,0.4)",
-          borderRadius: "10px"
-        }} />
+        {/* VIDEO */}
+        <video
+          ref={videoRef}
+          autoPlay
+          playsInline
+          muted
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover"
+          }}
+        />
 
-        {/* INSTRUCTION TEXT */}
+        {/* OVERLAY */}
         <div style={{
           position: "absolute",
-          top: "20%",
-          textAlign: "center",
-          fontSize: "11px",
-          opacity: 0.8
+          inset: 0,
+          background: "rgba(0,0,0,0.2)"
+        }} />
+
+        {/* CENTER UI */}
+        <div style={{
+          position: "absolute",
+          inset: 0,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          color: "white"
         }}>
-          <div>FOR BEST RESULTS MAKE SURE TO HAVE</div>
-          <div style={{ marginTop: "8px", display: "flex", gap: "12px", justifyContent: "center" }}>
-            <span>• Neutral Expression</span>
-            <span>• Frontal Pose</span>
-            <span>• Good Lighting</span>
+
+          {/* TEXT */}
+          <div style={{
+            fontSize: "11px",
+            marginBottom: "12px",
+            textAlign: "center"
+          }}>
+            FOR BEST RESULTS MAKE SURE TO HAVE
+            <div style={{ marginTop: "6px", opacity: 0.9 }}>
+              ◇ NEUTRAL EXPRESSION &nbsp;
+              ◇ FRONTAL POSE &nbsp;
+              ◇ GOOD LIGHTING
+            </div>
           </div>
+
+          {/* FACE GUIDE */}
+          <div style={{
+            width: "260px",
+            height: "320px",
+            border: "1px dashed rgba(255,255,255,0.6)",
+            borderRadius: "10px"
+          }} />
         </div>
 
         {/* CAPTURE BUTTON */}
         <div style={{
           position: "absolute",
-          bottom: "60px",
-          right: "40px"
+          right: "30px",
+          top: "50%",
+          transform: "translateY(-50%)"
         }}>
           <div style={{
-            width: "60px",
-            height: "60px",
+            width: "70px",
+            height: "70px",
             borderRadius: "50%",
             border: "2px solid white",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            color: "white",
+            fontSize: "20px",
             cursor: "pointer"
           }}>
             📷
           </div>
         </div>
+
+        {/* BACK */}
+        <div style={{
+          position: "absolute",
+          bottom: "20px",
+          left: "20px",
+          color: "white",
+          fontSize: "12px"
+        }}>
+          ← BACK
+        </div>
+
       </div>
     </div>
   );
