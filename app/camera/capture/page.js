@@ -8,6 +8,7 @@ export default function Page() {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const [photo, setPhoto] = useState(null);
+  const [click, setClick] = useState(true);
   const [captured, setCaptured] = useState(false);
   const router = useRouter()
 
@@ -135,6 +136,9 @@ export default function Page() {
           background: "rgba(0,0,0,0.2)"
         }} />
 
+   
+    
+
         {/* TEXT */}
         {!photo && (
           <div className="center column" style={{
@@ -173,17 +177,44 @@ export default function Page() {
             GREAT SHOT!    
         </div>}
         {photo && <div 
-        className="center" 
+        className="center column" 
         style={{
             zIndex:"10",
             position: "absolute",
-            top: "80%",
+            top: "75%",
             width: "100%",
             color: "white",
             fontSize: "14px",
         }}
         >
-            Preview 
+            <div style={{
+              fontWeight:"bold",
+              fontSize:"16px",
+              margin:"20px"  
+            }} >Preview</div>
+           <div className="center" style={{width:"400px"}} >
+                 <button
+                 onClick={retake}
+                    style={{
+                        color:"black",
+                        border:"1px solid black",
+                        backgroundColor:"lightgrey",
+                        padding:"10px"
+                    }}
+                    >Retake
+                </button> 
+                <button
+                    style={{
+                        color:"white",
+                        border:"1px solid black",
+                        backgroundColor:"#111",
+                        padding:"10px",
+                        position:"relative",
+                        left:"30px"
+                    }}
+                    >Use This Photo
+                </button> 
+           </div>
         </div>}
 
         {/* BUTTON */}
