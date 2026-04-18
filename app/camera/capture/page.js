@@ -137,13 +137,12 @@ export default function Page() {
 
         {/* TEXT */}
         {!photo && (
-          <div style={{
+          <div className="center column" style={{
             position: "absolute",
-            top: "20%",
+            top: "65%",
             width: "100%",
-            textAlign: "center",
             color: "white",
-            fontSize: "14px"
+            fontSize: "14px",
           }}>
             FOR BEST RESULTS MAKE SURE TO HAVE
             <div style={{
@@ -160,8 +159,35 @@ export default function Page() {
           </div>
         )}
 
+        {photo && <div 
+        className="center" 
+        style={{
+            zIndex:"10",
+            position: "absolute",
+            top: "30%",
+            width: "100%",
+            color: "white",
+            fontSize: "14px",
+        }}
+        >
+            GREAT SHOT!    
+        </div>}
+        {photo && <div 
+        className="center" 
+        style={{
+            zIndex:"10",
+            position: "absolute",
+            top: "80%",
+            width: "100%",
+            color: "white",
+            fontSize: "14px",
+        }}
+        >
+            Preview 
+        </div>}
+
         {/* BUTTON */}
-        {photo && <div style={{
+        {!photo && <div style={{
           position: "absolute",
           right: "30px",
           top: "50%",
