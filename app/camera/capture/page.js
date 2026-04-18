@@ -94,16 +94,6 @@ export default function Home() {
             📷
           </div>
         </div>
-
-        {/* CTA TEXT */}
-        <div style={{
-          position: "absolute",
-          bottom: "20px",
-          fontSize: "12px",
-          opacity: 0.8
-        }}>
-          TAP TO START ANALYSIS
-        </div>
       </div>
     </div>
   );
