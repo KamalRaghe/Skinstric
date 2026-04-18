@@ -96,18 +96,24 @@ export default function Page() {
           {/* TEXT */}
           <div style={{
             fontSize: "14px",
-            marginBottom: "12px",
-            textAlign: "center"
+            marginBottom: "16px",
+            textAlign: "center",
+            position:"relative",
+            top:"90px",
           }}>
             FOR BEST RESULTS MAKE SURE TO HAVE
-            <div style={{ 
-                marginTop: "6px", 
+            <br></br>
+            <div className="center" style={{ 
+                marginTop: "6px",
+                justifyContent:"space-between",
+                width:"500px", 
                 opacity: 0.9,
-                fontSize:"12px" 
+                fontSize:"12px",
+                margin:"10px",
             }}>
-              ◇ NEUTRAL EXPRESSION &nbsp;
-              ◇ FRONTAL POSE &nbsp;
-              ◇ GOOD LIGHTING
+              <div>◇ NEUTRAL EXPRESSION</div> 
+              <div>◇ FRONTAL POSE</div> 
+              <div>◇ GOOD LIGHTING</div>
             </div>
           </div>
 
