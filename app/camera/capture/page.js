@@ -6,6 +6,24 @@ export default function Page() {
     const canvasRef = useRef(null);
     const videoRef = useRef(null);
 
+    const takePicture = () => {
+        const video = videoRef.current;
+        const canvas = canvasRef.current;
+
+        const width = video.videoWidth;
+        const height = video.videoHeight;
+
+        canvas.width = width;
+        canvas.height = height;
+
+        const ctx = canvas.getContext("2d");
+
+        ctx.drawImage(video, 0, 0, width, height);
+
+        const image = canvas.toDataURL("image/png");
+        setPhoto(image);
+    };
+
   useEffect(() => {
     async function startCamera() {
       try {
