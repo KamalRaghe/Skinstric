@@ -8,7 +8,7 @@ export default function Page() {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const [photo, setPhoto] = useState(null);
-  const [click, setClick] = useState(true);
+  const [click, setClick] = useState();
   const [captured, setCaptured] = useState(false);
   const router = useRouter()
 
@@ -136,7 +136,36 @@ export default function Page() {
           background: "rgba(0,0,0,0.2)"
         }} />
 
-   
+      {click && <div style={{
+        position: "absolute",
+        top: "40%",
+        left:"45%",
+        width: "100%",
+        color: "white",
+        fontSize: "14px",
+        zIndex:"9",
+        width:"150px",
+        height:"120px",
+        color:"black",
+        backgroundColor:"lightgrey",
+        borderRadius:"20px"
+      }} >
+       <div className="center column"
+      style={{height:"100%"}}
+      >
+         <div className="center" 
+          style={{fontSize:"18px",opacity:"0.5"}}
+          >
+            Analyzing 
+            Image
+          </div>
+         <div className="dots center">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div> 
+      </div> 
+      </div>}
     
 
         {/* TEXT */}
@@ -204,6 +233,7 @@ export default function Page() {
                     >Retake
                 </button> 
                 <button
+                onClick={()=>{setClick(true)}}
                     style={{
                         color:"white",
                         border:"1px solid black",
