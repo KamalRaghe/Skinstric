@@ -1,8 +1,10 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CiCamera } from "react-icons/ci";
 export default function Page() {
-  const videoRef = useRef(null);
+  const [photo, setPhoto] = useState(null);
+    const canvasRef = useRef(null);
+    const videoRef = useRef(null);
 
   useEffect(() => {
     async function startCamera() {
