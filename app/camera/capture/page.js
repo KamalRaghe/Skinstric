@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
-
+import { CiCamera } from "react-icons/ci";
 export default function Page() {
   const videoRef = useRef(null);
 
@@ -99,17 +99,17 @@ export default function Page() {
             marginBottom: "16px",
             textAlign: "center",
             position:"relative",
-            top:"90px",
+            top:"100px",
           }}>
             FOR BEST RESULTS MAKE SURE TO HAVE
             <br></br>
             <div className="center" style={{ 
                 marginTop: "6px",
                 justifyContent:"space-between",
-                width:"500px", 
+                width:"450px", 
                 opacity: 0.9,
                 fontSize:"12px",
-                margin:"10px",
+                margin:"20px",
             }}>
               <div>◇ NEUTRAL EXPRESSION</div> 
               <div>◇ FRONTAL POSE</div> 
@@ -123,25 +123,55 @@ export default function Page() {
 
         {/* CAPTURE BUTTON */}
         <div style={{
-          position: "absolute",
-          right: "30px",
-          top: "50%",
-          transform: "translateY(-50%)"
+        position: "absolute",
+        right: "30px",
+        top: "50%",
+        transform: "translateY(-50%)",
+        display: "flex",
+        alignItems: "center",
+        gap: "12px",
+        color: "white",
+        fontSize: "12px",
+        letterSpacing: "1px"
         }}>
-          <div style={{
+
+        {/* TEXT */}
+        <span style={{ opacity: 0.9 }}>
+            TAKE PICTURE
+        </span>
+
+        {/* BUTTON */}
+        <div
+            style={{
             width: "70px",
             height: "70px",
             borderRadius: "50%",
-            border: "2px solid white",
+            border: "2px solid rgba(255,255,255,0.8)",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            color: "white",
-            fontSize: "20px",
             cursor: "pointer"
-          }}>
-            📷
-          </div>
+            }}
+        >
+            {/* INNER WHITE */}
+            <div className="center"
+            style={{
+            width: "62px",
+            height: "62px",
+            borderRadius: "50%",
+            background: "white",
+            color:"grey",
+
+            }}>
+                <div style={{
+                    scale:"3",
+                    position:"relative",
+                    top:"5px",
+                    left:"-0,5px"
+                }} ><CiCamera /></div>
+            </div> 
+        </div>
+
         </div>
 
         {/* BACK */}
