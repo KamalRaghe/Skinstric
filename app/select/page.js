@@ -97,7 +97,7 @@ export default function Select() {
               gridTemplateRows: "1fr 1fr",
               gap: "10px",
               position:"relative",
-              bottom:"20px",
+              bottom:"10px",
               left:"-20px",
 
             }}
@@ -107,11 +107,19 @@ export default function Select() {
               onMouseEnter={() => setHoverTop(true)}
               onMouseLeave={() => setHoverTop(false)}
               style={{ border: "1px solid black" }}
-            />
+            >
+                <div style={{transform:"rotate(-45deg"}} >Demographic</div>
+            </div> 
 
-            <div style={{ border: "1px solid black" }} />
-            <div style={{ border: "1px solid black" }} />
-            <div style={{ border: "1px solid black" }} />
+            <div style={{ border: "1px solid black" }} >
+                <div style={{transform:"rotate(-45deg"}} >Demographic</div>
+            </div> 
+            <div style={{ border: "1px solid black" }} >
+                <div style={{transform:"rotate(-45deg"}} >Demographic</div>
+            </div> 
+            <div style={{ border: "1px solid black" }} >
+                <div style={{transform:"rotate(-45deg"}} >Demographic</div>
+            </div> 
           </div>
         </div>
       </div>
