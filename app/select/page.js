@@ -97,28 +97,34 @@ export default function Select() {
               gridTemplateRows: "1fr 1fr",
               gap: "10px",
               position:"relative",
-              bottom:"10px",
-              left:"-20px",
-
+              bottom:"15px",
+              left:"-10px",
+              fontWeight:"bold",
+              fontSize:"18px" 
             }}
           >
             {/* TOP DIAMOND */}
             <div
               onMouseEnter={() => setHoverTop(true)}
               onMouseLeave={() => setHoverTop(false)}
+              className="center"
               style={{ border: "1px solid black" }}
             >
                 <div style={{transform:"rotate(-45deg"}} >Demographic</div>
             </div> 
 
-            <div style={{ border: "1px solid black" }} >
-                <div style={{transform:"rotate(-45deg"}} >Demographic</div>
-            </div> 
-            <div style={{ border: "1px solid black" }} >
-                <div style={{transform:"rotate(-45deg"}} >Demographic</div>
+            <div className="center" style={{ border: "1px solid black" }} >
+                <div style={{transform:"rotate(-45deg"}} >Skin type details</div>
             </div> 
             <div className="center" style={{ border: "1px solid black" }} >
-                <div style={{transform:"rotate(-45deg"}} >Demographic</div>
+                <div className="center" style={{
+                    position:"absolute",
+                    left:"55px",
+                    width:"100px",
+                    transform:"rotate(-45deg"}} >Cosmetic Concerns</div>
+            </div> 
+            <div className="center" style={{ border: "1px solid black" }} >
+                <div style={{transform:"rotate(-45deg"}} >Weather</div>
             </div> 
           </div>
         </div>

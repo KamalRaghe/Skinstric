@@ -1,5 +1,6 @@
 import { MdOutlineCamera } from "react-icons/md";
 export default function Cam(){
+    
     return(
         <div>
             <div className="center" style={{height:"95vh"}} >
@@ -17,8 +18,8 @@ export default function Cam(){
                         background: "white",
                         scale: "2.8",
                         position:"absolute",
-                        top:"59%",
-                        left:"59%",
+                        top:"58%",
+                        left:"58%",
                         transform:"translate(-50%,-50%)"
                     }}
                     />
