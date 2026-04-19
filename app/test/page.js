@@ -12,6 +12,7 @@ export default function ResultPage() {
     }
   }, []);
 
+  // 🔢 Convert % string → number
   const toNumber = (val) => {
     if (typeof val === "string") {
       return parseFloat(val.replace("%", ""));
@@ -19,6 +20,13 @@ export default function ResultPage() {
     return val;
   };
 
+  // 🎯 Format → 2 decimal places
+  const formatPercent = (val) => {
+    const num = toNumber(val);
+    return num.toFixed(2) + "%";
+  };
+
+  // 📊 Sort DESC
   const sortObjectDesc = (obj) => {
     if (!obj) return null;
 
@@ -30,6 +38,7 @@ export default function ResultPage() {
       }, {});
   };
 
+  // 🎂 Fixed age order
   const ageOrder = [
     "0-2","3-9","10-19","20-29","30-39",
     "40-49","50-59","60-69","70+",
@@ -44,10 +53,11 @@ export default function ResultPage() {
         ordered[range] = obj[range];
       }
     });
+
     return ordered;
   };
 
-  if (!data) return <div>No result found</div>;
+  if (!data) return <div style={{ padding: 40 }}>No result found</div>;
 
   const result = data.data;
 
@@ -56,10 +66,35 @@ export default function ResultPage() {
   const sortedAge = sortAge(result?.age);
 
   const topRace = sortedRace ? Object.entries(sortedRace)[0] : null;
+  const topAge = sortedAge ? Object.entries(sortedAge).sort((a,b)=>toNumber(b[1])-toNumber(a[1]))[0] : null;
+  const topGender = sortedGender ? Object.entries(sortedGender)[0] : null;
 
   return (
-    <div style={{ padding: "40px", fontFamily: "Arial" }}>
+    <div style={{fontFamily: "Arial" }}>
       
+            <div style={{
+        display: "flex",
+        justifyContent: "space-between",
+        padding: "20px",
+        fontSize: "10px",
+        background: "white"
+      }}>
+        <div>
+          <span style={{ fontWeight: "bold" }}>SKINSTRIC</span>
+          <span style={{ color: "grey", marginLeft: "6px" }}>[ INTRO ]</span>
+        </div>
+
+        <button style={{
+          background: "black",
+          color: "white",
+          padding: "10px",
+          fontSize: "9px",
+          fontWeight: "bold",
+          border: "none"
+        }}>
+          ENTER CODE
+        </button>
+      </div>
       {/* HEADER */}
       <div style={{ marginBottom: "30px" }}>
         <div style={{ fontSize: "12px", letterSpacing: "2px" }}>
@@ -72,50 +107,49 @@ export default function ResultPage() {
 
       <div style={{ display: "flex", gap: "40px" }}>
         
-        {/* LEFT PANEL */}
+        {/* LEFT */}
         <div style={{ width: "200px" }}>
           {topRace && (
-            <div style={cardStyleDark}>
+            <div style={cardDark}>
               {topRace[0]} <br /> RACE
             </div>
           )}
 
-          {sortedAge && (
-            <div style={cardStyle}>
-              {Object.entries(sortedAge)[4]?.[0]} <br /> AGE
+          {topAge && (
+            <div style={card}>
+              {topAge[0]} <br /> AGE
             </div>
           )}
 
-          {sortedGender && (
-            <div style={cardStyle}>
-              {Object.entries(sortedGender)[0]?.[0]} <br /> SEX
+          {topGender && (
+            <div style={card}>
+              {topGender[0]} <br /> SEX
             </div>
           )}
         </div>
 
-        {/* CENTER (CIRCLE) */}
-        <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center" }}>
+        {/* CENTER CIRCLE */}
+        <div style={center}>
           {topRace && (
             <div style={circleWrap}>
               <div style={circle}>
-                {topRace[1]}
+                {formatPercent(topRace[1])}
               </div>
             </div>
           )}
         </div>
 
-        {/* RIGHT PANEL */}
+        {/* RIGHT LIST */}
         <div style={{ width: "250px" }}>
           <h3>RACE</h3>
           {sortedRace &&
             Object.entries(sortedRace).map(([key, value]) => (
               <div key={key} style={listItem}>
                 <span>{key}</span>
-                <span>{value}</span>
+                <span>{formatPercent(value)}</span>
               </div>
             ))}
         </div>
-
       </div>
     </div>
   );
@@ -123,7 +157,7 @@ export default function ResultPage() {
 
 /* 🎨 STYLES */
 
-const cardStyleDark = {
+const cardDark = {
   background: "#111",
   color: "#fff",
   padding: "20px",
@@ -131,7 +165,7 @@ const cardStyleDark = {
   fontWeight: "bold",
 };
 
-const cardStyle = {
+const card = {
   background: "#eee",
   padding: "20px",
   marginBottom: "10px",
@@ -142,6 +176,13 @@ const listItem = {
   justifyContent: "space-between",
   padding: "10px 0",
   borderBottom: "1px solid #ddd",
+};
+
+const center = {
+  flex: 1,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
 };
 
 const circleWrap = {
@@ -158,3 +199,4 @@ const circle = {
   fontSize: "40px",
   fontWeight: "bold",
 };
+
