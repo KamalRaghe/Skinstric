@@ -1,14 +1,18 @@
 "use client";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function Select() {
   const [hoverTop, setHoverTop] = useState(false);
+
+  const router = useRouter()
 
   return (
     <div
       style={{
         height: "97vh",
         overflowY: "hidden",
+        cursor:"pointer"
       }}
     >
       {/* TOP BAR */}
@@ -107,23 +111,27 @@ export default function Select() {
             <div
               onMouseEnter={() => setHoverTop(true)}
               onMouseLeave={() => setHoverTop(false)}
+              onClick={()=>{router.push('/test')}}
               className="center"
               style={{ border: "1px solid black" }}
             >
-                <div style={{transform:"rotate(-45deg"}} >Demographic</div>
+                <div style={{transform:"rotate(-45deg"}}>
+                    Demographic
+                </div>
             </div> 
 
-            <div className="center" style={{ border: "1px solid black" }} >
+            <div className="center" style={{ border: "1px solid black", cursor: "not-allowed" }} >
                 <div style={{transform:"rotate(-45deg"}} >Skin type details</div>
             </div> 
-            <div className="center" style={{ border: "1px solid black" }} >
+            <div className="center" style={{ border: "1px solid black", cursor: "not-allowed" }} >
                 <div className="center" style={{
                     position:"absolute",
                     left:"55px",
                     width:"100px",
-                    transform:"rotate(-45deg"}} >Cosmetic Concerns</div>
+                    transform:"rotate(-45deg",
+                    }} >Cosmetic Concerns</div>
             </div> 
-            <div className="center" style={{ border: "1px solid black" }} >
+            <div className="center" style={{ border: "1px solid black", cursor: "not-allowed" }} >
                 <div style={{transform:"rotate(-45deg"}} >Weather</div>
             </div> 
           </div>
