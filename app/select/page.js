@@ -162,4 +162,3 @@ const styles = {
     left: 0,
     top: "25%",
   },
-};
