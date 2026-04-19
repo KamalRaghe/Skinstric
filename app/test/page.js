@@ -4,15 +4,13 @@ import { useEffect, useState } from "react";
 
 export default function ResultPage() {
   const [data, setData] = useState(null);
+  const [activeTab, setActiveTab] = useState("race");
 
   useEffect(() => {
     const stored = localStorage.getItem("result");
-    if (stored) {
-      setData(JSON.parse(stored));
-    }
+    if (stored) setData(JSON.parse(stored));
   }, []);
 
-  // 🔢 Convert % string → number
   const toNumber = (val) => {
     if (typeof val === "string") {
       return parseFloat(val.replace("%", ""));
@@ -20,25 +18,17 @@ export default function ResultPage() {
     return val;
   };
 
-  // 🎯 Format → 2 decimal places
   const formatPercent = (val) => {
-    const num = toNumber(val);
-    return num.toFixed(2) + "%";
+    return toNumber(val).toFixed(2) + "%";
   };
 
-  // 📊 Sort DESC
   const sortObjectDesc = (obj) => {
     if (!obj) return null;
-
     return Object.entries(obj)
       .sort((a, b) => toNumber(b[1]) - toNumber(a[1]))
-      .reduce((acc, [key, value]) => {
-        acc[key] = value;
-        return acc;
-      }, {});
+      .reduce((acc, [k, v]) => ({ ...acc, [k]: v }), {});
   };
 
-  // 🎂 Fixed age order
   const ageOrder = [
     "0-2","3-9","10-19","20-29","30-39",
     "40-49","50-59","60-69","70+",
@@ -46,157 +36,177 @@ export default function ResultPage() {
 
   const sortAge = (obj) => {
     if (!obj) return null;
-
     const ordered = {};
-    ageOrder.forEach((range) => {
-      if (obj[range] !== undefined) {
-        ordered[range] = obj[range];
-      }
+    ageOrder.forEach((k) => {
+      if (obj[k] !== undefined) ordered[k] = obj[k];
     });
-
     return ordered;
   };
 
-  if (!data) return <div style={{ padding: 40 }}>No result found</div>;
+  if (!data) return <div style={{ padding: 40 }}>No result</div>;
 
   const result = data.data;
 
-  const sortedRace = sortObjectDesc(result?.race);
-  const sortedGender = sortObjectDesc(result?.gender);
-  const sortedAge = sortAge(result?.age);
+  const race = sortObjectDesc(result?.race);
+  const gender = sortObjectDesc(result?.gender);
+  const age = sortAge(result?.age);
 
-  const topRace = sortedRace ? Object.entries(sortedRace)[0] : null;
-  const topAge = sortedAge ? Object.entries(sortedAge).sort((a,b)=>toNumber(b[1])-toNumber(a[1]))[0] : null;
-  const topGender = sortedGender ? Object.entries(sortedGender)[0] : null;
+  const currentData =
+    activeTab === "race"
+      ? race
+      : activeTab === "age"
+      ? age
+      : gender;
+
+  const topItem = currentData
+    ? Object.entries(currentData).sort((a, b) => toNumber(b[1]) - toNumber(a[1]))[0]
+    : null;
 
   return (
-    <div style={{fontFamily: "Arial" }}>
+    <div style={{ padding: 40, fontFamily: "Arial" }}>
       
-            <div style={{
-        display: "flex",
-        justifyContent: "space-between",
-        padding: "20px",
-        fontSize: "10px",
-        background: "white"
-      }}>
-        <div>
-          <span style={{ fontWeight: "bold" }}>SKINSTRIC</span>
-          <span style={{ color: "grey", marginLeft: "6px" }}>[ INTRO ]</span>
+      <h1 style={{ fontSize: 60 }}>DEMOGRAPHICS</h1>
+
+      <div style={{ display: "flex", gap: 40 }}>
+
+        {/* LEFT MENU */}
+        <div style={{ width: 200 }}>
+          <div onClick={() => setActiveTab("race")} style={activeTab==="race"?cardDark:card}>
+            {race && Object.keys(race)[0]} <br /> RACE
+          </div>
+
+          <div onClick={() => setActiveTab("age")} style={activeTab==="age"?cardDark:card}>
+            {age && Object.keys(age)[4]} <br /> AGE
+          </div>
+
+          <div onClick={() => setActiveTab("gender")} style={activeTab==="gender"?cardDark:card}>
+            {gender && Object.keys(gender)[0]} <br /> SEX
+          </div>
         </div>
 
-        <button style={{
-          background: "black",
-          color: "white",
-          padding: "10px",
-          fontSize: "9px",
-          fontWeight: "bold",
-          border: "none"
-        }}>
-          ENTER CODE
-        </button>
-      </div>
-      {/* HEADER */}
-      <div style={{ marginBottom: "30px" }}>
-        <div style={{ fontSize: "12px", letterSpacing: "2px" }}>
-          A.I. ANALYSIS
-        </div>
-        <h1 style={{ fontSize: "60px", margin: 0 }}>
-          DEMOGRAPHICS
-        </h1>
-      </div>
-
-      <div style={{ display: "flex", gap: "40px" }}>
-        
-        {/* LEFT */}
-        <div style={{ width: "200px" }}>
-          {topRace && (
-            <div style={cardDark}>
-              {topRace[0]} <br /> RACE
-            </div>
-          )}
-
-          {topAge && (
-            <div style={card}>
-              {topAge[0]} <br /> AGE
-            </div>
-          )}
-
-          {topGender && (
-            <div style={card}>
-              {topGender[0]} <br /> SEX
-            </div>
-          )}
-        </div>
-
-        {/* CENTER CIRCLE */}
+        {/* CENTER */}
         <div style={center}>
-          {topRace && (
-            <div style={circleWrap}>
-              <div style={circle}>
-                {formatPercent(topRace[1])}
-              </div>
+          {topItem && (
+            <div>
+              <div style={bigLabel}>{topItem[0]}</div>
+              <StaticCircle value={topItem[1]} />
             </div>
           )}
         </div>
 
-        {/* RIGHT LIST */}
-        <div style={{ width: "250px" }}>
-          <h3>RACE</h3>
-          {sortedRace &&
-            Object.entries(sortedRace).map(([key, value]) => (
-              <div key={key} style={listItem}>
+        {/* RIGHT PANEL */}
+        <div style={{ width: 260 }}>
+          <h3 style={{ textTransform: "uppercase" }}>
+            {activeTab === "gender" ? "SEX" : activeTab}
+          </h3>
+
+          {currentData &&
+            Object.entries(currentData).map(([key, value]) => (
+              <div
+                key={key}
+                style={{
+                  ...listItem,
+                  background: key === topItem?.[0] ? "#111" : "transparent",
+                  color: key === topItem?.[0] ? "#fff" : "#000",
+                }}
+              >
                 <span>{key}</span>
                 <span>{formatPercent(value)}</span>
               </div>
             ))}
         </div>
+
       </div>
     </div>
   );
 }
 
-/* 🎨 STYLES */
+/* 🎯 STATIC CIRCLE (NUMBER ONLY CHANGES) */
+function StaticCircle({ value }) {
+  const percent = parseFloat(
+    typeof value === "string" ? value.replace("%", "") : value
+  );
 
+  return (
+    <div style={wrap}>
+      {/* grey ring */}
+      <div style={greyCircle} />
+
+      {/* black arc style (fixed look) */}
+      <div style={blackArc} />
+
+      {/* number */}
+      <div style={text}>
+        {percent.toFixed(2)}%
+      </div>
+    </div>
+  );
+}
+
+/* STYLES */
 const cardDark = {
   background: "#111",
   color: "#fff",
-  padding: "20px",
-  marginBottom: "10px",
-  fontWeight: "bold",
+  padding: 20,
+  marginBottom: 10,
+  cursor: "pointer",
 };
 
 const card = {
   background: "#eee",
-  padding: "20px",
-  marginBottom: "10px",
+  padding: 20,
+  marginBottom: 10,
+  cursor: "pointer",
 };
 
 const listItem = {
   display: "flex",
   justifyContent: "space-between",
-  padding: "10px 0",
+  padding: "12px",
   borderBottom: "1px solid #ddd",
 };
 
 const center = {
   flex: 1,
   display: "flex",
-  alignItems: "center",
   justifyContent: "center",
+  alignItems: "center",
 };
 
-const circleWrap = {
-  width: "250px",
-  height: "250px",
-  borderRadius: "50%",
-  border: "8px solid #ddd",
+const bigLabel = {
+  fontSize: 48,
+  marginBottom: 20,
+};
+
+const wrap = {
+  position: "relative",
+  width: 260,
+  height: 260,
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
 };
 
-const circle = {
-  fontSize: "40px",
-  fontWeight: "bold",
+const greyCircle = {
+  position: "absolute",
+  width: "100%",
+  height: "100%",
+  borderRadius: "50%",
+  border: "10px solid #ddd",
 };
 
+const blackArc = {
+  position: "absolute",
+  width: "100%",
+  height: "100%",
+  borderRadius: "50%",
+  border: "10px solid #111",
+  borderLeftColor: "#ddd",
+  borderBottomColor: "#ddd",
+};
+
+const text = {
+  fontSize: 42,
+  fontWeight: "bold",
+  zIndex: 2,
+};
