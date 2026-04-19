@@ -2,116 +2,119 @@
 
 import { useEffect, useState } from "react";
 
-export default function ResultPage() {
+export default function Page() {
   const [data, setData] = useState(null);
-  const [activeTab, setActiveTab] = useState("race");
+  const [active, setActive] = useState("gender");
+  const [selected, setSelected] = useState(null);
+
+  const getTop = (obj) =>
+    Object.entries(obj).sort((a, b) => parseFloat(b[1]) - parseFloat(a[1]))[0];
 
   useEffect(() => {
-    const stored = localStorage.getItem("result");
-    if (stored) setData(JSON.parse(stored));
+    const temp = {
+      race: {
+        "South asian": "77%",
+        White: "10%",
+        "East asian": "7%",
+        "Middle eastern": "4%",
+      },
+      age: {
+        "10-19": "1%",
+        "20-29": "0%",
+        "30-39": "54%",
+        "40-49": "20%",
+      },
+      gender: {
+        Male: "86%",
+        Female: "13%",
+      },
+    };
+
+    setData(temp);
+    setSelected(getTop(temp.gender)[0]);
   }, []);
 
-  const toNumber = (val) => {
-    if (typeof val === "string") {
-      return parseFloat(val.replace("%", ""));
-    }
-    return val;
-  };
+  if (!data) return <div style={{ padding: 40 }}>Loading...</div>;
 
-  const formatPercent = (val) => {
-    return toNumber(val).toFixed(2) + "%";
-  };
-
-  const sortObjectDesc = (obj) => {
-    if (!obj) return null;
-    return Object.entries(obj)
-      .sort((a, b) => toNumber(b[1]) - toNumber(a[1]))
-      .reduce((acc, [k, v]) => ({ ...acc, [k]: v }), {});
-  };
-
-  const ageOrder = [
-    "0-2","3-9","10-19","20-29","30-39",
-    "40-49","50-59","60-69","70+",
-  ];
-
-  const sortAge = (obj) => {
-    if (!obj) return null;
-    const ordered = {};
-    ageOrder.forEach((k) => {
-      if (obj[k] !== undefined) ordered[k] = obj[k];
-    });
-    return ordered;
-  };
-
-  if (!data) return <div style={{ padding: 40 }}>No result</div>;
-
-  const result = data.data;
-
-  const race = sortObjectDesc(result?.race);
-  const gender = sortObjectDesc(result?.gender);
-  const age = sortAge(result?.age);
-
-  const currentData =
-    activeTab === "race"
-      ? race
-      : activeTab === "age"
-      ? age
-      : gender;
-
-  const topItem = currentData
-    ? Object.entries(currentData).sort((a, b) => toNumber(b[1]) - toNumber(a[1]))[0]
-    : null;
+  const current = data[active];
 
   return (
-    <div style={{ padding: 40, fontFamily: "Arial" }}>
-      
-      <h1 style={{ fontSize: 60 }}>DEMOGRAPHICS</h1>
+    <div style={styles.page}>
 
-      <div style={{ display: "flex", gap: 40 }}>
+      {/* HEADER */}
+      <div style={styles.headerSmall}>A.I. ANALYSIS</div>
+      <div style={styles.title}>DEMOGRAPHICS</div>
+      <div style={styles.subtitle}>PREDICTED RACE & AGE</div>
 
-        {/* LEFT MENU */}
-        <div style={{ width: 200 }}>
-          <div onClick={() => setActiveTab("race")} style={activeTab==="race"?cardDark:card}>
-            {race && Object.keys(race)[0]} <br /> RACE
-          </div>
+      <div style={styles.layout}>
 
-          <div onClick={() => setActiveTab("age")} style={activeTab==="age"?cardDark:card}>
-            {age && Object.keys(age)[4]} <br /> AGE
-          </div>
+        {/* LEFT */}
+        <div style={styles.left}>
+          <Card
+            label="RACE"
+            value={getTop(data.race)[0]}
+            active={active === "race"}
+            onClick={() => {
+              setActive("race");
+              setSelected(getTop(data.race)[0]);
+            }}
+          />
 
-          <div onClick={() => setActiveTab("gender")} style={activeTab==="gender"?cardDark:card}>
-            {gender && Object.keys(gender)[0]} <br /> SEX
-          </div>
+          <Card
+            label="AGE"
+            value={getTop(data.age)[0]}
+            active={active === "age"}
+            onClick={() => {
+              setActive("age");
+              setSelected(getTop(data.age)[0]);
+            }}
+          />
+
+          <Card
+            label="SEX"
+            value={getTop(data.gender)[0]}
+            active={active === "gender"}
+            onClick={() => {
+              setActive("gender");
+              setSelected(getTop(data.gender)[0]);
+            }}
+          />
         </div>
 
-        {/* CENTER */}
-        <div style={center}>
-          {topItem && (
-            <div>
-              <div style={bigLabel}>{topItem[0]}</div>
-              <StaticCircle value={topItem[1]} />
+        {/* CENTER (TITLE + CIRCLE SIDE BY SIDE) */}
+        <div style={styles.centerWrap}>
+
+          <div style={styles.centerText}>
+            <div style={{ fontSize: 48 }}>{selected}</div>
+            <div style={{ fontSize: 14, opacity: 0.6, marginTop: 10 }}>
             </div>
-          )}
+          </div>
+
+          <Circle value={current[selected]} />
+
         </div>
 
-        {/* RIGHT PANEL */}
-        <div style={{ width: 260 }}>
-          <h3 style={{ textTransform: "uppercase" }}>
-            {activeTab === "gender" ? "SEX" : activeTab}
-          </h3>
+        {/* RIGHT */}
+        <div style={styles.right}>
+          <div style={styles.rightHeader}>
+            <span>{active.toUpperCase()}</span>
+            <span>A.I. CONFIDENCE</span>
+          </div>
 
-          {currentData &&
-            Object.entries(currentData).map(([key, value]) => (
+          {Object.entries(current)
+            .sort((a, b) => parseFloat(b[1]) - parseFloat(a[1]))
+            .map(([k, v]) => (
               <div
-                key={key}
+                key={k}
+                onClick={() => setSelected(k)}
                 style={{
-                  ...listItem,
-                  background: key === topItem?.[0] ? "#111" : "transparent",
-                  color: key === topItem?.[0] ? "#fff" : "#000",
+                  ...styles.row,
+                  background: selected === k ? "#111" : "transparent",
+                  color: selected === k ? "#fff" : "#000",
                 }}
               >
-                <span>{key}</span>
-                <span>{formatPercent(value)}</span>
+                <span>{k}</span>
+                <span>{v}</span>
               </div>
             ))}
         </div>
@@ -121,92 +124,127 @@ export default function ResultPage() {
   );
 }
 
-/* 🎯 STATIC CIRCLE (NUMBER ONLY CHANGES) */
-function StaticCircle({ value }) {
-  const percent = parseFloat(
-    typeof value === "string" ? value.replace("%", "") : value
-  );
+/* 🔵 CIRCLE */
+function Circle({ value }) {
+  const size = 260;
+  const stroke = 10;
+  const r = (size - stroke) / 2;
+  const c = 2 * Math.PI * r;
+
+  const percent = parseFloat(value?.replace("%", "") || 0);
+  const offset = c - (percent / 100) * c;
 
   return (
-    <div style={wrap}>
-      {/* grey ring */}
-      <div style={greyCircle} />
+    <svg width={size} height={size}>
+      <circle cx="130" cy="130" r={r} stroke="#ddd" strokeWidth={stroke} fill="none" />
 
-      {/* black arc style (fixed look) */}
-      <div style={blackArc} />
+      <circle
+        cx="130"
+        cy="130"
+        r={r}
+        stroke="#111"
+        strokeWidth={stroke}
+        fill="none"
+        strokeDasharray={c}
+        strokeDashoffset={offset}
+        strokeLinecap="round"
+        style={{
+          transform: "rotate(-90deg)",
+          transformOrigin: "center",
+          transition: "0.5s",
+        }}
+      />
 
-      {/* number */}
-      <div style={text}>
-        {percent.toFixed(2)}%
-      </div>
+      <text x="50%" y="50%" textAnchor="middle" fontSize="40">
+        {percent}%
+      </text>
+    </svg>
+  );
+}
+
+/* 🧩 CARD */
+function Card({ label, value, active, onClick }) {
+  return (
+    <div onClick={onClick} style={{
+      padding: 20,
+      marginBottom: 10,
+      background: active ? "#111" : "#f3f3f3",
+      color: active ? "#fff" : "#000",
+      cursor: "pointer",
+    }}>
+      <div style={{ fontSize: 14, opacity: 0.6 }}>{value}</div>
+      <div style={{ fontWeight: "bold", marginTop: 10 }}>{label}</div>
     </div>
   );
 }
 
-/* STYLES */
-const cardDark = {
-  background: "#111",
-  color: "#fff",
-  padding: 20,
-  marginBottom: 10,
-  cursor: "pointer",
-};
+/* 🎨 STYLES */
+const styles = {
+  page: {
+    padding: 40,
+    fontFamily: "Arial",
+    background: "#fff",
+  },
 
-const card = {
-  background: "#eee",
-  padding: 20,
-  marginBottom: 10,
-  cursor: "pointer",
-};
+  headerSmall: {
+    fontSize: 14,
+    letterSpacing: 2,
+    marginBottom: 10,
+  },
 
-const listItem = {
-  display: "flex",
-  justifyContent: "space-between",
-  padding: "12px",
-  borderBottom: "1px solid #ddd",
-};
+  title: {
+    fontSize: 70,
+    fontWeight: 500,
+  },
 
-const center = {
-  flex: 1,
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-};
+  subtitle: {
+    marginTop: 10,
+    marginBottom: 40,
+    fontSize: 14,
+  },
 
-const bigLabel = {
-  fontSize: 48,
-  marginBottom: 20,
-};
+  layout: {
+    display: "flex",
+    gap: 40,
+    alignItems: "center",
+  },
 
-const wrap = {
-  position: "relative",
-  width: 260,
-  height: 260,
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-};
+  left: {
+    width: 220,
+  },
 
-const greyCircle = {
-  position: "absolute",
-  width: "100%",
-  height: "100%",
-  borderRadius: "50%",
-  border: "10px solid #ddd",
-};
+  /* 🔥 NEW CENTER LAYOUT */
+  centerWrap: {
+    flex: 1,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: 60,
+  },
 
-const blackArc = {
-  position: "absolute",
-  width: "100%",
-  height: "100%",
-  borderRadius: "50%",
-  border: "10px solid #111",
-  borderLeftColor: "#ddd",
-  borderBottomColor: "#ddd",
-};
+  centerText: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+  },
 
-const text = {
-  fontSize: 42,
-  fontWeight: "bold",
-  zIndex: 2,
+  right: {
+    width: 280,
+  },
+
+  rightHeader: {
+    display: "flex",
+    justifyContent: "space-between",
+    fontSize: 12,
+    marginBottom: 10,
+    opacity: 0.6,
+  },
+
+  row: {
+    display: "flex",
+    justifyContent: "space-between",
+    padding: 12,
+    borderBottom: "1px solid #eee",
+    cursor: "pointer",
+  },
 };
