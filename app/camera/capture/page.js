@@ -96,8 +96,10 @@ export default function Page() {
       setResult(data);
       setLoading(false);
       localStorage.setItem("result", JSON.stringify(data));
-
       console.log("RESULT:", data);
+      setTimeout(() => {
+        router.push('/select')
+      }, 1000);
     } catch (err) {
       console.error(err);
       setLoading(false);

@@ -1,6 +1,16 @@
+"use client";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import { MdOutlineCamera } from "react-icons/md";
 export default function Cam(){
     
+    const router = useRouter()
+
+    useEffect(()=>{
+       setTimeout(() => {
+         router.push('/camera/capture')
+       }, 2000);
+    },[])
     return(
         <div>
             <div className="center" style={{height:"95vh"}} >
