@@ -12,33 +12,20 @@ export default function ResultPage() {
     }
   }, []);
 
-  // 🔢 FORMAT ALL NUMBERS → %
-  const formatData = (obj) => {
-    if (typeof obj === "number") {
-      return (obj * 100).toFixed(2) + "%";
+  // 🔥 CONVERT "53.12%" → 53.12
+  const toNumber = (val) => {
+    if (typeof val === "string") {
+      return parseFloat(val.replace("%", ""));
     }
-
-    if (Array.isArray(obj)) {
-      return obj.map(formatData);
-    }
-
-    if (typeof obj === "object" && obj !== null) {
-      const newObj = {};
-      for (let key in obj) {
-        newObj[key] = formatData(obj[key]);
-      }
-      return newObj;
-    }
-
-    return obj;
+    return val;
   };
 
-  // 📊 SORT OBJECT DESC (highest first)
+  // 📊 SORT OBJECT DESC (WORKS WITH % STRINGS)
   const sortObjectDesc = (obj) => {
-    if (!obj) return null;
+    if (!obj || typeof obj !== "object") return null;
 
     return Object.entries(obj)
-      .sort((a, b) => b[1] - a[1])
+      .sort((a, b) => toNumber(b[1]) - toNumber(a[1]))
       .reduce((acc, [key, value]) => {
         acc[key] = value;
         return acc;
@@ -47,9 +34,12 @@ export default function ResultPage() {
 
   if (!data) return <div>No result found</div>;
 
-  // 🔍 SORTED DATA
-  const sortedRace = sortObjectDesc(data?.race);
-  const sortedGender = sortObjectDesc(data?.gender);
+  // 🔍 YOUR DATA IS INSIDE data.data
+  const result = data.data;
+
+  const sortedRace = sortObjectDesc(result?.race);
+  const sortedGender = sortObjectDesc(result?.gender);
+  const sortedAge = sortObjectDesc(result?.age);
 
   return (
     <div style={{ padding: 20 }}>
@@ -61,28 +51,38 @@ export default function ResultPage() {
           <h2>Gender</h2>
           {Object.entries(sortedGender).map(([key, value]) => (
             <div key={key}>
-              {key}: {(value * 100).toFixed(2)}%
+              {key}: {value}
             </div>
           ))}
         </div>
       )}
 
-      {/* 🌍 RACE */}
+      {/* 🌍 RACE (NOW CORRECTLY SORTED) */}
       {sortedRace && (
         <div style={{ marginBottom: "20px" }}>
           <h2>Race</h2>
           {Object.entries(sortedRace).map(([key, value]) => (
             <div key={key}>
-              {key}: {(value * 100).toFixed(2)}%
+              {key}: {value}
             </div>
           ))}
         </div>
       )}
 
-      {/* 🧾 FULL DATA (DEBUG VIEW) */}
-      <pre>
-        {JSON.stringify(formatData(data), null, 2)}
-      </pre>
+      {/* 🎂 AGE */}
+      {sortedAge && (
+        <div style={{ marginBottom: "20px" }}>
+          <h2>Age</h2>
+          {Object.entries(sortedAge).map(([key, value]) => (
+            <div key={key}>
+              {key}: {value}
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* 🧾 FULL RAW */}
+      <pre>{JSON.stringify(data, null, 2)}</pre>
     </div>
   );
 }
