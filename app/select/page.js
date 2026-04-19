@@ -1,9 +1,16 @@
-export default function select() {
+"use client";
+import { useState } from "react";
+
+export default function Select() {
+  const [hoverTop, setHoverTop] = useState(false);
+
   return (
-    <div style={{
-        height:'97vh',
-        overflowY:"hidden",
-        }}>
+    <div
+      style={{
+        height: "97vh",
+        overflowY: "hidden",
+      }}
+    >
       {/* TOP BAR */}
       <div
         style={{
@@ -55,17 +62,18 @@ export default function select() {
         Fix estimated information if needed.
       </div>
 
-      {/* BOX GRID */}
+      {/* DIAMOND WRAPPER */}
       <div
         style={{
           display: "flex",
           justifyContent: "center",
           marginTop: "40px",
-          transform:"rotate(45deg)",
-          position:"relative",
-          bottom:"50px",
+          transform: "rotate(45deg)",
+          position: "relative",
+          bottom: "50px",
         }}
       >
+        {/* BIG DIAMOND */}
         <div
           style={{
             width: "330px",
@@ -75,10 +83,21 @@ export default function select() {
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
             gridTemplateRows: "1fr 1fr",
-            gap: "20px", // 🔥 equal spacing
+            gap: "20px",
+            opacity: hoverTop ? 1 : 0,
+            transform: hoverTop ? "scale(1.05)" : "scale(1)",
+            transition: "all 0.4s ease",
           }}
         >
-          <div style={{ border: "1px solid black" }}></div>
+          {/* TOP DIAMOND */}
+          <div
+            onMouseEnter={() => setHoverTop(true)}
+            onMouseLeave={() => setHoverTop(false)}
+            style={{
+              border: "1px solid black",
+            }}
+          ></div>
+
           <div style={{ border: "1px solid black" }}></div>
           <div style={{ border: "1px solid black" }}></div>
           <div style={{ border: "1px solid black" }}></div>
