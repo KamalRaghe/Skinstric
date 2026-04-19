@@ -7,9 +7,15 @@ import { GoTriangleLeft } from "react-icons/go";
 export default function Page() {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
+
   const [photo, setPhoto] = useState(null);
   const [click, setClick] = useState();
   const [captured, setCaptured] = useState(false);
+  
+  const [loading, setLoading] = useState(false);
+  const [result, setResult] = useState(null);
+  const [base64, setBase64] = useState(null);
+
   const router = useRouter()
 
   // 🎥 START CAMERA
@@ -47,6 +53,7 @@ export default function Page() {
 
     const image = canvas.toDataURL("image/png");
     setPhoto(image);
+    setBase64(image);
     setCaptured(true);
 
     // 🔌 STOP CAMERA
@@ -63,7 +70,38 @@ export default function Page() {
   // 🔁 RETAKE
   const retake = async () => {
     setPhoto(null);
+    setClick(false)
     startCamera();
+  };
+
+  const analyzeImage = async () => {
+    try {
+      setLoading(true);
+
+      const res = await fetch(
+        "https://us-central1-api-skinstric-ai.cloudfunctions.net/skinstricPhaseTwo",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            image: base64,
+          }),
+        }
+      );
+
+      const data = await res.json();
+
+      setResult(data);
+      setLoading(false);
+      localStorage.setItem("result", JSON.stringify(data));
+
+      console.log("RESULT:", data);
+    } catch (err) {
+      console.error(err);
+      setLoading(false);
+    }
   };
 
   return (
@@ -233,7 +271,10 @@ export default function Page() {
                     >Retake
                 </button> 
                 <button
-                onClick={()=>{setClick(true)}}
+                onClick={()=>{
+                  setClick(true)
+                   analyzeImage();
+                }}
                     style={{
                         color:"white",
                         border:"1px solid black",
