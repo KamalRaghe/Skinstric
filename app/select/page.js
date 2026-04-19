@@ -13,7 +13,7 @@ export default function SelectPage() {
         <button style={styles.codeBtn}>ENTER CODE</button>
       </div>
 
-      {/* Title */}
+      {/* Text */}
       <div style={styles.textWrap}>
         <h2 style={styles.title}>A.I. ANALYSIS</h2>
         <p style={styles.subtitle}>
@@ -23,22 +23,34 @@ export default function SelectPage() {
         </p>
       </div>
 
-      {/* Diamond Grid */}
-      <div style={styles.diamondWrapper}>
-        <div style={styles.diamond}>
-          <div style={{ ...styles.box, ...styles.top }}>DEMOGRAPHICS</div>
-          <div style={{ ...styles.box, ...styles.right }}>SKIN TYPE DETAILS</div>
-          <div style={{ ...styles.box, ...styles.bottom }}>WEATHER</div>
-          <div style={{ ...styles.box, ...styles.leftBox }}>
-            COSMETIC
-            <br />
-            CONCERNS
-          </div>
+      {/* Diamond Layout */}
+      <div style={styles.center}>
+        <div style={styles.grid}>
+          <DiamondItem text="DEMOGRAPHICS" style={styles.top} />
+          <DiamondItem text="SKIN TYPE DETAILS" style={styles.right} />
+          <DiamondItem text="WEATHER" style={styles.bottom} />
+          <DiamondItem text={"COSMETIC\nCONCERNS"} style={styles.leftBox} />
         </div>
       </div>
     </div>
   );
 }
+
+/* 🔹 Reusable Diamond Box */
+function DiamondItem({ text, style }) {
+  return (
+    <div style={{ ...styles.box, ...style }}>
+      <div style={styles.inner}>
+        {text.split("\n").map((t, i) => (
+          <div key={i}>{t}</div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+const SIZE = 140;
+const GAP = 14;
 
 const styles = {
   page: {
@@ -57,12 +69,10 @@ const styles = {
   left: {
     display: "flex",
     gap: "10px",
-    alignItems: "center",
   },
 
   brand: {
-    fontWeight: "600",
-    letterSpacing: "1px",
+    fontWeight: 600,
   },
 
   intro: {
@@ -74,70 +84,70 @@ const styles = {
     color: "white",
     border: "none",
     padding: "10px 16px",
-    cursor: "pointer",
   },
 
   textWrap: {
-    marginTop: "40px",
+    marginTop: 40,
   },
 
   title: {
-    fontSize: "18px",
-    fontWeight: "600",
-    marginBottom: "10px",
+    fontSize: 18,
+    marginBottom: 10,
   },
 
   subtitle: {
-    fontSize: "13px",
-    color: "#333",
-    lineHeight: "1.6",
+    fontSize: 13,
+    lineHeight: 1.6,
   },
 
-  diamondWrapper: {
+  center: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     height: "60%",
   },
 
-  diamond: {
+  grid: {
     position: "relative",
-    width: "300px",
-    height: "300px",
-    transform: "rotate(45deg)",
+    width: SIZE * 2 + GAP,
+    height: SIZE * 2 + GAP,
   },
 
   box: {
     position: "absolute",
-    width: "150px",
-    height: "150px",
-    background: "#e5e5e5",
+    width: SIZE,
+    height: SIZE,
+    background: "#e7e7e7",
+    transform: "rotate(45deg)",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+  },
+
+  inner: {
+    transform: "rotate(-45deg)",
     textAlign: "center",
-    fontSize: "12px",
-    fontWeight: "500",
-    padding: "10px",
+    fontSize: 12,
+    fontWeight: 500,
   },
 
   top: {
+    left: SIZE / 2 + GAP / 2,
     top: 0,
-    left: "75px",
   },
 
   right: {
     right: 0,
-    top: "75px",
+    top: SIZE / 2 + GAP / 2,
   },
 
   bottom: {
+    left: SIZE / 2 + GAP / 2,
     bottom: 0,
-    left: "75px",
   },
 
   leftBox: {
     left: 0,
-    top: "75px",
+    top: SIZE / 2 + GAP / 2,
   },
 };
