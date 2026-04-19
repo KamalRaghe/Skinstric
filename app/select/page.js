@@ -1,48 +1,44 @@
-"use client";
+export default function select(){
+    return(
+        <div>
+           <div style={{
+                display: "flex",
+                justifyContent: "space-between",
+                padding: "20px",
+                fontSize: "10px",
+                background: "white"
+                }}>
+                <div>
+                <span style={{ fontWeight: "bold" }}>SKINSTRIC</span>
+                <span style={{ color: "grey", marginLeft: "10px" }}>[ INTRO ]</span>
+                </div>
 
-export default function Page() {
-  return (
-    <div className="page">
-
-      {/* HEADER */}
-      <div className="header">
-        <div className="header-left">
-          <span className="logo">SKINSTRIC</span>
-          <span className="intro">[ INTRO ]</span>
+                <button style={{
+                background: "black",
+                color: "white",
+                padding: "10px",
+                fontSize: "9px",
+                fontWeight: "bold",
+                border: "none"
+                }}>
+                ENTER CODE
+                </button>
+            </div>
+            <div style={{
+                fontWeight:"bold",
+                width:"150px",
+                margin:"0 20px",
+                paddingRight:"30px"
+                }} >
+                    A.I. ANALYSIS
+            </div>    
+            <div style={{
+                width:"450px",
+                margin:"5px 20px",
+                paddingRight:"30px"
+                }} >
+                    A.I. has estimated the following.
+            </div>    
         </div>
-        <button className="code-btn">ENTER CODE</button>
-      </div>
-
-      <div className="main">
-
-        {/* LEFT */}
-        <div className="left">
-          <h1>A.I. ANALYSIS</h1>
-          <p>A.I. HAS ESTIMATED THE FOLLOWING.</p>
-          <p>FIX ESTIMATED INFORMATION IF NEEDED.</p>
-        </div>
-
-        {/* DIAMONDS */}
-        <div className="diamond-area">
-
-          <div className="diamond top">
-            <span>DEMOGRAPHICS</span>
-          </div>
-
-          <div className="diamond right">
-            <span>SKIN TYPE DETAILS</span>
-          </div>
-
-          <div className="diamond bottom">
-            <span>WEATHER</span>
-          </div>
-
-          <div className="diamond left-d">
-            <span>COSMETIC CONCERNS</span>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  );
+    )
 }
