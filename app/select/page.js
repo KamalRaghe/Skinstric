@@ -117,7 +117,7 @@ export default function Select() {
             <div style={{ border: "1px solid black" }} >
                 <div style={{transform:"rotate(-45deg"}} >Demographic</div>
             </div> 
-            <div style={{ border: "1px solid black" }} >
+            <div className="center" style={{ border: "1px solid black" }} >
                 <div style={{transform:"rotate(-45deg"}} >Demographic</div>
             </div> 
           </div>
