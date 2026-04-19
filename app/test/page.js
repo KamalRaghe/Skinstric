@@ -40,8 +40,29 @@ export default function Page() {
 
   return (
     <div style={styles.page}>
+      <div style={{
+        display: "flex",
+        justifyContent: "space-between",
+        padding: "20px",
+        fontSize: "10px",
+        background: "white"
+      }}>
+        <div>
+          <span style={{ fontWeight: "bold" }}>SKINSTRIC</span>
+          <span style={{ color: "grey", marginLeft: "6px" }}>[ INTRO ]</span>
+        </div>
 
-      {/* HEADER */}
+        <button style={{
+          background: "black",
+          color: "white",
+          padding: "10px",
+          fontSize: "9px",
+          fontWeight: "bold",
+          border: "none"
+        }}>
+          ENTER CODE
+        </button>
+      </div>
       <div style={styles.headerSmall}>A.I. ANALYSIS</div>
       <div style={styles.title}>DEMOGRAPHICS</div>
       <div style={styles.subtitle}>PREDICTED RACE & AGE</div>
@@ -181,23 +202,28 @@ function Card({ label, value, active, onClick }) {
 /* 🎨 STYLES */
 const styles = {
   page: {
-    padding: 40,
     fontFamily: "Arial",
     background: "#fff",
   },
 
   headerSmall: {
+    position:"relative",
+    left:"20px",
     fontSize: 14,
     letterSpacing: 2,
     marginBottom: 10,
   },
 
   title: {
+    position:"relative",
+    left:"20px",
     fontSize: 70,
     fontWeight: 500,
   },
 
   subtitle: {
+    position:"relative",
+    left:"20px",
     marginTop: 10,
     marginBottom: 40,
     fontSize: 14,
