@@ -24,7 +24,38 @@ export default function ScanPage() {
     reader.onerror = (error) => reject(error);
   });
 
-  
+  const analyzeImage = async () => {
+  try {
+    setLoading(true);
+
+    const res = await fetch(
+      "https://us-central1-api-skinstric-ai.cloudfunctions.net/skinstricPhaseTwo",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          image: base64,
+        }),
+      }
+    );
+
+    const data = await res.json();
+
+    setResult(data);
+    setLoading(false);
+    localStorage.setItem("result", JSON.stringify(data));
+    console.log("RESULT:", data);
+
+    setTimeout(() => {
+      router.push("/select");
+    }, 1000);
+  } catch (err) {
+    console.error(err);
+    setLoading(false);
+  }
+};
 
   return (
     <div style={{ overflow: "hidden" }}>
@@ -196,8 +227,21 @@ export default function ScanPage() {
                       setPreview(URL.createObjectURL(file));
                     }
                   }}/>
+                  
                 <FaMountainSun
-                 onClick={() => fileInputRef.current.click()}
+                onChange={async (e) => {
+                  const file = e.target.files[0];
+                  if (file) {
+                    setPreview(URL.createObjectURL(file));
+
+                    const base64String = await toBase64(file);
+                    setBase64(base64String);
+
+                    // 🔥 AUTO ANALYZE AFTER SELECT
+                    analyzeImage();
+                  }
+                }}
+                onClick={() => fileInputRef.current.click()}
                  style={{
                   cursor: "pointer" ,
                   position: "absolute",
