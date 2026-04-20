@@ -221,12 +221,13 @@ export default function ScanPage() {
                   accept="image/*"
                   ref={fileInputRef}
                   style={{ display: "none" }}
-                  onChange={(e) => {
+                   onChange={(e) => {
                     const file = e.target.files[0];
                     if (file) {
                       setPreview(URL.createObjectURL(file));
                     }
-                  }}/>
+                  }}
+                />
                   
                 <FaMountainSun
                 onChange={async (e) => {
