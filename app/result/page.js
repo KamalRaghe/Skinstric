@@ -16,6 +16,16 @@ export default function ScanPage() {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
 
+  const toBase64 = (file) =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result.split(",")[1]); // remove prefix
+    reader.onerror = (error) => reject(error);
+  });
+
+  
+
   return (
     <div style={{ overflow: "hidden" }}>
       {click && <div style={{
