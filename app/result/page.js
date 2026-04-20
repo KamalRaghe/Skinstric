@@ -221,27 +221,18 @@ export default function ScanPage() {
                   accept="image/*"
                   ref={fileInputRef}
                   style={{ display: "none" }}
-                   onChange={(e) => {
+                  ref={fileInputRef}
+                  onChange={async (e) => {
                     const file = e.target.files[0];
                     if (file) {
-                      setPreview(URL.createObjectURL(file));
-                    }
-                  }}
+                      const base64String = await toBase64(file);
+
+                      // 🔥 directly send (no state delay issues)
+                      analyzeImage(base64String);
+                    }}}
                 />
                   
                 <FaMountainSun
-                onChange={async (e) => {
-                  const file = e.target.files[0];
-                  if (file) {
-                    setPreview(URL.createObjectURL(file));
-
-                    const base64String = await toBase64(file);
-                    setBase64(base64String);
-
-                    // 🔥 AUTO ANALYZE AFTER SELECT
-                    analyzeImage();
-                  }
-                }}
                 onClick={() => fileInputRef.current.click()}
                  style={{
                   cursor: "pointer" ,
