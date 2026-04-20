@@ -16,6 +16,8 @@ export default function Page() {
   const [result, setResult] = useState(null);
   const [base64, setBase64] = useState(null);
 
+  
+
   const router = useRouter()
 
   // 🎥 START CAMERA

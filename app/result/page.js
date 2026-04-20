@@ -12,6 +12,10 @@ export default function ScanPage() {
   const [click, setClick] = useState()
   const router = useRouter();
 
+  const [base64, setBase64] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [result, setResult] = useState(null);
+
   return (
     <div style={{ overflow: "hidden" }}>
       {click && <div style={{
