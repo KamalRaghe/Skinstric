@@ -273,7 +273,7 @@ const s = {
     background: "#e8e8e8",
     borderTop: "2px solid #aaa",
     position:"relative",
-    right:"90px",
+    right:"99px",
   },
 
   rightHead: {
