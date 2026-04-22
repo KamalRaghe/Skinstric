@@ -67,14 +67,12 @@ export default function Select() {
       </div>
 
       {/* DIAMOND WRAPPER */}
-       <div className="center"
+       <div className="center border"
         style={{
           transform: "rotate(45deg)",
-          position:"relative",
-          bottom:"20px",
         }}
       >
-        <div className=" center" style={{ position: "relative", width: "330px", height: "330px" }}>
+        <div className=" center" style={{ width: "330px", height: "330px" }}>
           
           {/* 🔥 BIG BORDER OVERLAY (this is what animates) */}
           <div className="center"
@@ -99,9 +97,6 @@ export default function Select() {
               gridTemplateColumns: "1fr 1fr",
               gridTemplateRows: "1fr 1fr",
               gap: "5px",
-              position:"relative",
-              bottom:"15px",
-              left:"-10px",
               fontWeight:"bold",
               fontSize:"18px" 
             }}
@@ -114,21 +109,21 @@ export default function Select() {
               className="center"
               style={{ backgroundColor: '#E1E1E2' }}
             >
-                <div className="center" style={{transform:"rotate(-45deg)",width:"154px",height:"154px"}}>
+                <div className="center" style={{transform:"rotate(-45deg)",width:"100%",height:"100%"}}>
                     Demographic
                 </div>
             </div> 
 
-            <div className="center" style={{ backgroundColor:"#F3F3F4", cursor: "not-allowed" ,width:"154px",height:"154px"}} >
+            <div className="center" style={{ backgroundColor:"#F3F3F4", cursor: "not-allowed" ,width:"100%",height:"100%"}} >
                 <div style={{transform:"rotate(-45deg"}} >Skin type details</div>
             </div> 
-            <div className="center" style={{ backgroundColor:"#F3F3F4", cursor: "not-allowed",width:"154px",height:"154px" }} >
+            <div className="center" style={{ backgroundColor:"#F3F3F4", cursor: "not-allowed",width:"100%",height:"100%" }} >
                 <div className="center" style={{
                     width:"100px",
-                    transform:"rotate(-45deg",
+                    transform:"rotate(-45deg)",
                     }} >Cosmetic Concerns</div>
             </div> 
-            <div className="center" style={{ backgroundColor:"#F3F3F4", cursor: "not-allowed",width:"154px",height:"154px" }} >
+            <div className="center" style={{ backgroundColor:"#F3F3F4", cursor: "not-allowed",width:"100%",height:"100%" }} >
                 <div style={{transform:"rotate(-45deg"}} >Weather</div>
             </div> 
           </div>
