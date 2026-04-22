@@ -99,7 +99,7 @@ export default function Select() {
               display: "grid",
               gridTemplateColumns: "1fr 1fr",
               gridTemplateRows: "1fr 1fr",
-              gap: "10px",
+              gap: "5px",
               position:"relative",
               bottom:"15px",
               left:"-10px",
@@ -113,25 +113,23 @@ export default function Select() {
               onMouseLeave={() => setHoverTop(false)}
               onClick={()=>{router.push('/test')}}
               className="center"
-              style={{ border: "1px solid black" }}
+              style={{ backgroundColor: '#E1E1E2' }}
             >
-                <div style={{transform:"rotate(-45deg"}}>
+                <div className="center" style={{transform:"rotate(-45deg)",width:"154px",height:"154px"}}>
                     Demographic
                 </div>
             </div> 
 
-            <div className="center" style={{ border: "1px solid black", cursor: "not-allowed" }} >
+            <div className="center" style={{ backgroundColor:"#F3F3F4", cursor: "not-allowed" ,width:"154px",height:"154px"}} >
                 <div style={{transform:"rotate(-45deg"}} >Skin type details</div>
             </div> 
-            <div className="center" style={{ border: "1px solid black", cursor: "not-allowed" }} >
+            <div className="center" style={{ backgroundColor:"#F3F3F4", cursor: "not-allowed",width:"154px",height:"154px" }} >
                 <div className="center" style={{
-                    position:"absolute",
-                    left:"55px",
                     width:"100px",
                     transform:"rotate(-45deg",
                     }} >Cosmetic Concerns</div>
             </div> 
-            <div className="center" style={{ border: "1px solid black", cursor: "not-allowed" }} >
+            <div className="center" style={{ backgroundColor:"#F3F3F4", cursor: "not-allowed",width:"154px",height:"154px" }} >
                 <div style={{transform:"rotate(-45deg"}} >Weather</div>
             </div> 
           </div>
