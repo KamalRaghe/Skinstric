@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { relative } from "node:path";
 
 export default function Page() {
   const router = useRouter();
@@ -96,6 +97,7 @@ export default function Page() {
               }}
             >
               <div>{getTop(data[item.key])[0]}</div>
+              <br></br>
               <div style={s.leftLabel}>{item.label}</div>
             </div>
           ))}
@@ -232,8 +234,10 @@ const s = {
   },
 
   leftBox: {
-    padding: 18,
-    border: "1px solid #ddd",
+    padding: 10,
+    width:"60%",
+    height:"80px",
+    borderTop:"1px solid black",
     cursor: "pointer",
   },
 
@@ -244,8 +248,11 @@ const s = {
 
   center: {
     background: "#e8e8e8",
-    borderTop: "2px solid #aaa",
-    padding: "30px 40px",
+    borderTop: "2px solid black",
+    width:"900px",
+    position:"relative",
+    right:"90px",
+    padding: "60px 40px",
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
@@ -253,6 +260,9 @@ const s = {
 
   centerTitle: {
     fontSize: 32,
+    position: 'relative',
+    bottom:"140px",
+    right:"15px"  
   },
 
   circleWrap: {
@@ -262,6 +272,8 @@ const s = {
   right: {
     background: "#e8e8e8",
     borderTop: "2px solid #aaa",
+    position:"relative",
+    right:"90px",
   },
 
   rightHead: {
