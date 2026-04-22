@@ -1,8 +1,10 @@
 "use client";
-
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
+  const router = useRouter();
+
   const [data, setData] = useState(null);
   const [active, setActive] = useState("race");
   const [selected, setSelected] = useState(null);
@@ -11,23 +13,30 @@ export default function Page() {
     Object.entries(obj).sort((a, b) => parseFloat(b[1]) - parseFloat(a[1]))[0];
 
   useEffect(() => {
-    const data = localStorage.getItem("result");
     const temp = {
       race: {
-        "South asian": "77%",
-        'White': "10%",
-        "East asian": "7%",
+        "Latino hispanic": "67%",
+        "East asian": "22%",
         "Middle eastern": "4%",
+        "South asian": "2%",
+        "White": "1%",
+        "Black": "0%",
+        "Southeast asian": "0%",
       },
       age: {
-        "10-19": "1%",
-        "20-29": "0%",
-        "30-39": "54%",
-        "40-49": "20%",
+        "0-2": "0%",
+        "3-9": "64%",
+        "10-19": "10%",
+        "20-29": "15%",
+        "30-39": "0%",
+        "40-49": "0%",
+        "50-59": "0%",
+        "60-69": "6%",
+        "70+": "1%",
       },
       gender: {
-        Male: "86%",
-        Female: "13%",
+        MALE: "86%",
+        FEMALE: "14%",
       },
     };
 
@@ -35,90 +44,66 @@ export default function Page() {
     setSelected(getTop(temp.race)[0]);
   }, []);
 
-  if (!data) return <div style={{ padding: 40 }}>Loading...</div>;
+  if (!data) return null;
 
   const current = data[active];
 
   return (
     <div style={styles.page}>
-      <div style={{
-        display: "flex",
-        justifyContent: "space-between",
-        padding: "20px",
-        fontSize: "10px",
-        background: "white"
-      }}>
+      {/* TOP */}
+      <div style={styles.top}>
         <div>
-          <span style={{ fontWeight: "bold" }}>SKINSTRIC</span>
-          <span style={{ color: "grey", marginLeft: "6px" }}>[ INTRO ]</span>
+          <b>SKINSTRIC</b>
+          <span style={{ color: "#777" }}> [ INTRO ]</span>
         </div>
 
-        <button style={{
-          background: "black",
-          color: "white",
-          padding: "10px",
-          fontSize: "9px",
-          fontWeight: "bold",
-          border: "none"
-        }}>
-          ENTER CODE
-        </button>
+        <button style={styles.enter}>ENTER CODE</button>
       </div>
-      <div style={styles.headerSmall}>A.I. ANALYSIS</div>
+
+      <div style={styles.header}>A.I. ANALYSIS</div>
       <div style={styles.title}>DEMOGRAPHICS</div>
-      <div style={styles.subtitle}>PREDICTED RACE & AGE</div>
+      <div style={styles.sub}>PREDICTED RACE & AGE</div>
 
-      <div style={styles.layout}>
-
+      <div style={styles.main}>
         {/* LEFT */}
-        <div style={styles.left}>
-          <Card
-            label="RACE"
-            value={getTop(data.race)[0]}
-            active={active === "race"}
-            onClick={() => {
-              setActive("race");
-              setSelected(getTop(data.race)[0]);
-            }}
-          />
-
-          <Card
-            label="AGE"
-            value={getTop(data.age)[0]}
-            active={active === "age"}
-            onClick={() => {
-              setActive("age");
-              setSelected(getTop(data.age)[0]);
-            }}
-          />
-
-          <Card
-            label="SEX"
-            value={getTop(data.gender)[0]}
-            active={active === "gender"}
-            onClick={() => {
-              setActive("gender");
-              setSelected(getTop(data.gender)[0]);
-            }}
-          />
+        <div>
+          {[
+            { key: "race", label: "RACE" },
+            { key: "age", label: "AGE" },
+            { key: "gender", label: "SEX" },
+          ].map((item) => (
+            <div
+              key={item.key}
+              onClick={() => {
+                setActive(item.key);
+                setSelected(getTop(data[item.key])[0]);
+              }}
+              style={{
+                ...styles.leftCard,
+                background: active === item.key ? "#111" : "#e6e6e6",
+                color: active === item.key ? "#fff" : "#000",
+              }}
+            >
+              <div style={styles.leftValue}>
+                {getTop(data[item.key])[0]}
+              </div>
+              <div style={styles.leftLabel}>{item.label}</div>
+            </div>
+          ))}
         </div>
 
-        {/* CENTER (TITLE + CIRCLE SIDE BY SIDE) */}
-        <div style={styles.centerWrap}>
-
-          <div style={styles.centerText}>
-            <div style={{ fontSize: 48 }}>{selected}</div>
-            <div style={{ fontSize: 14, opacity: 0.6, marginTop: 10 }}>
-            </div>
+        {/* CENTER */}
+        <div style={styles.centerBox}>
+          <div style={styles.centerTitle}>
+            {active === "age" ? `${selected} y.o.` : selected}
           </div>
 
           <Circle value={current[selected]} />
-
         </div>
 
         {/* RIGHT */}
         <div style={styles.right}>
-          <div style={styles.rightHeader}>
+          <div style={styles.rightHead}>
             <span>{active.toUpperCase()}</span>
             <span>A.I. CONFIDENCE</span>
           </div>
@@ -135,12 +120,30 @@ export default function Page() {
                   color: selected === k ? "#fff" : "#000",
                 }}
               >
-                <span>{k}</span>
+                <span>◇ {k}</span>
                 <span>{v}</span>
               </div>
             ))}
         </div>
+      </div>
 
+      {/* BOTTOM */}
+      <div style={styles.bottom}>
+        <div style={styles.nav} onClick={() => router.back()}>
+          ◀ BACK
+        </div>
+
+        <div style={styles.note}>
+          If A.I. estimate is wrong, select the correct one.
+        </div>
+
+        <div style={{ display: "flex", gap: 10 }}>
+       
+
+          <div style={styles.nav} onClick={() => router.push("/")}>
+            HOME ▶
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -157,45 +160,26 @@ function Circle({ value }) {
   const offset = c - (percent / 100) * c;
 
   return (
-    <svg width={size} height={size}>
-      <circle cx="130" cy="130" r={r} stroke="#ddd" strokeWidth={stroke} fill="none" />
+    <div style={{ position: "relative" }}>
+      <svg width={size} height={size}>
+        <circle cx="130" cy="130" r={r} stroke="#d0d0d0" strokeWidth={stroke} fill="none" />
+        <circle
+          cx="130"
+          cy="130"
+          r={r}
+          stroke="#111"
+          strokeWidth={stroke}
+          fill="none"
+          strokeDasharray={c}
+          strokeDashoffset={offset}
+          style={{
+            transform: "rotate(-90deg)",
+            transformOrigin: "center",
+          }}
+        />
+      </svg>
 
-      <circle
-        cx="130"
-        cy="130"
-        r={r}
-        stroke="#111"
-        strokeWidth={stroke}
-        fill="none"
-        strokeDasharray={c}
-        strokeDashoffset={offset}
-        strokeLinecap="round"
-        style={{
-          transform: "rotate(-90deg)",
-          transformOrigin: "center",
-          transition: "0.5s",
-        }}
-      />
-
-      <text x="50%" y="50%" textAnchor="middle" fontSize="40">
-        {percent}%
-      </text>
-    </svg>
-  );
-}
-
-/* 🧩 CARD */
-function Card({ label, value, active, onClick }) {
-  return (
-    <div onClick={onClick} style={{
-      padding: 20,
-      marginBottom: 10,
-      background: active ? "#111" : "#f3f3f3",
-      color: active ? "#fff" : "#000",
-      cursor: "pointer",
-    }}>
-      <div style={{ fontSize: 14, opacity: 0.6 }}>{value}</div>
-      <div style={{ fontWeight: "bold", marginTop: 10 }}>{label}</div>
+      <div style={styles.percent}>{percent}%</div>
     </div>
   );
 }
@@ -203,75 +187,120 @@ function Card({ label, value, active, onClick }) {
 /* 🎨 STYLES */
 const styles = {
   page: {
-    fontFamily: "Arial",
-    background: "#fff",
+    fontFamily: "Helvetica, Arial",
+    background: "#f2f2f2",
+    padding: "30px 50px",
   },
 
-  headerSmall: {
-    position:"relative",
-    left:"20px",
-    fontSize: 14,
-    letterSpacing: 2,
-    marginBottom: 10,
-  },
-
-  title: {
-    position:"relative",
-    left:"20px",
-    fontSize: 70,
-    fontWeight: 500,
-  },
-
-  subtitle: {
-    position:"relative",
-    left:"20px",
-    marginTop: 10,
+  top: {
+    display: "flex",
+    justifyContent: "space-between",
     marginBottom: 40,
-    fontSize: 14,
+    fontSize: 12,
   },
 
-  layout: {
-    display: "flex",
-    gap: 40,
-    alignItems: "center",
+  enter: {
+    background: "#111",
+    color: "#fff",
+    border: "none",
+    padding: "8px 14px",
+    fontSize: 10,
   },
 
-  left: {
-    width: 220,
+  header: { fontSize: 12, letterSpacing: 2 },
+  title: { fontSize: 74, marginBottom: 10 },
+  sub: { fontSize: 12, marginBottom: 50 },
+
+  main: {
+    display: "grid",
+    gridTemplateColumns: "220px 1fr 320px",
+    gap: 35,
   },
 
-  /* 🔥 NEW CENTER LAYOUT */
-  centerWrap: {
-    flex: 1,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    gap: 60,
-  },
-
-  centerText: {
+  leftCard: {
+    padding: "22px 18px",
+    marginBottom: 10,
+    minHeight: 85,
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
+    cursor: "pointer",
+  },
+
+  leftValue: {
+    fontSize: 14,
+    marginBottom: 6,
+  },
+
+  leftLabel: {
+    fontSize: 11,
+    letterSpacing: 1,
+  },
+
+  centerBox: {
+    background: "#e9e9e9",
+    padding: "40px",
+    borderTop: "2px solid #aaa",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+
+  centerTitle: {
+    fontSize: 30,
   },
 
   right: {
-    width: 280,
+    background: "#e9e9e9",
+    padding: 20,
+    borderTop: "2px solid #aaa",
   },
 
-  rightHeader: {
+  rightHead: {
     display: "flex",
     justifyContent: "space-between",
-    fontSize: 12,
+    fontSize: 11,
     marginBottom: 10,
-    opacity: 0.6,
   },
 
   row: {
     display: "flex",
     justifyContent: "space-between",
-    padding: 12,
-    borderBottom: "1px solid #eee",
+    padding: "14px 8px",
+    fontSize: 12,
     cursor: "pointer",
+  },
+
+  percent: {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    fontSize: 30,
+  },
+
+  bottom: {
+    marginTop: 50,
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    fontSize: 12,
+  },
+
+  nav: {
+    border: "1px solid #000",
+    padding: "12px 16px",
+    cursor: "pointer",
+  },
+
+  reset: {
+    border: "1px solid #000",
+    background: "transparent",
+    padding: "12px 16px",
+    cursor: "pointer",
+  },
+
+  note: {
+    color: "#777",
   },
 };
