@@ -120,7 +120,7 @@ export default function Page() {
                   color: selected === k ? "#fff" : "#000",
                 }}
               >
-                <span>◇ {k}</span>
+                <span style={styles.rowLeft}>◇ {k}</span>
                 <span>{v}</span>
               </div>
             ))}
@@ -129,19 +129,28 @@ export default function Page() {
 
       {/* BOTTOM */}
       <div style={styles.bottom}>
-        <div style={styles.nav} onClick={() => router.back()}>
-          ◀ BACK
+        {/* BACK */}
+        <div style={styles.navGroup} onClick={() => router.back()}>
+          <div style={styles.diamond}>
+            <span style={styles.arrow}>◀</span>
+          </div>
+          <span style={styles.navText}>BACK</span>
         </div>
 
+        {/* CENTER TEXT */}
         <div style={styles.note}>
           If A.I. estimate is wrong, select the correct one.
         </div>
 
-        <div style={{ display: "flex", gap: 10 }}>
-       
+        {/* RIGHT SIDE */}
+        <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+          
 
-          <div style={styles.nav} onClick={() => router.push("/")}>
-            HOME ▶
+          <div style={styles.navGroup} onClick={() => router.push("/")}>
+            <span style={styles.navText}>HOME</span>
+            <div style={styles.diamond}>
+              <span style={styles.arrow}>▶</span>
+            </div>
           </div>
         </div>
       </div>
@@ -271,6 +280,11 @@ const styles = {
     cursor: "pointer",
   },
 
+  rowLeft: {
+    display: "flex",
+    gap: 6,
+  },
+
   percent: {
     position: "absolute",
     top: "50%",
@@ -287,17 +301,32 @@ const styles = {
     fontSize: 12,
   },
 
-  nav: {
-    border: "1px solid #000",
-    padding: "12px 16px",
+  navGroup: {
+    display: "flex",
+    alignItems: "center",
+    gap: 10,
     cursor: "pointer",
   },
 
-  reset: {
+  diamond: {
+    width: 36,
+    margin: 8,
+    height: 36,
     border: "1px solid #000",
-    background: "transparent",
-    padding: "12px 16px",
-    cursor: "pointer",
+    transform: "rotate(45deg)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  arrow: {
+    transform: "rotate(-45deg)",
+    fontSize: 12,
+  },
+
+  navText: {
+    fontSize: 12,
+    letterSpacing: 1,
   },
 
   note: {
