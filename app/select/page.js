@@ -74,12 +74,11 @@ export default function Select() {
           bottom:"20px",
         }}
       >
-        <div style={{ position: "relative", width: "330px", height: "330px" }}>
+        <div className=" center" style={{ position: "relative", width: "330px", height: "330px" }}>
           
           {/* 🔥 BIG BORDER OVERLAY (this is what animates) */}
           <div className="center"
             style={{
-              position: "absolute",
               inset: 0,
               border: "1px dashed grey",
               opacity: hoverTop ? 1 : 0,

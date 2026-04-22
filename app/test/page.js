@@ -4,17 +4,18 @@ import { useEffect, useState } from "react";
 
 export default function Page() {
   const [data, setData] = useState(null);
-  const [active, setActive] = useState("gender");
+  const [active, setActive] = useState("race");
   const [selected, setSelected] = useState(null);
 
   const getTop = (obj) =>
     Object.entries(obj).sort((a, b) => parseFloat(b[1]) - parseFloat(a[1]))[0];
 
   useEffect(() => {
+    const data = localStorage.getItem("result");
     const temp = {
       race: {
         "South asian": "77%",
-        White: "10%",
+        'White': "10%",
         "East asian": "7%",
         "Middle eastern": "4%",
       },
@@ -31,7 +32,7 @@ export default function Page() {
     };
 
     setData(temp);
-    setSelected(getTop(temp.gender)[0]);
+    setSelected(getTop(temp.race)[0]);
   }, []);
 
   if (!data) return <div style={{ padding: 40 }}>Loading...</div>;
