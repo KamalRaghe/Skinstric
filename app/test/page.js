@@ -160,7 +160,7 @@ export default function Page() {
   );
 }
 
-/* 🔵 CIRCLE */
+/* CIRCLE */
 function Circle({ value }) {
   const size = 280;
   const stroke = 8;
@@ -191,7 +191,7 @@ function Circle({ value }) {
   );
 }
 
-/* 🎨 STYLES */
+/* STYLES */
 const s = {
   page: {
     fontFamily: "Helvetica, Arial",
@@ -218,52 +218,45 @@ const s = {
   title: { fontSize: 72 },
   sub: { fontSize: 12, marginBottom: 30 },
 
-  /* 🔥 Wider center */
   main: {
     display: "grid",
-    gridTemplateColumns: "200px 1.6fr 300px",
+    gridTemplateColumns: "240px 1fr 340px",
     gap: 30,
+    width: "100%",
   },
 
-  /* LEFT smaller */
   left: {
     display: "flex",
     flexDirection: "column",
-    gap: 10,
+    gap: 12,
   },
 
   leftBox: {
-    padding: "12px 14px",
+    padding: 18,
     border: "1px solid #ddd",
     cursor: "pointer",
   },
 
   leftLabel: {
-    fontSize: 10,
-    marginTop: 4,
-    letterSpacing: 1,
+    fontSize: 11,
+    marginTop: 6,
   },
 
-  /* 🔥 DIAGONAL CENTER */
   center: {
     background: "#e8e8e8",
     borderTop: "2px solid #aaa",
     padding: "30px 40px",
-
-    display: "grid",
-    gridTemplateColumns: "1fr 1fr",
-    gridTemplateRows: "1fr 1fr",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
 
   centerTitle: {
     fontSize: 32,
-    alignSelf: "start",
-    justifySelf: "start",
   },
 
   circleWrap: {
-    alignSelf: "end",
-    justifySelf: "end",
+    display: "flex",
   },
 
   right: {
