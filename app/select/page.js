@@ -8,7 +8,7 @@ export default function Select() {
   const router = useRouter()
 
   return (
-    <div
+    <div className="border"
       style={{
         height: "97vh",
         overflowY: "hidden",
