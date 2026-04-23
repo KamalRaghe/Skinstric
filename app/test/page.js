@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { relative } from "node:path";
 
 export default function Page() {
   const router = useRouter();
@@ -25,7 +24,7 @@ export default function Page() {
   };
 
   const cap = (str) =>
-    str.replace(/\b\w/g, (c) => c.toUpperCase());
+    str ? str.charAt(0).toUpperCase() + str.slice(1).toLowerCase() : "";
 
   useEffect(() => {
     const stored = localStorage.getItem("result");
@@ -92,12 +91,11 @@ export default function Page() {
               }}
               style={{
                 ...s.leftBox,
-                background: active === item.key ? "#111" : "#F3F4F6",
+                background: active === item.key ? "#111" : "#E8E8E8",
                 color: active === item.key ? "#fff" : "#000",
               }}
             >
               <div>{getTop(data[item.key])[0]}</div>
-              <br></br>
               <div style={s.leftLabel}>{item.label}</div>
             </div>
           ))}
@@ -144,7 +142,7 @@ export default function Page() {
           <div style={s.diamond}>
             <span style={s.arrow}>◀</span>
           </div>
-          <span style={{margin:'10px'}}>BACK</span>
+          <span>BACK</span>
         </div>
 
         <div style={s.note}>
@@ -152,7 +150,7 @@ export default function Page() {
         </div>
 
         <div style={s.navGroup} onClick={() => router.push("/")}>
-          <span style={{margin:"10px"}} >Home</span>
+          <span>HOME</span>
           <div style={s.diamond}>
             <span style={s.arrow}>▶</span>
           </div>
@@ -164,11 +162,10 @@ export default function Page() {
 
 /* CIRCLE */
 function Circle({ value }) {
-  const size = 360; // 🔥 bigger
-  const stroke = 10; // slightly thicker looks better when bigger
+  const size = 400;
+  const stroke = 10;
   const r = (size - stroke) / 2;
   const c = 2 * Math.PI * r;
-
   const center = size / 2;
 
   const percent = parseFloat(value?.replace("%", "") || 0);
@@ -187,25 +184,15 @@ function Circle({ value }) {
           fill="none"
           strokeDasharray={c}
           strokeDashoffset={offset}
-          style={{
-            transform: "rotate(-90deg)",
-            transformOrigin: "center",
-          }}
+          style={{ transform: "rotate(-90deg)", transformOrigin: "center" }}
         />
       </svg>
 
-      <div style={{
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-        fontSize: 36, // 🔥 scale text too
-      }}>
-        {percent}%
-      </div>
+      <div style={s.percent}>{percent}%</div>
     </div>
   );
 }
+
 /* STYLES */
 const s = {
   page: {
@@ -237,7 +224,6 @@ const s = {
     display: "grid",
     gridTemplateColumns: "240px 1fr 340px",
     gap: 30,
-    width: "100%",
   },
 
   left: {
@@ -248,9 +234,7 @@ const s = {
 
   leftBox: {
     padding: 10,
-    width:"60%",
-    height:"80px",
-    borderTop:"1px solid black",
+    borderTop: "1px solid black",
     cursor: "pointer",
   },
 
@@ -260,37 +244,29 @@ const s = {
   },
 
   center: {
-    background: "#F3F4F6",
+    background: "#E8E8E8",
     borderTop: "2px solid black",
-    width:"105%",
-    height:"300px",
-    position:"relative",
-    right:"90px",
-    padding: "60px 40px",
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
+    padding: "40px",
+    minHeight: 520,
+    display: "grid",
+    gridTemplateColumns: "1fr 1fr",
+    gridTemplateRows: "1fr 1fr",
   },
 
   centerTitle: {
-    fontSize: 32,
-    position: 'relative',
-    bottom:"180px",
-    right:"25px"  
+    fontSize: 34,
+    alignSelf: "start",
+    justifySelf: "start",
   },
 
   circleWrap: {
-    display: "flex",
-    position:"relative",
-    top:"25px",
-    left:"30px",
+    alignSelf: "end",
+    justifySelf: "end",
   },
 
   right: {
-    background: "#F3F4F6",
+    background: "#E8E8E8",
     borderTop: "2px solid #aaa",
-    position:"relative",
-    left:"9px",
   },
 
   rightHead: {
@@ -315,7 +291,7 @@ const s = {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    fontSize: 32,
+    fontSize: 38,
   },
 
   bottom: {
