@@ -23,32 +23,61 @@ export default function Page() {
     Object.entries(obj || {}).sort(
       (a, b) => parseFloat(b[1]) - parseFloat(a[1])
     )[0] || ["", "0%"];
+useEffect(() => {
+  let stored = localStorage.getItem("result");
 
-  useEffect(() => {
-    const stored = localStorage.getItem("result");
-    if (!stored) return;
-
-    const parsed = JSON.parse(stored);
-    const actual = parsed.result || parsed;
-
-    const norm = {
-      race: Object.fromEntries(
-        Object.entries(actual.race || {}).map(([k, v]) => [k, format(v)])
-      ),
-      age: Object.fromEntries(
-        Object.entries(actual.age || {}).map(([k, v]) => [k, format(v)])
-      ),
-      gender: Object.fromEntries(
-        Object.entries(actual.gender || {}).map(([k, v]) => [
-          k.toUpperCase(),
-          format(v),
-        ])
-      ),
+  // 🔥 IF NO DATA → CREATE IT
+  if (!stored) {
+    const mock = {
+      data: {
+        race: {
+          "latino hispanic": 0.67,
+          "east asian": 0.22,
+          "middle eastern": 0.04,
+          "south asian": 0.02,
+          white: 0.01,
+          black: 0,
+          "southeast asian": 0,
+        },
+        age: {
+          "3-9": 0.8,
+          "10-19": 0.1,
+          "20-29": 0.05,
+        },
+        gender: {
+          male: 0.9,
+          female: 0.1,
+        },
+      },
     };
 
-    setData(norm);
-    setSelected(getTop(norm.race)[0]);
-  }, []);
+    localStorage.setItem("result", JSON.stringify(mock));
+    stored = JSON.stringify(mock);
+  }
+
+  const parsed = JSON.parse(stored);
+
+  // ✅ IMPORTANT (correct structure)
+  const actual = parsed.result || parsed.data || parsed;
+
+  const norm = {
+    race: Object.fromEntries(
+      Object.entries(actual.race || {}).map(([k, v]) => [k, format(v)])
+    ),
+    age: Object.fromEntries(
+      Object.entries(actual.age || {}).map(([k, v]) => [k, format(v)])
+    ),
+    gender: Object.fromEntries(
+      Object.entries(actual.gender || {}).map(([k, v]) => [
+        k.toUpperCase(),
+        format(v),
+      ])
+    ),
+  };
+
+  setData(norm);
+  setSelected(getTop(norm.race)[0]);
+}, []);
 
   if (!data) return null;
 
@@ -237,9 +266,8 @@ const styles = {
     background: "#eee",
     padding: 30,
     display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: "space-between",
+    justifyContent: "space-between"
   },
 
   centerTitle: {
