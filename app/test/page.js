@@ -220,7 +220,7 @@ const s = {
 
   main: {
     display: "grid",
-    gridTemplateColumns: "220px 1fr 320px",
+    gridTemplateColumns: "220px 880px 320px",
     gap: 30,
   },
 
