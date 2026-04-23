@@ -164,10 +164,12 @@ export default function Page() {
 
 /* CIRCLE */
 function Circle({ value }) {
-  const size = 280;
-  const stroke = 8;
+  const size = 360; // 🔥 bigger
+  const stroke = 10; // slightly thicker looks better when bigger
   const r = (size - stroke) / 2;
   const c = 2 * Math.PI * r;
+
+  const center = size / 2;
 
   const percent = parseFloat(value?.replace("%", "") || 0);
   const offset = c - (percent / 100) * c;
@@ -175,24 +177,35 @@ function Circle({ value }) {
   return (
     <div style={{ position: "relative" }}>
       <svg width={size} height={size}>
-        <circle cx="140" cy="140" r={r} stroke="#d0d0d0" strokeWidth={stroke} fill="none" />
+        <circle cx={center} cy={center} r={r} stroke="#d0d0d0" strokeWidth={stroke} fill="none" />
         <circle
-          cx="140"
-          cy="140"
+          cx={center}
+          cy={center}
           r={r}
           stroke="#111"
           strokeWidth={stroke}
           fill="none"
           strokeDasharray={c}
           strokeDashoffset={offset}
-          style={{ transform: "rotate(-90deg)", transformOrigin: "center" }}
+          style={{
+            transform: "rotate(-90deg)",
+            transformOrigin: "center",
+          }}
         />
       </svg>
-      <div style={s.percent}>{percent}%</div>
+
+      <div style={{
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        fontSize: 36, // 🔥 scale text too
+      }}>
+        {percent}%
+      </div>
     </div>
   );
 }
-
 /* STYLES */
 const s = {
   page: {
@@ -261,12 +274,15 @@ const s = {
   centerTitle: {
     fontSize: 32,
     position: 'relative',
-    bottom:"140px",
-    right:"15px"  
+    bottom:"190px",
+    right:"10px"  
   },
 
   circleWrap: {
     display: "flex",
+    position:"relative",
+    top:"50px",
+    left:"30px",
   },
 
   right: {
