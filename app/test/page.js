@@ -92,7 +92,7 @@ export default function Page() {
               }}
               style={{
                 ...s.leftBox,
-                background: active === item.key ? "#111" : "#E5E5E5",
+                background: active === item.key ? "#111" : "#F3F4F6",
                 color: active === item.key ? "#fff" : "#000",
               }}
             >
@@ -260,7 +260,7 @@ const s = {
   },
 
   center: {
-    background: "#E5E5E5",
+    background: "#F3F4F6",
     borderTop: "2px solid black",
     width:"105%",
     height:"300px",
@@ -287,7 +287,7 @@ const s = {
   },
 
   right: {
-    background: "#E5E5E5",
+    background: "#F3F4F6",
     borderTop: "2px solid #aaa",
     position:"relative",
     left:"9px",
