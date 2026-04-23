@@ -58,25 +58,25 @@ export default function Page() {
   );
 
   return (
-    <div style={s.page}>
-      <div style={s.container}>
+    <div>
+      <div>
         {/* TOP */}
-        <div style={s.top}>
+        <div>
           <div>
             <b>SKINSTRIC</b>
             <span style={{ color: "#888" }}> [ INTRO ]</span>
           </div>
-          <div style={s.codeBtn}>ENTER CODE</div>
+          <div>ENTER CODE</div>
         </div>
 
-        <div style={s.header}>A.I. ANALYSIS</div>
-        <div style={s.title}>DEMOGRAPHICS</div>
-        <div style={s.sub}>PREDICTED RACE & AGE</div>
+        <div>A.I. ANALYSIS</div>
+        <div>DEMOGRAPHICS</div>
+        <div>PREDICTED RACE & AGE</div>
 
         {/* MAIN */}
-        <div style={s.main}>
+        <div>
           {/* LEFT */}
-          <div style={s.left}>
+          <div>
             {["race", "age", "gender"].map((key) => (
               <div
                 key={key}
@@ -85,13 +85,12 @@ export default function Page() {
                   setSelected(getTop(data[key])[0]);
                 }}
                 style={{
-                  ...s.leftBox,
                   background: active === key ? "#111" : "#E5E5E5",
                   color: active === key ? "#fff" : "#000",
                 }}
               >
                 <div>{cap(getTop(data[key])[0])}</div>
-                <div style={s.leftLabel}>
+                <div>
                   {key === "gender" ? "SEX" : key.toUpperCase()}
                 </div>
               </div>
@@ -99,19 +98,19 @@ export default function Page() {
           </div>
 
           {/* CENTER */}
-          <div style={s.center}>
-            <div style={s.centerTitle}>
+          <div>
+            <div>
               {active === "age" ? `${selected} y.o.` : cap(selected)}
             </div>
 
-            <div style={s.circleWrap}>
+            <div>
               <Circle value={current[selected]} />
             </div>
           </div>
 
           {/* RIGHT */}
-          <div style={s.right}>
-            <div style={s.rightHead}>
+          <div>
+            <div>
               <span>{active.toUpperCase()}</span>
               <span>A.I. CONFIDENCE</span>
             </div>
@@ -121,7 +120,6 @@ export default function Page() {
                 key={k}
                 onClick={() => setSelected(k)}
                 style={{
-                  ...s.row,
                   background: selected === k ? "#111" : "transparent",
                   color: selected === k ? "#fff" : "#000",
                 }}
@@ -134,16 +132,16 @@ export default function Page() {
         </div>
 
         {/* BOTTOM */}
-        <div style={s.bottom}>
-          <div style={s.nav} onClick={() => router.push("/select")}>
+        <div>
+          <div onClick={() => router.push("/select")}>
             ◀ BACK
           </div>
 
-          <div style={s.note}>
+          <div>
             If A.I. estimate is wrong, select the correct one.
           </div>
 
-          <div style={s.nav} onClick={() => router.push("/")}>
+          <div onClick={() => router.push("/")}>
             HOME ▶
           </div>
         </div>
@@ -196,128 +194,6 @@ function Circle({ value }) {
 }
 
 /* STYLES */
-const s = {
-  page: {
-    display: "flex",
-    justifyContent: "center",
-    background: "#fff",
-  },
 
-  container: {
-    width: "1400px",
-    padding: "24px 30px",
-    fontFamily: "Helvetica, Arial",
-  },
 
-  top: {
-    display: "flex",
-    justifyContent: "space-between",
-    marginBottom: 30,
-    fontSize: 12,
-  },
-
-  codeBtn: {
-    background: "#111",
-    color: "#fff",
-    padding: "6px 12px",
-    fontSize: 10,
-  },
-
-  header: { fontSize: 11, letterSpacing: 2 },
-  title: { fontSize: 80 },
-  sub: { fontSize: 12, marginBottom: 35 },
-
-  main: {
-    display: "grid",
-    gridTemplateColumns: "200px 1fr 320px",
-    gap: 25,
-  },
-
-  left: {
-    display: "flex",
-    flexDirection: "column",
-    gap: 10,
-  },
-
-  leftBox: {
-    padding: "10px 12px",
-    borderTop: "1px solid #aaa",
-    fontSize: 13,
-    cursor: "pointer",
-  },
-
-  leftLabel: {
-    fontSize: 10,
-    marginTop: 4,
-  },
-
-  center: {
-    background: "#E5E5E5",
-    borderTop: "2px solid #111",
-    padding: "30px",
-    height: 520,
-
-    display: "grid",
-    gridTemplateColumns: "1fr 1fr",
-    gridTemplateRows: "1fr 1fr",
-  },
-
-  centerTitle: {
-    fontSize: 34,
-    alignSelf: "start",
-    justifySelf: "start",
-  },
-
-  circleWrap: {
-    alignSelf: "end",
-    justifySelf: "end",
-  },
-
-  right: {
-    background: "#E5E5E5",
-    borderTop: "2px solid #111",
-    height: 520,
-  },
-
-  rightHead: {
-    display: "flex",
-    justifyContent: "space-between",
-    padding: "10px 14px",
-    fontSize: 11,
-    borderBottom: "1px solid #bbb",
-  },
-
-  row: {
-    display: "flex",
-    justifyContent: "space-between",
-    padding: "14px",
-    borderBottom: "1px solid #d0d0d0",
-    fontSize: 13,
-    cursor: "pointer",
-  },
-
-  percent: {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    fontSize: 40,
-  },
-
-  bottom: {
-    marginTop: 30,
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-
-  nav: {
-    fontSize: 12,
-    cursor: "pointer",
-  },
-
-  note: {
-    color: "#777",
-    fontSize: 12,
-  },
-};
+ 
