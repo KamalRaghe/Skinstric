@@ -29,7 +29,7 @@ export default function Page() {
     if (!stored) return;
 
     const parsed = JSON.parse(stored);
-    const actual = parsed.result || parsed.data || parsed;
+    const actual = parsed.result || parsed;
 
     const norm = {
       race: Object.fromEntries(
@@ -58,93 +58,88 @@ export default function Page() {
   );
 
   return (
-    <div>
-      <div>
-        {/* TOP */}
+    <div style={styles.page}>
+      {/* HEADER */}
+      <div style={styles.header}>
         <div>
-          <div>
-            <b>SKINSTRIC</b>
-            <span style={{ color: "#888" }}> [ INTRO ]</span>
-          </div>
-          <div>ENTER CODE</div>
+          <b>SKINSTRIC</b>
+          <span style={{ color: "#999", marginLeft: 10 }}>[ INTRO ]</span>
         </div>
+        <div style={styles.codeBtn}>ENTER CODE</div>
+      </div>
 
-        <div>A.I. ANALYSIS</div>
-        <div>DEMOGRAPHICS</div>
-        <div>PREDICTED RACE & AGE</div>
+      {/* TITLE */}
+      <div style={styles.titleWrap}>
+        <div style={styles.small}>A.I. ANALYSIS</div>
+        <div style={styles.big}>DEMOGRAPHICS</div>
+        <div style={styles.small}>PREDICTED RACE & AGE</div>
+      </div>
 
-        {/* MAIN */}
-        <div>
-          {/* LEFT */}
-          <div>
-            {["race", "age", "gender"].map((key) => (
-              <div
-                key={key}
-                onClick={() => {
-                  setActive(key);
-                  setSelected(getTop(data[key])[0]);
-                }}
-                style={{
-                  background: active === key ? "#111" : "#E5E5E5",
-                  color: active === key ? "#fff" : "#000",
-                }}
-              >
-                <div>{cap(getTop(data[key])[0])}</div>
-                <div>
-                  {key === "gender" ? "SEX" : key.toUpperCase()}
-                </div>
+      {/* MAIN */}
+      <div style={styles.main}>
+        {/* LEFT */}
+        <div style={styles.left}>
+          {["race", "age", "gender"].map((key) => (
+            <div
+              key={key}
+              onClick={() => {
+                setActive(key);
+                setSelected(getTop(data[key])[0]);
+              }}
+              style={{
+                ...styles.leftItem,
+                background: active === key ? "#111" : "#e5e5e5",
+                color: active === key ? "#fff" : "#000",
+              }}
+            >
+              <div style={{ fontWeight: "bold" }}>
+                {cap(getTop(data[key])[0])}
               </div>
-            ))}
-          </div>
-
-          {/* CENTER */}
-          <div>
-            <div>
-              {active === "age" ? `${selected} y.o.` : cap(selected)}
-            </div>
-
-            <div>
-              <Circle value={current[selected]} />
-            </div>
-          </div>
-
-          {/* RIGHT */}
-          <div>
-            <div>
-              <span>{active.toUpperCase()}</span>
-              <span>A.I. CONFIDENCE</span>
-            </div>
-
-            {sorted.map(([k, v]) => (
-              <div
-                key={k}
-                onClick={() => setSelected(k)}
-                style={{
-                  background: selected === k ? "#111" : "transparent",
-                  color: selected === k ? "#fff" : "#000",
-                }}
-              >
-                <span>◇ {cap(k)}</span>
-                <span>{v}</span>
+              <div style={{ fontSize: 12 }}>
+                {key === "gender" ? "SEX" : key.toUpperCase()}
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
 
-        {/* BOTTOM */}
-        <div>
-          <div onClick={() => router.push("/select")}>
-            ◀ BACK
+        {/* CENTER */}
+        <div style={styles.center}>
+          <div style={styles.centerTitle}>
+            {active === "age" ? `${selected} y.o.` : cap(selected)}
           </div>
 
-          <div>
-            If A.I. estimate is wrong, select the correct one.
-          </div>
-
-          <div onClick={() => router.push("/")}>
-            HOME ▶
-          </div>
+          <Circle value={current[selected]} />
         </div>
+
+        {/* RIGHT */}
+        <div style={styles.right}>
+          <div style={styles.rightHeader}>
+            <span>{active.toUpperCase()}</span>
+            <span>A.I. CONFIDENCE</span>
+          </div>
+
+          {sorted.map(([k, v]) => (
+            <div
+              key={k}
+              onClick={() => setSelected(k)}
+              style={{
+                ...styles.row,
+                background: selected === k ? "#111" : "transparent",
+                color: selected === k ? "#fff" : "#000",
+              }}
+            >
+              <span>◇ {cap(k)}</span>
+              <span>{v}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* FOOTER */}
+      <div style={styles.footer}>
+        <div onClick={() => router.push("/select")}>◀ BACK</div>
+        <div>If A.I. estimate is wrong, select the correct one.</div>
+        <div onClick={() => router.push("/")}>HOME ▶</div>
       </div>
     </div>
   );
@@ -153,10 +148,9 @@ export default function Page() {
 /* CIRCLE */
 function Circle({ value }) {
   const size = 250;
-  const stroke = 8;
+  const stroke = 10;
   const r = (size - stroke) / 2;
   const c = 2 * Math.PI * r;
-  const center = size / 2;
 
   const percent = parseFloat(value || 0);
   const offset = c - (percent / 100) * c;
@@ -164,36 +158,126 @@ function Circle({ value }) {
   return (
     <div style={{ position: "relative" }}>
       <svg width={size} height={size}>
-        <circle cx={center} cy={center} r={r} stroke="#ccc" strokeWidth={stroke} fill="none" />
+        <circle cx="125" cy="125" r={r} stroke="#ddd" strokeWidth={stroke} fill="none" />
         <circle
-          cx={center}
-          cy={center}
+          cx="125"
+          cy="125"
           r={r}
           stroke="#111"
           strokeWidth={stroke}
           fill="none"
           strokeDasharray={c}
           strokeDashoffset={offset}
-          style={{ transform: "rotate(-90deg)", transformOrigin: "center" }}
+          style={{
+            transform: "rotate(-90deg)",
+            transformOrigin: "center",
+          }}
         />
       </svg>
 
-      <div
-        style={{
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          fontSize: 26,
-        }}
-      >
-        {percent}%
-      </div>
+      <div style={styles.circleText}>{percent}%</div>
     </div>
   );
 }
 
 /* STYLES */
+const styles = {
+  page: {
+    fontFamily: "Arial",
+    padding: "30px 40px",
+    background: "#f5f5f5",
+    height: "100vh",
+  },
 
+  header: {
+    display: "flex",
+    justifyContent: "space-between",
+    marginBottom: 40,
+  },
 
- 
+  codeBtn: {
+    border: "1px solid black",
+    padding: "6px 10px",
+    fontSize: 12,
+  },
+
+  titleWrap: {
+    marginBottom: 30,
+  },
+
+  small: {
+    fontSize: 12,
+    color: "#666",
+  },
+
+  big: {
+    fontSize: 70,
+    fontWeight: 500,
+  },
+
+  main: {
+    display: "grid",
+    gridTemplateColumns: "200px 1fr 300px",
+    gap: 30,
+    alignItems: "stretch",
+  },
+
+  left: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 10,
+  },
+
+  leftItem: {
+    padding: 15,
+    cursor: "pointer",
+  },
+
+  center: {
+    background: "#eee",
+    padding: 30,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  centerTitle: {
+    fontSize: 28,
+    marginBottom: 20,
+  },
+
+  right: {
+    background: "#eee",
+    padding: 20,
+  },
+
+  rightHeader: {
+    display: "flex",
+    justifyContent: "space-between",
+    marginBottom: 10,
+    fontSize: 12,
+  },
+
+  row: {
+    display: "flex",
+    justifyContent: "space-between",
+    padding: "10px 8px",
+    cursor: "pointer",
+  },
+
+  footer: {
+    display: "flex",
+    justifyContent: "space-between",
+    marginTop: 40,
+    fontSize: 12,
+  },
+
+  circleText: {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    fontSize: 28,
+  },
+};
