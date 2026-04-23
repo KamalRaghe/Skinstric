@@ -16,13 +16,13 @@ export default function Page() {
     return `${Math.round(n)}%`;
   };
 
+  const cap = (str) =>
+    str ? str.charAt(0).toUpperCase() + str.slice(1).toLowerCase() : "";
+
   const getTop = (obj) =>
     Object.entries(obj || {}).sort(
       (a, b) => parseFloat(b[1]) - parseFloat(a[1])
     )[0] || ["", "0%"];
-
-  const cap = (str) =>
-    str ? str.charAt(0).toUpperCase() + str.slice(1).toLowerCase() : "";
 
   useEffect(() => {
     const stored = localStorage.getItem("result");
@@ -86,11 +86,11 @@ export default function Page() {
                 }}
                 style={{
                   ...s.leftBox,
-                  background: active === key ? "#111" : "#E8E8E8",
+                  background: active === key ? "#111" : "#E5E5E5",
                   color: active === key ? "#fff" : "#000",
                 }}
               >
-                <div>{getTop(data[key])[0]}</div>
+                <div>{cap(getTop(data[key])[0])}</div>
                 <div style={s.leftLabel}>
                   {key === "gender" ? "SEX" : key.toUpperCase()}
                 </div>
@@ -135,7 +135,7 @@ export default function Page() {
 
         {/* BOTTOM */}
         <div style={s.bottom}>
-          <div style={s.navGroup} onClick={() => router.push("/select")}>
+          <div style={s.nav} onClick={() => router.push("/select")}>
             ◀ BACK
           </div>
 
@@ -143,7 +143,7 @@ export default function Page() {
             If A.I. estimate is wrong, select the correct one.
           </div>
 
-          <div style={s.navGroup} onClick={() => router.push("/")}>
+          <div style={s.nav} onClick={() => router.push("/")}>
             HOME ▶
           </div>
         </div>
@@ -154,8 +154,8 @@ export default function Page() {
 
 /* CIRCLE */
 function Circle({ value }) {
-  const size = 380;
-  const stroke = 10;
+  const size = 250;
+  const stroke = 8;
   const r = (size - stroke) / 2;
   const c = 2 * Math.PI * r;
   const center = size / 2;
@@ -180,7 +180,17 @@ function Circle({ value }) {
         />
       </svg>
 
-      <div style={s.percent}>{percent}%</div>
+      <div
+        style={{
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          fontSize: 26,
+        }}
+      >
+        {percent}%
+      </div>
     </div>
   );
 }
@@ -188,15 +198,14 @@ function Circle({ value }) {
 /* STYLES */
 const s = {
   page: {
-    background: "#FFF",
     display: "flex",
     justifyContent: "center",
+    background: "#fff",
   },
 
   container: {
-    width: "100%",
-    maxWidth: "1400px", // 🔥 THIS FIXES LOCAL VS VERCEL
-    padding: "24px 40px",
+    width: "1400px",
+    padding: "24px 30px",
     fontFamily: "Helvetica, Arial",
   },
 
@@ -210,42 +219,43 @@ const s = {
   codeBtn: {
     background: "#111",
     color: "#fff",
-    padding: "8px 14px",
+    padding: "6px 12px",
     fontSize: 10,
   },
 
   header: { fontSize: 11, letterSpacing: 2 },
-  title: { fontSize: 72 },
-  sub: { fontSize: 12, marginBottom: 30 },
+  title: { fontSize: 80 },
+  sub: { fontSize: 12, marginBottom: 35 },
 
   main: {
     display: "grid",
-    gridTemplateColumns: "220px 880px 320px",
-    gap: 30,
+    gridTemplateColumns: "200px 1fr 320px",
+    gap: 25,
   },
 
   left: {
     display: "flex",
     flexDirection: "column",
-    gap: 12,
+    gap: 10,
   },
 
   leftBox: {
-    padding: 12,
-    borderTop: "1px solid #999",
+    padding: "10px 12px",
+    borderTop: "1px solid #aaa",
+    fontSize: 13,
     cursor: "pointer",
   },
 
   leftLabel: {
     fontSize: 10,
-    marginTop: 6,
+    marginTop: 4,
   },
 
   center: {
-    background: "#E8E8E8",
+    background: "#E5E5E5",
     borderTop: "2px solid #111",
-    padding: "40px",
-    minHeight: 520,
+    padding: "30px",
+    height: 520,
 
     display: "grid",
     gridTemplateColumns: "1fr 1fr",
@@ -253,7 +263,7 @@ const s = {
   },
 
   centerTitle: {
-    fontSize: 32,
+    fontSize: 34,
     alignSelf: "start",
     justifySelf: "start",
   },
@@ -264,24 +274,25 @@ const s = {
   },
 
   right: {
-    background: "#E8E8E8",
+    background: "#E5E5E5",
     borderTop: "2px solid #111",
+    height: 520,
   },
 
   rightHead: {
     display: "flex",
     justifyContent: "space-between",
-    padding: "12px",
+    padding: "10px 14px",
     fontSize: 11,
-    borderBottom: "1px solid #ccc",
+    borderBottom: "1px solid #bbb",
   },
 
   row: {
     display: "flex",
     justifyContent: "space-between",
     padding: "14px",
-    borderBottom: "1px solid #ddd",
-    fontSize: 12,
+    borderBottom: "1px solid #d0d0d0",
+    fontSize: 13,
     cursor: "pointer",
   },
 
@@ -290,18 +301,19 @@ const s = {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    fontSize: 36,
+    fontSize: 40,
   },
 
   bottom: {
     marginTop: 30,
     display: "flex",
     justifyContent: "space-between",
+    alignItems: "center",
   },
 
-  navGroup: {
-    cursor: "pointer",
+  nav: {
     fontSize: 12,
+    cursor: "pointer",
   },
 
   note: {
