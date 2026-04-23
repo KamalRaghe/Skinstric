@@ -92,7 +92,7 @@ export default function Page() {
               }}
               style={{
                 ...s.leftBox,
-                background: active === item.key ? "#111" : "#e5e5e5",
+                background: active === item.key ? "#111" : "#E5E5E5",
                 color: active === item.key ? "#fff" : "#000",
               }}
             >
@@ -210,7 +210,7 @@ function Circle({ value }) {
 const s = {
   page: {
     fontFamily: "Helvetica, Arial",
-    background: "#e5e5e5",
+    background: "#FFF",
     minHeight: "100vh",
     padding: "24px 40px",
   },
@@ -260,7 +260,7 @@ const s = {
   },
 
   center: {
-    background: "#e5e5e5;",
+    background: "#E5E5E5",
     borderTop: "2px solid black",
     width:"105%",
     height:"300px",
@@ -287,7 +287,7 @@ const s = {
   },
 
   right: {
-    background: "#e5e5e5;",
+    background: "#E5E5E5",
     borderTop: "2px solid #aaa",
     position:"relative",
     left:"9px",
