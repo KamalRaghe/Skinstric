@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { relative } from "node:path";
 
 export default function Page() {
   const router = useRouter();
@@ -10,19 +11,21 @@ export default function Page() {
   const [selected, setSelected] = useState("");
 
   const format = (v) => {
-    if (!v) return "0%";
+    if (v == null) return "0%";
     let n = typeof v === "string" ? parseFloat(v) : v;
     if (n <= 1) n *= 100;
     return `${Math.round(n)}%`;
   };
 
-  const getTop = (obj) =>
-    Object.entries(obj || {}).sort(
+  const getTop = (obj) => {
+    if (!obj) return ["", "0%"];
+    return Object.entries(obj).sort(
       (a, b) => parseFloat(b[1]) - parseFloat(a[1])
-    )[0] || ["", "0%"];
+    )[0];
+  };
 
   const cap = (str) =>
-    str ? str.charAt(0).toUpperCase() + str.slice(1).toLowerCase() : "";
+    str.replace(/\b\w/g, (c) => c.toUpperCase());
 
   useEffect(() => {
     const stored = localStorage.getItem("result");
@@ -53,6 +56,7 @@ export default function Page() {
   if (!data) return null;
 
   const current = data[active];
+
   const sorted = Object.entries(current).sort(
     (a, b) => parseFloat(b[1]) - parseFloat(a[1])
   );
@@ -75,23 +79,26 @@ export default function Page() {
       <div style={s.main}>
         {/* LEFT */}
         <div style={s.left}>
-          {["race", "age", "gender"].map((key) => (
+          {[
+            { key: "race", label: "RACE" },
+            { key: "age", label: "AGE" },
+            { key: "gender", label: "SEX" },
+          ].map((item) => (
             <div
-              key={key}
+              key={item.key}
               onClick={() => {
-                setActive(key);
-                setSelected(getTop(data[key])[0]);
+                setActive(item.key);
+                setSelected(getTop(data[item.key])[0]);
               }}
               style={{
                 ...s.leftBox,
-                background: active === key ? "#111" : "#E5E5E5",
-                color: active === key ? "#fff" : "#000",
+                background: active === item.key ? "#111" : "#e5e5e5",
+                color: active === item.key ? "#fff" : "#000",
               }}
             >
-              <div>{getTop(data[key])[0]}</div>
-              <div style={s.leftLabel}>
-                {key === "gender" ? "SEX" : key.toUpperCase()}
-              </div>
+              <div>{getTop(data[item.key])[0]}</div>
+              <br></br>
+              <div style={s.leftLabel}>{item.label}</div>
             </div>
           ))}
         </div>
@@ -134,7 +141,10 @@ export default function Page() {
       {/* BOTTOM */}
       <div style={s.bottom}>
         <div style={s.navGroup} onClick={() => router.push("/select")}>
-          ◀ BACK
+          <div style={s.diamond}>
+            <span style={s.arrow}>◀</span>
+          </div>
+          <span style={{margin:'10px'}}>BACK</span>
         </div>
 
         <div style={s.note}>
@@ -142,7 +152,10 @@ export default function Page() {
         </div>
 
         <div style={s.navGroup} onClick={() => router.push("/")}>
-          HOME ▶
+          <span style={{margin:"10px"}} >Home</span>
+          <div style={s.diamond}>
+            <span style={s.arrow}>▶</span>
+          </div>
         </div>
       </div>
     </div>
@@ -151,19 +164,20 @@ export default function Page() {
 
 /* CIRCLE */
 function Circle({ value }) {
-  const size = 340;
-  const stroke = 10;
+  const size = 360; // 🔥 bigger
+  const stroke = 10; // slightly thicker looks better when bigger
   const r = (size - stroke) / 2;
   const c = 2 * Math.PI * r;
+
   const center = size / 2;
 
-  const percent = parseFloat(value || 0);
+  const percent = parseFloat(value?.replace("%", "") || 0);
   const offset = c - (percent / 100) * c;
 
   return (
     <div style={{ position: "relative" }}>
       <svg width={size} height={size}>
-        <circle cx={center} cy={center} r={r} stroke="#ccc" strokeWidth={stroke} fill="none" />
+        <circle cx={center} cy={center} r={r} stroke="#d0d0d0" strokeWidth={stroke} fill="none" />
         <circle
           cx={center}
           cy={center}
@@ -173,19 +187,30 @@ function Circle({ value }) {
           fill="none"
           strokeDasharray={c}
           strokeDashoffset={offset}
-          style={{ transform: "rotate(-90deg)", transformOrigin: "center" }}
+          style={{
+            transform: "rotate(-90deg)",
+            transformOrigin: "center",
+          }}
         />
       </svg>
-      <div style={s.percent}>{percent}%</div>
+
+      <div style={{
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        fontSize: 36, // 🔥 scale text too
+      }}>
+        {percent}%
+      </div>
     </div>
   );
 }
-
 /* STYLES */
 const s = {
   page: {
     fontFamily: "Helvetica, Arial",
-    background: "#F4F4F4",
+    background: "#e5e5e5",
     minHeight: "100vh",
     padding: "24px 40px",
   },
@@ -210,58 +235,68 @@ const s = {
 
   main: {
     display: "grid",
-    gridTemplateColumns: "200px 1fr 300px",
+    gridTemplateColumns: "240px 1fr 340px",
     gap: 30,
+    width: "100%",
   },
 
   left: {
     display: "flex",
     flexDirection: "column",
-    gap: 10,
+    gap: 12,
   },
 
   leftBox: {
-    padding: "12px",
-    borderTop: "1px solid black",
+    padding: 10,
+    width:"60%",
+    height:"80px",
+    borderTop:"1px solid black",
     cursor: "pointer",
   },
 
   leftLabel: {
-    fontSize: 10,
-    marginTop: 4,
+    fontSize: 11,
+    marginTop: 6,
   },
 
   center: {
-    background: "#E8E8E8",
+    background: "#e5e5e5;",
     borderTop: "2px solid black",
-    padding: "40px",
-    minHeight: 500,
-
-    display: "grid",
-    gridTemplateColumns: "1fr 1fr",
-    gridTemplateRows: "1fr 1fr",
+    width:"105%",
+    height:"300px",
+    position:"relative",
+    right:"90px",
+    padding: "60px 40px",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
 
   centerTitle: {
-    fontSize: 28,
-    alignSelf: "start",
-    justifySelf: "start",
+    fontSize: 32,
+    position: 'relative',
+    bottom:"180px",
+    right:"25px"  
   },
 
   circleWrap: {
-    alignSelf: "end",
-    justifySelf: "end",
+    display: "flex",
+    position:"relative",
+    top:"25px",
+    left:"30px",
   },
 
   right: {
-    background: "#E8E8E8",
+    background: "#e5e5e5;",
     borderTop: "2px solid #aaa",
+    position:"relative",
+    left:"9px",
   },
 
   rightHead: {
     display: "flex",
     justifyContent: "space-between",
-    padding: "12px",
+    padding: "12px 14px",
     fontSize: 11,
     borderBottom: "1px solid #ccc",
   },
@@ -280,17 +315,35 @@ const s = {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    fontSize: 34,
+    fontSize: 32,
   },
 
   bottom: {
-    marginTop: 30,
+    marginTop: 40,
     display: "flex",
     justifyContent: "space-between",
+    alignItems: "center",
   },
 
   navGroup: {
+    display: "flex",
+    alignItems: "center",
+    gap: 10,
     cursor: "pointer",
+  },
+
+  diamond: {
+    width: 36,
+    height: 36,
+    border: "1px solid #000",
+    transform: "rotate(45deg)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  arrow: {
+    transform: "rotate(-45deg)",
   },
 
   note: {
