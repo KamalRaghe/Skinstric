@@ -92,7 +92,7 @@ export default function Page() {
               }}
               style={{
                 ...s.leftBox,
-                background: active === item.key ? "#111" : "#e5e5e5",
+                background: active === item.key ? "#111" : "#F3F3F4",
                 color: active === item.key ? "#fff" : "#000",
               }}
             >
@@ -144,7 +144,7 @@ export default function Page() {
           <div style={s.diamond}>
             <span style={s.arrow}>◀</span>
           </div>
-          BACK
+          <span style={{margin:"10px"}}>BACK</span>
         </div>
 
         <div style={s.note}>
@@ -152,7 +152,7 @@ export default function Page() {
         </div>
 
         <div style={s.navGroup} onClick={() => router.push("/")}>
-          HOME
+          <span style={{margin:"10px"}}>HOME</span>
           <div style={s.diamond}>
             <span style={s.arrow}>▶</span>
           </div>
@@ -260,9 +260,10 @@ const s = {
   },
 
   center: {
-    background: "#e8e8e8",
+    background: "#F3F3F4;",
     borderTop: "2px solid black",
-    width:"900px",
+    width:"105%",
+    height:"300px",
     position:"relative",
     right:"90px",
     padding: "60px 40px",
@@ -274,22 +275,22 @@ const s = {
   centerTitle: {
     fontSize: 32,
     position: 'relative',
-    bottom:"190px",
-    right:"10px"  
+    bottom:"180px",
+    right:"25px"  
   },
 
   circleWrap: {
     display: "flex",
     position:"relative",
-    top:"50px",
+    top:"25px",
     left:"30px",
   },
 
   right: {
-    background: "#e8e8e8",
+    background: "#F3F3F4;",
     borderTop: "2px solid #aaa",
     position:"relative",
-    right:"99px",
+    left:"9px",
   },
 
   rightHead: {
