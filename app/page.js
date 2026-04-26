@@ -97,7 +97,7 @@ export default function Home() {
               maxWidth: "300px",
             }}
           >
-            <div style={{ fontSize: "80px" }}>
+            <div style={{ fontSize: "72px" }}>
               Sophisticated <br /> skincare
             </div>
 
