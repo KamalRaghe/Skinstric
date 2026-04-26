@@ -29,7 +29,7 @@ export default function Page() {
     )[0] || ["", "0%"];
 
   useEffect(() => {
-    const check = () => setIsTablet(window.innerWidth <=1000);
+    const check = () => setIsTablet(window.innerWidth <=900);
     check();
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
@@ -37,7 +37,7 @@ export default function Page() {
 
   // 🔥 NEW
   useEffect(() => {
-    const check = () => setIsCompact1000(window.innerWidth <= 1000);
+    const check = () => setIsCompact1000(window.innerWidth <= 900);
     check();
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
