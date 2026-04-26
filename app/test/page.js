@@ -50,9 +50,6 @@ useEffect(() => {
         },
       },
     };
-
-    localStorage.setItem("result", JSON.stringify(mock));
-    stored = JSON.stringify(mock);
   }
 
   const parsed = JSON.parse(stored);
@@ -302,10 +299,9 @@ const styles = {
   },
 
   circleText: {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
+    position: "relative",
+    bottom:"145px",
+    left: "98px",
     fontSize: 28,
   },
 };
