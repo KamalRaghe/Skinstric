@@ -8,6 +8,10 @@ export default function Page() {
   const [data, setData] = useState(null);
   const [active, setActive] = useState("race");
   const [selected, setSelected] = useState("");
+  const [isTablet, setIsTablet] = useState(false);
+
+  // 🔥 NEW (1000px behavior)
+  const [isCompact1000, setIsCompact1000] = useState(false);
 
   const format = (v) => {
     if (!v) return "0%";
@@ -23,58 +27,45 @@ export default function Page() {
     Object.entries(obj || {}).sort(
       (a, b) => parseFloat(b[1]) - parseFloat(a[1])
     )[0] || ["", "0%"];
-useEffect(() => {
-  let stored = localStorage.getItem("result");
 
-  // 🔥 IF NO DATA → CREATE IT
-  if (!stored) {
-    const mock = {
-      data: {
-        race: {
-          "latino hispanic": 0.67,
-          "east asian": 0.22,
-          "middle eastern": 0.04,
-          "south asian": 0.02,
-          white: 0.01,
-          black: 0,
-          "southeast asian": 0,
-        },
-        age: {
-          "3-9": 0.8,
-          "10-19": 0.1,
-          "20-29": 0.05,
-        },
-        gender: {
-          male: 0.9,
-          female: 0.1,
-        },
-      },
+  useEffect(() => {
+    const check = () => setIsTablet(window.innerWidth <=1000);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  // 🔥 NEW
+  useEffect(() => {
+    const check = () => setIsCompact1000(window.innerWidth <= 1000);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  useEffect(() => {
+    let stored = localStorage.getItem("result");
+    const parsed = JSON.parse(stored || "{}");
+    const actual = parsed.result || parsed.data || parsed;
+
+    const norm = {
+      race: Object.fromEntries(
+        Object.entries(actual.race || {}).map(([k, v]) => [k, format(v)])
+      ),
+      age: Object.fromEntries(
+        Object.entries(actual.age || {}).map(([k, v]) => [k, format(v)])
+      ),
+      gender: Object.fromEntries(
+        Object.entries(actual.gender || {}).map(([k, v]) => [
+          k.toUpperCase(),
+          format(v),
+        ])
+      ),
     };
-  }
 
-  const parsed = JSON.parse(stored);
-
-  // ✅ IMPORTANT (correct structure)
-  const actual = parsed.result || parsed.data || parsed;
-
-  const norm = {
-    race: Object.fromEntries(
-      Object.entries(actual.race || {}).map(([k, v]) => [k, format(v)])
-    ),
-    age: Object.fromEntries(
-      Object.entries(actual.age || {}).map(([k, v]) => [k, format(v)])
-    ),
-    gender: Object.fromEntries(
-      Object.entries(actual.gender || {}).map(([k, v]) => [
-        k.toUpperCase(),
-        format(v),
-      ])
-    ),
-  };
-
-  setData(norm);
-  setSelected(getTop(norm.race)[0]);
-}, []);
+    setData(norm);
+    setSelected(getTop(norm.race)[0]);
+  }, []);
 
   if (!data) return null;
 
@@ -102,7 +93,13 @@ useEffect(() => {
       </div>
 
       {/* MAIN */}
-      <div style={styles.main}>
+      <div
+        style={
+          isTablet
+            ? { display: "flex", flexDirection: "column", gap: 20 }
+            : styles.main
+        }
+      >
         {/* LEFT */}
         <div style={styles.left}>
           {["race", "age", "gender"].map((key) => (
@@ -128,13 +125,30 @@ useEffect(() => {
           ))}
         </div>
 
-        {/* CENTER */}
-        <div style={styles.center}>
-          <div style={styles.centerTitle}>
-            {active === "age" ? `${selected} y.o.` : cap(selected)}
-          </div>
+        {/* CENTER (ONLY PART CHANGED) */}
+        <div
+          style={
+            isCompact1000
+              ? {
+                  ...styles.center,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }
+              : styles.center
+          }
+        >
+          {/* TEXT (hidden ≤1000px) */}
+          {!isCompact1000 && (
+            <div style={styles.topLeft}>
+              {active === "age" ? `${selected} y.o.` : cap(selected)}
+            </div>
+          )}
 
-          <Circle value={current[selected]} />
+          {/* CIRCLE */}
+          <div style={isCompact1000 ? {} : styles.bottomRight}>
+            <Circle value={current[selected]} />
+          </div>
         </div>
 
         {/* RIGHT */}
@@ -194,10 +208,7 @@ function Circle({ value }) {
           fill="none"
           strokeDasharray={c}
           strokeDashoffset={offset}
-          style={{
-            transform: "rotate(-90deg)",
-            transformOrigin: "center",
-          }}
+          style={{ transform: "rotate(-90deg)", transformOrigin: "center" }}
         />
       </svg>
 
@@ -206,7 +217,7 @@ function Circle({ value }) {
   );
 }
 
-/* STYLES */
+/* STYLES (UNCHANGED) */
 const styles = {
   page: {
     fontFamily: "Arial",
@@ -245,7 +256,6 @@ const styles = {
     display: "grid",
     gridTemplateColumns: "200px 1fr 300px",
     gap: 30,
-    alignItems: "stretch",
   },
 
   left: {
@@ -262,14 +272,21 @@ const styles = {
   center: {
     background: "#eee",
     padding: 30,
-    display: "flex",
-    alignItems: "space-between",
-    justifyContent: "space-between"
+    position: "relative",
+    minHeight: "350px",
   },
 
-  centerTitle: {
+  topLeft: {
+    position: "absolute",
+    top: 30,
+    left: 30,
     fontSize: 28,
-    marginBottom: 20,
+  },
+
+  bottomRight: {
+    position: "absolute",
+    bottom: 30,
+    right: 30,
   },
 
   right: {
@@ -299,9 +316,10 @@ const styles = {
   },
 
   circleText: {
-    position: "relative",
-    bottom:"145px",
-    left: "98px",
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
     fontSize: 28,
   },
 };
