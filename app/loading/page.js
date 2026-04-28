@@ -8,7 +8,7 @@ export default function LoadingPage() {
   useEffect(()=>{
 
     setTimeout(() => {
-        useRouter('/select')
+        router.push('/select')
     }, 1000);
 
   },[])
