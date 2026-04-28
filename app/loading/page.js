@@ -1,6 +1,17 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+
 export default function LoadingPage() {
+  const  router = useRouter()
+  useEffect(()=>{
+
+    setTimeout(() => {
+        useRouter('/select')
+    }, 1000);
+
+  },[])
   return (
     <div className="" >
          <div className="center" style={{ justifyContent: "space-between", margin: "8px 0px" }}>

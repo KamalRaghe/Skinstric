@@ -49,8 +49,8 @@ export default function ScanPage() {
     console.log("RESULT:", data);
 
     setTimeout(() => {
-      router.push("/select");
-    }, 1000);
+      router.push("/loading");
+    }, 10);
   } catch (err) {
     console.error(err);
     setLoading(false);
