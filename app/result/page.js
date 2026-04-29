@@ -24,7 +24,7 @@ export default function ScanPage() {
     reader.onerror = (error) => reject(error);
   });
 
-  const analyzeImage = async () => {
+  const analyzeImage = async (img) => {
   try {
     setLoading(true);
 
@@ -36,7 +36,7 @@ export default function ScanPage() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          image: base64,
+          image: img,
         }),
       }
     );

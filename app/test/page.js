@@ -45,6 +45,7 @@ export default function Page() {
 
   useEffect(() => {
     let stored = localStorage.getItem("result");
+    console.log(stored)
     const parsed = JSON.parse(stored || "{}");
     const actual = parsed.result || parsed.data || parsed;
 
