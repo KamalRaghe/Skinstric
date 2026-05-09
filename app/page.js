@@ -308,10 +308,12 @@ export default function Home() {
               left: "180px",
             }}
           >
-            <div
+            <div 
               style={{
+                border:"0.2px solid black",
+                opacity:"0.8",
                 display: "inline-block",
-                scale: "2",
+                scale: "2.4",
                 padding: "1px",
                 position: "relative",
                 right: "50px",

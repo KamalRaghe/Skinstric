@@ -66,7 +66,16 @@ export default function Page() {
 
     setData(norm);
     setSelected(getTop(norm.race)[0]);
-  }, []);
+      }, []);
+
+      const [isMobile500, setIsMobile500] = useState(false);
+
+    useEffect(() => {
+      const check = () => setIsMobile500(window.innerWidth <= 700);
+      check();
+      window.addEventListener("resize", check);
+      return () => window.removeEventListener("resize", check);
+    }, []);
 
   if (!data) return null;
 
@@ -89,7 +98,14 @@ export default function Page() {
       {/* TITLE */}
       <div style={styles.titleWrap}>
         <div style={styles.small}>A.I. ANALYSIS</div>
-        <div style={styles.big}>DEMOGRAPHICS</div>
+        <div
+          style={{
+            ...styles.big,
+            fontSize: isMobile500 ? "48px" : styles.big.fontSize,
+          }}
+        >
+          DEMOGRAPHICS
+        </div>
         <div style={styles.small}>PREDICTED RACE & AGE</div>
       </div>
 

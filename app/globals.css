@@ -29,7 +29,11 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
-
+.hide{
+  background-color: transparent;
+  color: transparent;
+  border: none;
+}
 .center{
   display: flex;
   justify-content: center;
@@ -60,6 +64,22 @@ button{
   }
   100%{
     opacity: 0;
+  }
+  
+}
+
+.fadeRight{
+  animation: fadeRight 2s linear;
+}
+
+@keyframes fadeRight {
+  0%{
+    opacity: 0;
+    transform: translateX(-30px)
+  }
+  100%{
+    opacity: 1;
+    transform: translateX(0px)
   }
   
 }

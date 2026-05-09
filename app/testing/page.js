@@ -12,6 +12,8 @@ const [none, setNone] = useState()
 const [error,setError] = useState()
 const [loading, setLoading] = useState(false);
 const [loaded,setLoaded] = useState()
+const [rightButton, setButton] = useState('center hide')
+const [border, setBorder] = useState('none')
 const router = useRouter()
 
   return (
@@ -96,11 +98,14 @@ const router = useRouter()
                             setTimeout(() => {
                             setLoaded(true)
                             setLoading(false)
+                            setButton('center fadeRight')
+                            setBorder('1px solid grey')
                         }, 1500)
                         })
                         .catch(err => console.log(err));
 
                         setNone("none");
+                        
                     }
                     }}
                     placeholder= {title}
@@ -181,7 +186,7 @@ const router = useRouter()
                     <span style={{marginLeft:"12px" }} >BACK</span>
                 </div>
                 <div
-                    className="center"
+                    className= {rightButton}
                     onClick={() => router.push('/result')}
                     style={{ cursor: "pointer" }}
                 >
@@ -189,7 +194,7 @@ const router = useRouter()
                     <div className="center"
                     style={{
                     transform: "rotate(45deg)",
-                    border: "1px solid grey",
+                    border: border,
                     width: "50px",
                     height: "50px",
                     }}>
